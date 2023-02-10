@@ -1,5 +1,7 @@
 # SOCIAL NETWORK Api Rest Restfull made with Python
 
+YAML is here : https://github.com/ysimonx/social-network-rest-api/blob/main/docs/api-people.yaml
+
 installer le nécessaire avec install.sh
 
 creer une database "apipeople" sur mysql
