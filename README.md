@@ -1,6 +1,10 @@
 # SOCIAL NETWORK Api Rest Restfull made with Python
 
+a very little PoC front-end flutter is available on https://github.com/ysimonx/api_people_flutter
+
+
 YAML is here : https://github.com/ysimonx/social-network-rest-api/blob/main/docs/api-people.yaml
+
 
 installer le nécessaire avec install.sh
 
