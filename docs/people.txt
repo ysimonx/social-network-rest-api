@@ -1,0 +1,17 @@
+#create
+curl -H "Content-Type: application/json" -X POST -d '{"pseudo": "ysimonx"}' http://localhost:5000/people
+
+#list
+curl http://localhost:5000/people/list
+#read
+curl http://localhost:5000/people/043c3853-80fd-4798-9011-0381164f55d3
+
+#read by pseudo
+curl http://localhost:5000/people/pseudo/ysimonx
+{"id":"043c3853-80fd-4798-9011-0381164f55d3","pseudo":"ysimonx"}
+
+# update
+curl http://localhost:5000/people/043c3853-80fd-4798-9011-0381164f55d3 -X PUT -H "Content-Type: application/json" -d '{"pseudo":"yannickoo"}'
+
+# delete
+curl http://localhost:5000/people/043c3853-80fd-4798-9011-0381164f55d3 -X DELETE

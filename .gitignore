@@ -1,0 +1,10 @@
+env
+.DS_Store
+*.pyc
+run.sh
+run_systemd.sh
+run_systemd.sh
+run.sh
+./logs
+app/logs/app.log
+run.sh

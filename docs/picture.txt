@@ -1,0 +1,17 @@
+#create
+curl -H "Content-Type: application/json" -X POST -d '{"gallery_id": "95c13cf1-9595-4fa5-835f-106c53fdfa27"}' http://localhost:5000/picture
+
+#list
+curl http://localhost:5000/picture/list
+#read
+curl http://localhost:5000/picture/1bc83aef-58a8-4fde-9533-202f52c021fd
+
+#read by pseudo
+curl http://localhost:5000/people/pseudo/ysimonx
+{"id":"043c3853-80fd-4798-9011-0381164f55d3","pseudo":"ysimonx"}
+
+# update
+curl http://localhost:5000/people/043c3853-80fd-4798-9011-0381164f55d3 -X PUT -H "Content-Type: application/json" -d '{"pseudo":"yannickoo"}'
+
+# delete
+curl http://localhost:5000/people/043c3853-80fd-4798-9011-0381164f55d3 -X DELETE

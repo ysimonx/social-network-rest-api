@@ -1,0 +1,1212 @@
+openapi: 3.0.0
+info:
+  description: "This is a sample server People server.  You can find out more about
+   ."
+  version: 1.0.2
+  title: Swagger Api-people
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: yannick.simon@kysoe.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+tags:
+  - name: people
+    description: Everything about your People
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+  - name: gallery
+    description: Everything about your Gallery
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+  - name: picture
+    description: Everything about your Picture
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+  - name: video
+    description: Everything about your Video
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+  - name: country
+    description: Everything about your Country
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+  - name: region
+    description: Everything about your Region
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+  - name: city
+    description: Everything about your City
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+  - name: tour
+    description: Everything about your Tour
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+  - name: like
+    description: Everything about your Like
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+  - name: follow
+    description: Everything about your Follow
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+      
+  - name: subscription
+    description: Everything about your subscription
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+
+paths:
+  /people:
+  
+    post:
+      tags:
+        - people
+      summary: people post
+      description: "people post desccription"
+      operationId: peoplePost
+      requestBody:
+        $ref: "#/components/requestBodies/People"
+      responses:
+          "200":
+            description: successful operation
+          
+            content:
+              application/xml:
+                schema:
+                  $ref: "#/components/schemas/People"
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/People"
+    get:
+      tags:
+        - people
+      summary: people list
+      description: "people desccription"
+      operationId: peopleList
+      parameters:
+        - in: query
+          name: append_to_response
+          schema:
+            type: string
+          required: false
+          description: add additional data to response
+      responses:
+          "200":
+            description: successful operation
+            content:
+              application/xml:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/People"
+              application/json:
+                schema:
+                  type: array
+                  items:
+                  
+                    $ref: "#/components/schemas/People"
+                    
+  /people/{people_id}:
+    get:
+      tags:
+        - people
+      summary: people get
+      description: "people get desccription"
+      operationId: peopleGet
+      parameters:
+        - name: people_id
+          in: path
+          required: true
+          schema:
+            type: string
+                  
+      responses:
+          "200":
+           description: successful operation
+           content:
+              application/xml:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/People"
+              application/json:
+                schema:
+                  type: array
+                  items:
+                  
+                    $ref: "#/components/schemas/People"
+    delete:
+      tags:
+        - people
+      summary: people delete
+      description: "people delete desccription"
+      operationId: peopleDelete
+      parameters:
+        - name: people_id
+          in: path
+          required: true
+          schema:
+            type: string
+    
+      responses:
+          "200":
+            description: successful operation
+
+  /like:
+  
+    post:
+      tags:
+        - like
+      summary: like post
+      description: "like post desccription"
+      operationId: likePost
+      requestBody:
+        $ref: "#/components/requestBodies/Like"
+      responses:
+          "200":
+            description: successful operation
+          
+            content:
+              application/xml:
+                schema:
+                  $ref: "#/components/schemas/Like"
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Like"
+      
+      
+  /like/{like_id}:
+    delete:
+      tags:
+        - like
+      summary: like delete
+      description: "like delete desccription"
+      operationId: likeeDelete
+      parameters:
+        - name: like_id
+          in: path
+          required: true
+          schema:
+            type: string
+    
+      responses:
+          "200":
+            description: successful operation
+
+  
+  
+  /follow:
+  
+    post:
+      tags:
+        - follow
+      summary: follow post
+      description: "follow post desccription"
+      operationId: followPost
+      requestBody:
+        $ref: "#/components/requestBodies/Follow"
+      responses:
+          "200":
+            description: successful operation
+          
+            content:
+              application/xml:
+                schema:
+                  $ref: "#/components/schemas/Follow"
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Follow"
+  
+      
+  /follow/{follow_id}:
+    delete:
+      tags:
+        - follow
+      summary: follow delete
+      description: "follow delete desccription"
+      operationId: followDelete
+      parameters:
+        - name: follow_id
+          in: path
+          required: true
+          schema:
+            type: string
+    
+      responses:
+          "200":
+            description: successful operation
+
+                
+  /gallery:
+    post:
+      tags:
+        - gallery
+      summary: gallery post
+      description: "gallery post desccription"
+      operationId: galleryPost
+      requestBody:
+        $ref: "#/components/requestBodies/Gallery"
+      responses:
+          "200":
+            description: successful operation
+          
+            content:
+              application/xml:
+                schema:
+                  $ref: "#/components/schemas/Gallery"
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Gallery"
+    get:
+      tags:
+        - gallery
+      summary: gallery list
+      description: "gallery desccription"
+      operationId: galleryList
+      parameters:
+        - in: query
+          name: append_to_response
+          schema:
+            type: string
+          required: false
+          description: add additional data to response
+      responses:
+          "200":
+            description: successful operation
+            content:
+              application/xml:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Gallery"
+              application/json:
+                schema:
+                  type: array
+                  items:
+                  
+                    $ref: "#/components/schemas/Gallery"
+ 
+  /gallery/{gallery_id}:
+    get:
+      tags:
+        - gallery
+      summary: gallery get
+      description: "gallery get desccription"
+      operationId: galleryGet
+      parameters:
+        - name: gallery_id
+          in: path
+          required: true
+          schema:
+            type: string
+                  
+      responses:
+          "200":
+           description: successful operation
+           content:
+              application/xml:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Gallery"
+              application/json:
+                schema:
+                  type: array
+                  items:
+                  
+                    $ref: "#/components/schemas/Gallery"
+    delete:
+      tags:
+        - gallery
+      summary: gallery delete
+      description: "gallery delete desccription"
+      operationId: galleryDelete
+      parameters:
+        - name: gallery_id
+          in: path
+          required: true
+          schema:
+            type: string
+    
+      responses:
+          "200":
+            description: successful operation
+    
+    
+  /picture:
+    post:
+      tags:
+        - picture
+      summary: picture post
+      description: "picture post desccription"
+      operationId: picturePost
+      requestBody:
+        $ref: "#/components/requestBodies/Picture"
+      responses:
+          "200":
+            description: successful operation
+          
+            content:
+              application/xml:
+                schema:
+                  $ref: "#/components/schemas/Picture"
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Picture"
+    get:
+      tags:
+        - picture
+      summary: picture list
+      description: "picture desccription"
+      operationId: pictureList
+      parameters:
+        - in: query
+          name: append_to_response
+          schema:
+            type: string
+          required: false
+          description: add additional data to response
+      responses:
+          "200":
+            description: successful operation
+            content:
+              application/xml:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Picture"
+              application/json:
+                schema:
+                  type: array
+                  items:
+                  
+                    $ref: "#/components/schemas/Picture"
+ 
+  /picture/{picture_id}:
+    get:
+      tags:
+        - picture
+      summary: picture get
+      description: "picture get desccription"
+      operationId: pictureGet
+      parameters:
+        - name: picture_id
+          in: path
+          required: true
+          schema:
+            type: string
+                  
+      responses:
+          "200":
+           description: successful operation
+           content:
+              application/xml:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Picture"
+              application/json:
+                schema:
+                  type: array
+                  items:
+                  
+                    $ref: "#/components/schemas/Picture"
+    delete:
+      tags:
+        - picture
+      summary: picture delete
+      description: "picture delete desccription"
+      operationId: pictureDelete
+      parameters:
+        - name: picture_id
+          in: path
+          required: true
+          schema:
+            type: string
+    
+      responses:
+          "200":
+            description: successful operation
+   
+   
+     
+  /video:
+    post:
+      tags:
+        - video
+      summary: video post
+      description: "video post desccription"
+      operationId: videoPost
+      requestBody:
+        $ref: "#/components/requestBodies/Video"
+      responses:
+          "200":
+            description: successful operation
+          
+            content:
+              application/xml:
+                schema:
+                  $ref: "#/components/schemas/Video"
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Video"
+    get:
+      tags:
+        - video
+      summary: video list
+      description: "video desccription"
+      operationId: videoList
+      parameters:
+        - in: query
+          name: append_to_response
+          schema:
+            type: string
+          required: false
+          description: add additional data to response
+      responses:
+          "200":
+            description: successful operation
+            content:
+              application/xml:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Video"
+              application/json:
+                schema:
+                  type: array
+                  items:
+                  
+                    $ref: "#/components/schemas/Video"
+ 
+  /video/{video_id}:
+    get:
+      tags:
+        - video
+      summary: video get
+      description: "video get desccription"
+      operationId: videoGet
+      parameters:
+        - name: video_id
+          in: path
+          required: true
+          schema:
+            type: string
+                  
+      responses:
+          "200":
+           description: successful operation
+           content:
+              application/xml:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Video"
+              application/json:
+                schema:
+                  type: array
+                  items:
+                  
+                    $ref: "#/components/schemas/Video"
+    delete:
+      tags:
+        - video
+      summary: video delete
+      description: "video delete desccription"
+      operationId: videoDelete
+      parameters:
+        - name: video_id
+          in: path
+          required: true
+          schema:
+            type: string
+    
+      responses:
+          "200":
+            description: successful operation
+  
+            
+  /country:
+    post:
+      tags:
+        - country
+      summary: country post
+      description: "country post desccription"
+      operationId: countryPost
+      requestBody:
+        $ref: "#/components/requestBodies/Country"
+      responses:
+          "200":
+            description: successful operation
+          
+            content:
+              application/xml:
+                schema:
+                  $ref: "#/components/schemas/Country"
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Country"
+  
+    get:
+      tags:
+        - country
+      summary: country list
+      description: "country list desccription"
+      operationId: countryList
+      parameters:
+        - in: query
+          name: append_to_response
+          schema:
+            type: string
+          required: false
+          description: add additional data to response
+      responses:
+          "200":
+            description: successful operation
+            content:
+              application/xml:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Country"
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Country"
+  
+
+  /country/{country_id}:
+    get:
+      tags:
+        - country
+      summary: country get
+      description: "country delete desccription"
+      operationId: countryGet
+      parameters:
+        - name: country_id
+          in: path
+          required: true
+          schema:
+            type: string
+                  
+      responses:
+          "200":
+           description: successful operation
+           
+    delete:
+      tags:
+        - country
+      summary: country delete
+      description: "country delete desccription"
+      operationId: countryDelete
+      parameters:
+        - name: country_id
+          in: path
+          required: true
+          schema:
+            type: string
+            
+            
+      responses:
+          "200":
+            description: successful operation
+
+      
+      
+  /region:
+
+    post:
+      tags:
+        - region
+      summary: region post
+      description: "region post desccription"
+      operationId: regionPost
+      requestBody:
+        $ref: "#/components/requestBodies/Region"
+      responses:
+          "200":
+            description: successful operation
+          
+            content:
+              application/xml:
+                schema:
+                  $ref: "#/components/schemas/Region"
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Region"
+            
+    get:
+      tags:
+        - region
+      summary: region list
+      description: "region desccription"
+      operationId: regionList
+      parameters:
+        - in: query
+          name: append_to_response
+          schema:
+            type: string
+          required: false
+          description: add additional data to response
+      responses:
+          "200":
+            description: successful operation
+            content:
+              application/xml:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Region"
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Region"
+
+
+  /region/{region_id}:
+    get:
+      tags:
+        - region
+      description: "region get description"
+      operationId: regionGet
+      parameters:
+        - name: region_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+          "200":
+            description: successful operation
+    delete:
+      tags:
+        - region
+      description: "region delete description"
+      operationId: regionDelete
+      parameters:
+        - name: region_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+          "200":
+            description: successful operation
+            
+            
+            
+  /city:
+  
+
+    post:
+      tags:
+        - city
+      summary: city post
+      description: "city post desccription"
+      operationId: cityPost
+      requestBody:
+        $ref: "#/components/requestBodies/City"
+      responses:
+          "200":
+            description: successful operation
+          
+            content:
+              application/xml:
+                schema:
+                  $ref: "#/components/schemas/City"
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/City"
+           
+    get:
+      tags:
+        - city
+      summary: city list
+      description: "city list desccription"
+      operationId: cityList
+      parameters:
+        - in: query
+          name: append_to_response
+          schema:
+            type: string
+          required: false
+          description: add additional data to response
+      responses:
+          "200":
+            description: successful operation
+            content:
+              application/xml:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/City"
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/City"
+
+ 
+  /city/{city_id}:
+    get:
+      tags:
+        - city
+      description: "city get description"
+      operationId: cityGet
+      parameters:
+        - name: city_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+          "200":
+            description: successful operation
+    delete:
+      tags:
+        - city
+      description: "city delete description"
+      operationId: cityDelete
+      parameters:
+        - name: city_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+          "200":
+            description: successful operation
+
+
+  /tour:
+  
+ 
+    post:
+      tags:
+        - tour
+      summary: tour post
+      description: "tour post desccription"
+      operationId: tourPost
+      requestBody:
+        $ref: "#/components/requestBodies/Tour"
+      responses:
+          "200":
+            description: successful operation
+          
+            content:
+              application/xml:
+                schema:
+                  $ref: "#/components/schemas/Tour"
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Tour"
+          
+    get:
+      tags:
+        - tour
+      summary: tour list
+      description: "tour list desccription"
+      operationId: tourList
+      parameters:
+        - in: query
+          name: append_to_response
+          schema:
+            type: string
+          required: false
+          description: add additional data to response
+      responses:
+          "200":
+            description: successful operation
+            content:
+              application/xml:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Tour"
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Tour"
+        
+                  
+  "/tour/{tour_id}":
+    get:
+      tags:
+        - tour
+      summary: tour get
+      description: "tour get desccription"
+      operationId: tourGet
+      parameters:
+        - name: tour_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+          "200":
+            description: successful operation
+            content:
+              application/xml:
+                schema:
+                  $ref: "#/components/schemas/Tour"
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Tour"
+      
+    delete:
+      tags:
+        - tour
+      summary: tour delete
+      description: "tour delete desccription"
+      operationId: tourDelete
+      parameters:
+        - name: tour_id
+          in: path
+          required: true
+          schema:
+            type: string
+            
+            
+      responses:
+          "200":
+            description: successful operation
+
+     
+  /subscription:
+  
+    post:
+      tags:
+        - subscription
+      summary: subscription post
+      description: "subscription post desccription"
+      operationId: subscriptionPost
+      requestBody:
+        $ref: "#/components/requestBodies/Subscription"
+      responses:
+          "200":
+            description: successful operation
+          
+            content:
+              application/xml:
+                schema:
+                  $ref: "#/components/schemas/Subscription"
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Subscription"
+      
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+  
+servers:
+  - url: http://localhost:5000/api/v1
+  
+components:
+  
+  requestBodies:
+  
+    People:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/People"
+        application/xml:
+          schema:
+            $ref: "#/components/schemas/People"
+      description: People object that needs to be add
+      required: true
+
+    Like:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Like"
+        application/xml:
+          schema:
+            $ref: "#/components/schemas/Like"
+      description: Like object that needs to be add
+      required: true
+
+    Follow:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Follow"
+        application/xml:
+          schema:
+            $ref: "#/components/schemas/Follow"
+      description: Follow object that needs to be add
+      required: true
+
+ 
+  
+    Gallery:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Gallery"
+        application/xml:
+          schema:
+            $ref: "#/components/schemas/Gallery"
+      description: Gallery object that needs to be add
+      required: true
+
+  
+    Picture:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Picture"
+        application/xml:
+          schema:
+            $ref: "#/components/schemas/Picture"
+      description: Picture object that needs to be add
+      required: true
+
+    Video:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Video"
+        application/xml:
+          schema:
+            $ref: "#/components/schemas/Video"
+      description: Video object that needs to be add
+      required: true
+
+
+
+    Country:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Country"
+        application/xml:
+          schema:
+            $ref: "#/components/schemas/Country"
+      description: Country object that needs to be add
+      required: true
+
+    Region:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Region"
+        application/xml:
+          schema:
+            $ref: "#/components/schemas/Region"
+      description: Country object that needs to be add
+      required: true
+
+    City:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/City"
+        application/xml:
+          schema:
+            $ref: "#/components/schemas/City"
+      description: City object that needs to be add
+      required: true
+
+    Tour:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Tour"
+        application/xml:
+          schema:
+            $ref: "#/components/schemas/Tour"
+      description: City object that needs to be add
+      required: true
+      
+      
+    Subscription:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Subscription"
+        application/xml:
+          schema:
+            $ref: "#/components/schemas/Subscription"
+      description: Subscription object that needs to be add
+      required: true
+      
+  schemas:
+    People:
+      type: object
+      required:
+        - name
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+         
+      xml:
+        name: People
+ 
+    Like:
+      type: object
+      required:
+        - people_id
+        - liked_people_id
+      properties:
+        id:
+          type: string
+        people_id:
+          type: string
+        liked_people_id:
+          type: string
+
+    Follow:
+      type: object
+      required:
+        - people_id
+        - followed_people_id
+      properties:
+        id:
+          type: string
+        people_id:
+          type: string
+        followed_people_id:
+          type: string
+
+  
+    Gallery:
+      type: object
+      required:
+        - people_id
+      properties:
+        id:
+          type: string
+        people_id:
+          type: string
+
+ 
+    Picture:
+      type: object
+      required:
+       
+        - gallery_id
+        - filename
+      properties:
+        id:
+          type: string
+        filename:
+          type: string
+        gallery_id:
+          type: string
+
+    Video:
+      type: object
+      required:
+       
+        - gallery_id
+        - filename
+      properties:
+        id:
+          type: string
+        filename:
+          type: string
+        gallery_id:
+          type: string
+
+
+
+
+    Country:
+      type: object
+      required:
+        - name
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+ 
+    Region:
+      type: object
+      required:
+        - name
+        - country_id
+      properties:
+        id:
+          type: string
+        country_id:
+          type: string
+        name:
+          type: string
+
+      xml:
+        name: Region
+        
+    City:
+      type: object
+      required:
+        - name
+        - region_id
+      properties:
+        id:
+          type: string
+        region_id:
+          type: string
+        name:
+          type: string
+
+      xml:
+        name: City
+  
+  
+    Tour:
+      type: object
+      required:
+        - city_id
+        - people_id
+      properties:
+        id:
+          type: string
+        city_id:
+          type: string
+        people_id:
+          type: string
+        time_start:
+           type: string
+        time_end:
+           type: string
+
+      xml:
+        name: Tour
+   
+   
+    Subscription:
+      type: object
+      required:
+        - user_id
+        - people_id
+      properties:
+        id:
+          type: string
+        user_id:
+          type: string
+        people_id:
+          type: string
+      xml:
+        name: Tour
+   

@@ -1,0 +1,14 @@
+cf https://www.thepythoncode.com/article/building-crud-app-with-flask-and-sqlalchemy#conclusion
+
+
+#create
+curl -H "Content-Type: application/json" -X POST -d '{"title": "Learning", "author": "Ibrahim", "price": "3.44"}' http://localhost:5000/book 
+
+# list
+curl http://localhost:5000/book/list
+
+# update
+curl http://localhost:5000/book/3 -X PUT -H "Content-Type: application/json" -d '{"author": "Ahmed", "title": "Python for Beginners", "price": 12.99}'
+
+# delete
+curl http://localhost:5000/book/2 -X DELETE

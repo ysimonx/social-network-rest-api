@@ -1,0 +1,12 @@
+[Unit]
+Description=api-people application
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/var/www/api-people/
+ExecStart=/usr/bin/bash /var/www/api-people/run_systemctl.sh 
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,5 @@
+#create
+curl -H "Content-Type: application/json" -X POST -d '{"people_id": "534d2788-43d4-45b9-80d2-d62058eec0d8"}' http://localhost:5000/gallery
+
+#list
+curl http://localhost:5000/gallery/list
