@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, session,abort
 from ..model_dir.user import User, Subscription
+from ..model_dir.people import People
 from flask import jsonify, request, abort
-from .. import db
+from .. import db, getByIdOrByName, getByIdOrEmail
 app_file_subscription = Blueprint('subscription',__name__)
 
 

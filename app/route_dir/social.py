@@ -2,27 +2,9 @@ from flask import Blueprint, render_template, session,abort
 import uuid
 from ..model_dir.people import People, Follow, Like
 from flask import jsonify, request, abort
-from .. import db
+from .. import db,   getByIdOrByName
+
 app_file_social = Blueprint('social',__name__)
-
-
-def getByIdOrByName(obj, id):
-    result = None
-    try:
-        uuid.UUID(str(id))
-        result = obj.query.get(id)
-    except ValueError:
-        result = obj.query.filter(obj.name==id).first()
-    return result
-
-def getByIdOrEmail(obj, id):
-    result = None
-    try:
-        uuid.UUID(str(id))
-        result = obj.query.get(id)
-    except ValueError:
-        result = obj.query.filter(obj.email==id).first()
-    return result
 
 
 @app_file_social.route('/follow', methods=['POST'])

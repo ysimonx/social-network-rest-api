@@ -3,17 +3,9 @@ import uuid
 from ..model_dir.people import People
 from ..model_dir.gallery import Gallery, Picture, Video
 from flask import jsonify, request, abort
-from .. import db
+from .. import db,  getByIdOrByName
 app_file_gallery = Blueprint('gallery',__name__)
 
-def getByIdOrByName(obj, id):
-    result = None
-    try:
-        uuid.UUID(str(id))
-        result = obj.query.get(id)
-    except ValueError:
-        result = obj.query.filter(obj.name==id).first()
-    return result
 
 
 @app_file_gallery.route("/picture", methods=["GET"])
@@ -58,7 +50,7 @@ def update_picture(id):
     picture = Picture.query.get(id)
     if picture is None:
         abort(404)
-    # picture.name = request.json.get('name', picture.name)
+    picture.filename = request.json.get('name', picture.filename)
     db.session.commit()
     return jsonify(picture.to_json())
 
@@ -112,7 +104,7 @@ def update_video(id):
     video = Video.query.get(id)
     if video is None:
         abort(404)
-    # video.name = request.json.get('name', video.name)
+    video.filename = request.json.get('name', video.filename)
     db.session.commit()
     return jsonify(video.to_json())
 
@@ -143,7 +135,7 @@ def get_galleries():
 
 
 @app_file_gallery.route("/gallery/<id>", methods=["GET"])
-def get_gallery(people_id, id):
+def get_gallery(id):
     gallery = Gallery.query.get(id)
     if gallery is None:
         abort(404)
@@ -174,7 +166,8 @@ def create_gallery():
         
     people_id = request.json.get('people_id')
     people = getByIdOrByName(obj=People, id=people_id)
-
+    if people is None:
+        abort(404)
     gallery = Gallery( people_id = people.id )
     db.session.add(gallery)
     db.session.commit() 
@@ -189,7 +182,6 @@ def update_gallery(id):
     gallery = Gallery.query.get(id)
     if gallery is None:
         abort(404)
-    # people.name = request.json.get('name', people.name)
     db.session.commit()
     return jsonify(gallery.to_json())
 

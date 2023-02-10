@@ -3,7 +3,7 @@ import uuid
 import datetime
 import logging
 
-from . import db
+from . import db, getByIdOrEmail, getByIdOrByName
 from . import create_app
 
 from .model_dir.people import People, Follow, Like
@@ -21,6 +21,7 @@ from .route_dir.meeting import app_file_meeting
 from sqlalchemy import exc
 from flask import jsonify, request, abort
 from flask_mail import Mail
+
 
 # todo : implement https://flask-jwt-extended.readthedocs.io/en/stable/basic_usage/
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
@@ -50,24 +51,6 @@ app.register_blueprint(app_file_subscription,   url_prefix=url_prefix)
 app.register_blueprint(app_file_social,         url_prefix=url_prefix)
 app.register_blueprint(app_file_gallery,        url_prefix=url_prefix)
 app.register_blueprint(app_file_meeting,        url_prefix=url_prefix)
-
-def getByIdOrByName(obj, id):
-    result = None
-    try:
-        uuid.UUID(str(id))
-        result = obj.query.get(id)
-    except ValueError:
-        result = obj.query.filter(obj.name==id).first()
-    return result
-
-def getByIdOrEmail(obj, id):
-    result = None
-    try:
-        uuid.UUID(str(id))
-        result = obj.query.get(id)
-    except ValueError:
-        result = obj.query.filter(obj.email==id).first()
-    return result
 
  
 @app.before_request

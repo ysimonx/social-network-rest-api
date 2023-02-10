@@ -5,18 +5,9 @@ from ..model_dir.gallery import Gallery, Picture, Video
 from ..model_dir.people import People
 
 from flask import jsonify, request, abort
-from .. import db
+from .. import db, getByIdOrByName
 app_file_meeting = Blueprint('meeting',__name__)
 
-
-def getByIdOrByName(obj, id):
-    result = None
-    try:
-        uuid.UUID(str(id))
-        result = obj.query.get(id)
-    except ValueError:
-        result = obj.query.filter(obj.name==id).first()
-    return result
 
 
 
@@ -114,16 +105,16 @@ def create_region():
 
 @app_file_meeting.route("/region/<id>", methods=["GET"])
 def get_region(id):
-    country = Country.query.get(id)
-    if country is None:
+    region = getByIdOrByName(Region, id)
+    if region is None:
         abort(404)
-    return jsonify(country.to_json())
+    return jsonify(region.to_json())
 
 @app_file_meeting.route('/region/<id>', methods=['PUT'])
 def update_region(id):
     if not request.json:
         abort(400)
-    region = Region.query.get(id)
+    region = getByIdOrByName(Region, id)
     if region is None:
         abort(404)
     region.name = request.json.get('name', region.name)
@@ -132,7 +123,7 @@ def update_region(id):
 
 @app_file_meeting.route("/region/<id>", methods=["DELETE"])
 def delete_region(id):
-    region = Region.query.get(id)
+    region = getByIdOrByName(Region, id)
     if region is None:
         abort(404)
     db.session.delete(region)
@@ -176,7 +167,7 @@ def create_city():
 
 @app_file_meeting.route("/city/<id>", methods=["GET"])
 def get_city(id):
-    city = City.query.get(id)
+    city = getByIdOrByName(City, id)
     if city is None:
         abort(404)
     return jsonify(city.to_json())
@@ -185,7 +176,7 @@ def get_city(id):
 def update_city(id):
     if not request.json:
         abort(400)
-    city = City.query.get(id)
+    city = getByIdOrByName(City, id)
     if city is None:
         abort(404)
     city.name = request.json.get('name', city.name)
@@ -194,7 +185,7 @@ def update_city(id):
 
 @app_file_meeting.route("/city/<id>", methods=["DELETE"])
 def delete_city(id):
-    city = City.query.get(id)
+    city = getByIdOrByName(City, id)
     if city is None:
         abort(404)
     db.session.delete(city)
