@@ -1,6 +1,6 @@
 from .. import db
 from sqlalchemy.orm import declarative_base, relationship, backref
-from .people import People
+from .profile import Profile
 from .mymixin import MyMixin
 
 
@@ -130,18 +130,18 @@ class Address(db.Model, MyMixin):
 class Tour(db.Model, MyMixin):
     __tablename__ = 'tours'
     city_id     = db.Column(db.String(36), db.ForeignKey(City.id))
-    people_id   = db.Column(db.String(36), db.ForeignKey(People.id))
+    profile_id   = db.Column(db.String(36), db.ForeignKey(Profile.id))
     time_start  = db.Column(db.DateTime(timezone=True))
     time_end    = db.Column(db.DateTime(timezone=True))
     
     city        = relationship("City", back_populates="tours")
-    people      = relationship("People", back_populates="tours")
+    profile      = relationship("Profile", back_populates="tours")
     
     def to_json(self):
         return {
             'id':           self.id,
             'city_id':      self.city_id,
-            'people_id':    self.people_id,
+            'profile_id':    self.profile_id,
             'time_start':   self.time_start,
             'time_end':     self.time_end,
             '_internal':    self.get_internal()
@@ -150,14 +150,14 @@ class Tour(db.Model, MyMixin):
         
     def to_json_with_details(self):
         result = self.to_json()
-        result["people"] = self.people.to_json_light()
+        result["profile"] = self.profile.to_json_light()
         result["city"]   = self.city.to_json_with_details_ancestors_only()
         return result
 
 class Meeting(db.Model, MyMixin):
     __tablename__ = 'meetings'
-    visitor_people_id = db.Column(db.String(36), db.ForeignKey(People.id))
-    host_people_id = db.Column(db.String(36), db.ForeignKey(People.id))
+    visitor_profile_id = db.Column(db.String(36), db.ForeignKey(Profile.id))
+    host_profile_id = db.Column(db.String(36), db.ForeignKey(Profile.id))
     time_start = db.Column(db.DateTime(timezone=True))
     city_id = db.Column(db.String(36), db.ForeignKey(City.id))
     
@@ -165,8 +165,8 @@ class Meeting(db.Model, MyMixin):
     def to_json(self):
         return {
             'id': self.id,
-            'visitor_people_id': self.visitor_people_id, 
-            'host_people_id': self.host_people_id, 
+            'visitor_profile_id': self.visitor_profile_id, 
+            'host_profile_id': self.host_profile_id, 
             'city_id': self.city_id,
             'time_start': self.time_start,
             '_internal' : self.get_internal()
@@ -176,8 +176,8 @@ class Meeting(db.Model, MyMixin):
 class Review(db.Model, MyMixin):
     __tablename__ = 'reviews'
     meeting_id = db.Column(db.String(36), db.ForeignKey(Meeting.id))
-    people_id = db.Column(db.String(36), db.ForeignKey(People.id))
-    people      = relationship("People", back_populates="reviews")
+    profile_id = db.Column(db.String(36), db.ForeignKey(Profile.id))
+    profile      = relationship("Profile", back_populates="reviews")
     rate =  db.Column(db.Integer, default=0)
     up_vote   = db.Column(db.Integer, default=0)
     down_vote = db.Column(db.Integer, default=0)
@@ -185,7 +185,7 @@ class Review(db.Model, MyMixin):
     def to_json(self):
         return {
             'id': self.id,
-            'people_id': self.people_id, 
+            'profile_id': self.profile_id, 
             'meeting_id': self.meeting_id,
             'rate': self.rate,
              '_internal' : self.get_internal(),

@@ -6,54 +6,54 @@ import uuid
 
 # TODO : https://stackoverflow.com/questions/1889251/sqlalchemy-many-to-many-relationship-on-a-single-table
 
-class People(db.Model, MyMixin):
-    __tablename__ = 'peoples'
+class Profile(db.Model, MyMixin):
+    __tablename__ = 'profiles'
     name = db.Column(db.String(255), unique=True, nullable=False)
     
     galleries   = relationship("Gallery",   
                                     cascade="all, delete", 
-                                    backref=backref("people",lazy="joined")
+                                    backref=backref("profile",lazy="joined")
                                     )
     
 
-    is_liking   = relationship("People",
+    is_liking   = relationship("Profile",
                                     cascade="all, delete",
                                     secondary = "likes", 
-                                    primaryjoin="People.id == Like.people_id",
-                                    secondaryjoin="People.id == Like.liked_people_id",
+                                    primaryjoin="Profile.id == Like.profile_id",
+                                    secondaryjoin="Profile.id == Like.liked_profile_id",
                                     backref="is_liked_by",
                                     viewonly=True
                                     )
     
     
-    followers   = relationship("People",
+    followers   = relationship("Profile",
                                     cascade="all, delete",
                                     secondary = "followings", 
-                                    primaryjoin="People.id == Follow.followed_people_id",
-                                    secondaryjoin="People.id == Follow.people_id",
+                                    primaryjoin="Profile.id == Follow.followed_profile_id",
+                                    secondaryjoin="Profile.id == Follow.profile_id",
                                     backref="is_following",
                                     viewonly=True
                                     )
     
-    favorites   = relationship("People",
+    favorites   = relationship("Profile",
                                     cascade="all, delete",
                                     secondary = "favorites", 
-                                    primaryjoin="People.id == Favorite.favorited_people_id",
-                                    secondaryjoin="People.id == Favorite.people_id",
+                                    primaryjoin="Profile.id == Favorite.favorited_profile_id",
+                                    secondaryjoin="Profile.id == Favorite.profile_id",
                                     viewonly=True
                                     )
 
     tours           = relationship("Tour",
                                     cascade="all, delete",
-                                    back_populates="people"
+                                    back_populates="profile"
                                     )
 
     reviews         = relationship("Review",
                                     cascade="all, delete",
-                                    back_populates="people"
+                                    back_populates="profile"
                                     )
 
-    people_subscriptions = db.relationship("User", secondary="subscriptions", viewonly=True, lazy="select")
+    profile_subscriptions = db.relationship("User", secondary="subscriptions", viewonly=True, lazy="select")
 
 
     def to_json(self):
@@ -72,11 +72,11 @@ class People(db.Model, MyMixin):
     def to_json_social_network(self):
        
         return {
-            'is_liking' : [{"people": item.to_json_light()} for item in self.is_liking],
-            'is_liked_by': [{"people": item.to_json_light()} for item in self.is_liked_by],             
-            'followers' : [{"people": item.to_json_light()} for item in self.followers],
-            'is_following' : [{"people": item.to_json_light()} for item in self.is_following],
-            'favorites'     : [{"people": item.to_json()}   for item    in self.favorites],         
+            'is_liking' : [{"profile": item.to_json_light()} for item in self.is_liking],
+            'is_liked_by': [{"profile": item.to_json_light()} for item in self.is_liked_by],             
+            'followers' : [{"profile": item.to_json_light()} for item in self.followers],
+            'is_following' : [{"profile": item.to_json_light()} for item in self.is_following],
+            'favorites'     : [{"profile": item.to_json()}   for item    in self.favorites],         
         }
         
         
@@ -95,13 +95,13 @@ class People(db.Model, MyMixin):
                 result['social_network'] = self.to_json_social_network()
             
             if b_all or  ('tours' in word):
-                result['tours']         = [tour.to_json()   for tour    in self.tours]
+                result['tours']         = [tour.to_json_with_details()   for tour    in self.tours]
                 
             if b_all or  ('reviews' in word):
                 result['reviews']       = [item.to_json()   for item    in self.reviews]
                 
             if b_all or ('subscriptions' in word):
-                result['subscriptions'] = [{"user": item.to_json_anonymous()}   for item    in self.people_subscriptions]
+                result['subscriptions'] = [{"user": item.to_json_anonymous()}   for item    in self.profile_subscriptions]
 
         return result;
 
@@ -118,9 +118,9 @@ class People(db.Model, MyMixin):
 
 class Like(db.Model, MyMixin):
     __tablename__ = 'likes'
-    people_id = db.Column(db.String(36), db.ForeignKey(People.id))
-    liked_people_id = db.Column(db.String(36), db.ForeignKey(People.id))
-    __table_args__ = (db.UniqueConstraint('people_id', 'liked_people_id', name='people_liked_uid'),)
+    profile_id = db.Column(db.String(36), db.ForeignKey(Profile.id))
+    liked_profile_id = db.Column(db.String(36), db.ForeignKey(Profile.id))
+    __table_args__ = (db.UniqueConstraint('profile_id', 'liked_profile_id', name='profile_liked_uid'),)
     
 
 
@@ -128,8 +128,8 @@ class Like(db.Model, MyMixin):
         return {
             'id': self.id,
             '_internal' : self.get_internal(),
-            'people_id':                self.people_id,
-            'liked_people_id':          self.liked_people_id
+            'profile_id':                self.profile_id,
+            'liked_profile_id':          self.liked_profile_id
         }
 
    
@@ -137,12 +137,12 @@ class Like(db.Model, MyMixin):
 
 class Follow(db.Model, MyMixin):
     __tablename__ = 'followings'
-    people_id = db.Column(db.String(36), db.ForeignKey(People.id))
-    followed_people_id = db.Column(db.String(36),
-                                    db.ForeignKey(People.id)
+    profile_id = db.Column(db.String(36), db.ForeignKey(Profile.id))
+    followed_profile_id = db.Column(db.String(36),
+                                    db.ForeignKey(Profile.id)
                                     )
 
-    __table_args__ = (db.UniqueConstraint('people_id', 'followed_people_id', name='people_followed_uid'),)
+    __table_args__ = (db.UniqueConstraint('profile_id', 'followed_profile_id', name='profile_followed_uid'),)
     
                                     
     
@@ -150,8 +150,8 @@ class Follow(db.Model, MyMixin):
         return {
             'id':                       self.id,
             '_internal' :               self.get_internal(),
-            'people_id':                self.people_id,
-            'followed_people_id':      self. followed_people_id,
+            'profile_id':                self.profile_id,
+            'followed_profile_id':      self. followed_profile_id,
             
         }
 
@@ -170,10 +170,10 @@ class Follow(db.Model, MyMixin):
 class Favorite(db.Model, MyMixin):
     __tablename__ = 'favorites'
     id = db.Column(db.String(36), primary_key=True, default=uuid.uuid4)
-    people_id           = db.Column(db.String(36), db.ForeignKey(People.id))
-    favorited_people_id = db.Column(db.String(36), db.ForeignKey(People.id))
+    profile_id           = db.Column(db.String(36), db.ForeignKey(Profile.id))
+    favorited_profile_id = db.Column(db.String(36), db.ForeignKey(Profile.id))
 
-    __table_args__ = (db.UniqueConstraint('people_id', 'favorited_people_id', name='people_favorite_uid'),)
+    __table_args__ = (db.UniqueConstraint('profile_id', 'favorited_profile_id', name='profile_favorite_uid'),)
     
     
    

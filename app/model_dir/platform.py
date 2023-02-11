@@ -1,5 +1,5 @@
 from .. import db
-from .people import People
+from .profile import Profile
 from .mymixin import MyMixin
 
 from sqlalchemy.orm import declarative_base, relationship, backref

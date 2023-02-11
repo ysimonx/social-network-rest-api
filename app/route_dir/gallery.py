@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, session,abort
 import uuid
-from ..model_dir.people import People
+from ..model_dir.profile import Profile
 from ..model_dir.gallery import Gallery, Picture, Video
 from flask import jsonify, request, abort
 from .. import db,  getByIdOrByName
@@ -121,12 +121,12 @@ def delete_video(id):
 
 @app_file_gallery.route("/gallery", methods=["GET"])
 def get_galleries():
-    opt_people_id = request.args.get("people_id")
+    opt_profile_id = request.args.get("profile_id")
     append_to_response = request.args.get("append_to_response")
-    if opt_people_id is None:
+    if opt_profile_id is None:
         galleries = Gallery.query.all()
     else:
-        galleries = Gallery.query.filter(Gallery.people_id == opt_people_id)
+        galleries = Gallery.query.filter(Gallery.profile_id == opt_profile_id)
         
     if append_to_response is None:
         return jsonify([gallery.to_json() for gallery in galleries])
@@ -152,7 +152,7 @@ def delete_gallery(id):
     return jsonify({'result': True, 'id': id})
 
 
-# curl -H "Content-Type: application/json" -X POST -d '{"people_id": "072bda67-60da-414e-b7b3-26a4cd458fa5"}' http://localhost:5000/gallery
+# curl -H "Content-Type: application/json" -X POST -d '{"profile_id": "072bda67-60da-414e-b7b3-26a4cd458fa5"}' http://localhost:5000/gallery
 @app_file_gallery.route('/gallery', methods=['POST'])
 def create_gallery():
     print("create_gallery")
@@ -160,15 +160,15 @@ def create_gallery():
         print("not json")
         abort(400)
     
-    if not 'people_id' in request.json:
-        print("miss people_id parameter")
+    if not 'profile_id' in request.json:
+        print("miss profile_id parameter")
         abort(400)
         
-    people_id = request.json.get('people_id')
-    people = getByIdOrByName(obj=People, id=people_id)
-    if people is None:
+    profile_id = request.json.get('profile_id')
+    profile = getByIdOrByName(obj=Profile, id=profile_id)
+    if profile is None:
         abort(404)
-    gallery = Gallery( people_id = people.id )
+    gallery = Gallery( profile_id = profile.id )
     db.session.add(gallery)
     db.session.commit() 
     return jsonify(gallery.to_json()), 201

@@ -1,4 +1,4 @@
-from ..model_dir.people import People
+from ..model_dir.profile import People
 from ..model_dir.gallery import Gallery, Picture, Video
 from ..model_dir.meeting import Meeting, Country, City, Address, Tour
 

@@ -1,9 +1,9 @@
 openapi: 3.0.0
 info:
-  description: "This is a sample server People server.  You can find out more about
+  description: "This is a sample server Profile server.  You can find out more about
    ."
   version: 1.0.2
-  title: Swagger Api-people
+  title: Swagger Api-profile
   termsOfService: http://swagger.io/terms/
   contact:
     email: yannick.simon@kysoe.com
@@ -11,8 +11,8 @@ info:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 tags:
-  - name: people
-    description: Everything about your People
+  - name: profile
+    description: Everything about your Profile
     externalDocs:
       description: Find out more
       url: http://swagger.io
@@ -69,16 +69,16 @@ tags:
       url: http://swagger.io
 
 paths:
-  /people:
+  /profile:
   
     post:
       tags:
-        - people
-      summary: people post
-      description: "people post desccription"
-      operationId: peoplePost
+        - profile
+      summary: profile post
+      description: "profile post desccription"
+      operationId: profilePost
       requestBody:
-        $ref: "#/components/requestBodies/People"
+        $ref: "#/components/requestBodies/Profile"
       responses:
           "200":
             description: successful operation
@@ -86,16 +86,16 @@ paths:
             content:
               application/xml:
                 schema:
-                  $ref: "#/components/schemas/People"
+                  $ref: "#/components/schemas/Profile"
               application/json:
                 schema:
-                  $ref: "#/components/schemas/People"
+                  $ref: "#/components/schemas/Profile"
     get:
       tags:
-        - people
-      summary: people list
-      description: "people desccription"
-      operationId: peopleList
+        - profile
+      summary: profile list
+      description: "profile desccription"
+      operationId: profileList
       parameters:
         - in: query
           name: append_to_response
@@ -111,23 +111,23 @@ paths:
                 schema:
                   type: array
                   items:
-                    $ref: "#/components/schemas/People"
+                    $ref: "#/components/schemas/Profile"
               application/json:
                 schema:
                   type: array
                   items:
                   
-                    $ref: "#/components/schemas/People"
+                    $ref: "#/components/schemas/Profile"
                     
-  /people/{people_id}:
+  /profile/{profile_id}:
     get:
       tags:
-        - people
-      summary: people get
-      description: "people get desccription"
-      operationId: peopleGet
+        - profile
+      summary: profile get
+      description: "profile get desccription"
+      operationId: profileGet
       parameters:
-        - name: people_id
+        - name: profile_id
           in: path
           required: true
           schema:
@@ -141,21 +141,21 @@ paths:
                 schema:
                   type: array
                   items:
-                    $ref: "#/components/schemas/People"
+                    $ref: "#/components/schemas/Profile"
               application/json:
                 schema:
                   type: array
                   items:
                   
-                    $ref: "#/components/schemas/People"
+                    $ref: "#/components/schemas/Profile"
     delete:
       tags:
-        - people
-      summary: people delete
-      description: "people delete desccription"
-      operationId: peopleDelete
+        - profile
+      summary: profile delete
+      description: "profile delete desccription"
+      operationId: profileDelete
       parameters:
-        - name: people_id
+        - name: profile_id
           in: path
           required: true
           schema:
@@ -921,15 +921,15 @@ components:
   
   requestBodies:
   
-    People:
+    Profile:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/People"
+            $ref: "#/components/schemas/Profile"
         application/xml:
           schema:
-            $ref: "#/components/schemas/People"
-      description: People object that needs to be add
+            $ref: "#/components/schemas/Profile"
+      description: Profile object that needs to be add
       required: true
 
     Like:
@@ -1049,7 +1049,7 @@ components:
       required: true
       
   schemas:
-    People:
+    Profile:
       type: object
       required:
         - name
@@ -1060,43 +1060,43 @@ components:
           type: string
          
       xml:
-        name: People
+        name: Profile
  
     Like:
       type: object
       required:
-        - people_id
-        - liked_people_id
+        - profile_id
+        - liked_profile_id
       properties:
         id:
           type: string
-        people_id:
+        profile_id:
           type: string
-        liked_people_id:
+        liked_profile_id:
           type: string
 
     Follow:
       type: object
       required:
-        - people_id
-        - followed_people_id
+        - profile_id
+        - followed_profile_id
       properties:
         id:
           type: string
-        people_id:
+        profile_id:
           type: string
-        followed_people_id:
+        followed_profile_id:
           type: string
 
   
     Gallery:
       type: object
       required:
-        - people_id
+        - profile_id
       properties:
         id:
           type: string
-        people_id:
+        profile_id:
           type: string
 
  
@@ -1178,13 +1178,13 @@ components:
       type: object
       required:
         - city_id
-        - people_id
+        - profile_id
       properties:
         id:
           type: string
         city_id:
           type: string
-        people_id:
+        profile_id:
           type: string
         time_start:
            type: string
@@ -1199,13 +1199,13 @@ components:
       type: object
       required:
         - user_id
-        - people_id
+        - profile_id
       properties:
         id:
           type: string
         user_id:
           type: string
-        people_id:
+        profile_id:
           type: string
       xml:
         name: Tour

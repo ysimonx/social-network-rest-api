@@ -13,7 +13,7 @@ def get_user_list():
 
 
 
-# curl -H "Content-Type: application/json" -X POST -d '{"name": "ysimonx"}' http://localhost:5000/people
+# curl -H "Content-Type: application/json" -X POST -d '{"name": "ysimonx"}' http://localhost:5000/user
 @app_file_user.route('/user', methods=['POST'])
 def create_user():
     if not request.json:

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, session,abort
 import uuid
-from ..model_dir.people import People, Follow, Like
+from ..model_dir.profile import Profile, Follow, Like
 from flask import jsonify, request, abort
 from .. import db,   getByIdOrByName
 
@@ -12,27 +12,27 @@ def create_follow():
     if not request.json:
         print("not json")
         abort(400)
-    if not 'people_id' in request.json:
-        print("miss people_id parameter")
+    if not 'profile_id' in request.json:
+        print("miss profile_id parameter")
         abort(400)
-    if not 'followed_people_id' in request.json:
-        print("miss followed_people_id parameter")
+    if not 'followed_profile_id' in request.json:
+        print("miss followed_profile_id parameter")
         abort(400)
-    people_id           = request.json.get('people_id')
-    followed_people_id  = request.json.get('followed_people_id')
+    profile_id           = request.json.get('profile_id')
+    followed_profile_id  = request.json.get('followed_profile_id')
     
-    people          = getByIdOrByName(obj=People, id=people_id)
-    people_followed = getByIdOrByName(obj=People, id=followed_people_id)
+    profile          = getByIdOrByName(obj=Profile, id=profile_id)
+    profile_followed = getByIdOrByName(obj=Profile, id=followed_profile_id)
 
-    if people is None:
-        print("people is not found")
+    if profile is None:
+        print("profile is not found")
         abort(400)
 
-    if people_followed is None:
-        print("people_followed is not found")
+    if profile_followed is None:
+        print("profile_followed is not found")
         abort(400)
 
-    follow = Follow( people_id = people.id, followed_people_id=people_followed.id )
+    follow = Follow( profile_id = profile.id, followed_profile_id=profile_followed.id )
     db.session.add(follow)
     db.session.commit() 
     return jsonify(follow.to_json())
@@ -50,29 +50,29 @@ def create_like():
     if not request.json:
         print("not json")
         abort(400)
-    if not 'people_id' in request.json:
-        print("miss people_id parameter")
+    if not 'profile_id' in request.json:
+        print("miss profile_id parameter")
         abort(400)
-    if not 'liked_people_id' in request.json:
-        print("miss liked_people_id parameter")
+    if not 'liked_profile_id' in request.json:
+        print("miss liked_profile_id parameter")
         abort(400)
-    people_id       = request.json.get('people_id')
-    liked_people_id = request.json.get('liked_people_id')
+    profile_id       = request.json.get('profile_id')
+    liked_profile_id = request.json.get('liked_profile_id')
     
  
-    people          =  getByIdOrByName(obj=People, id=people_id)
-    people_liked    =  getByIdOrByName(obj=People, id=liked_people_id)
+    profile          =  getByIdOrByName(obj=Profile, id=profile_id)
+    profile_liked    =  getByIdOrByName(obj=Profile, id=liked_profile_id)
 
-    if people is None:
-        print("people is not found")
+    if profile is None:
+        print("profile is not found")
         abort(400)
 
-    if people_liked is None:
-        print("people is not found")
+    if profile_liked is None:
+        print("profile is not found")
         abort(400)
 
 
-    like = Like( people_id = people.id, liked_people_id=people_liked.id )
+    like = Like( profile_id = profile.id, liked_profile_id=profile_liked.id )
     db.session.add(like)
     db.session.commit() 
     return jsonify(like.to_json())

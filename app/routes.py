@@ -6,7 +6,7 @@ import logging
 from . import db, getByIdOrEmail, getByIdOrByName
 from . import create_app
 
-from .model_dir.people import People, Follow, Like
+from .model_dir.profile import Profile, Follow, Like
 from .model_dir.gallery import Gallery, Picture, Video
 from .model_dir.meeting import Meeting, Country, Region, City, Address, Tour
 from .model_dir.user import User, Subscription
@@ -15,7 +15,7 @@ from .route_dir.user import app_file_user
 from .route_dir.subscription import app_file_subscription
 from .route_dir.social import app_file_social
 from .route_dir.gallery import app_file_gallery
-from .route_dir.people import app_file_people
+from .route_dir.profile import app_file_profile
 from .route_dir.meeting import app_file_meeting
 
 from sqlalchemy import exc
@@ -45,7 +45,7 @@ app.config['MAIL_PASSWORD'] = 'password'
 mail = Mail(app)
 
 url_prefix = "/api/v1"
-app.register_blueprint(app_file_people,         url_prefix=url_prefix)
+app.register_blueprint(app_file_profile,         url_prefix=url_prefix)
 app.register_blueprint(app_file_user,           url_prefix=url_prefix)
 app.register_blueprint(app_file_subscription,   url_prefix=url_prefix)
 app.register_blueprint(app_file_social,         url_prefix=url_prefix)
@@ -80,6 +80,13 @@ def before_first_request():
     app.logger.addHandler(handler)
  
     app.logger.setLevel(log_level)
+
+
+@app.route("/api/v1/init", methods=["GET"])
+def init():
+    db.drop_all()
+    db.create_all()
+    return "ok"
 
 # cf : https://flask-jwt-extended.readthedocs.io/en/stable/basic_usage/
 # https://flask-jwt-extended.readthedocs.io/en/stable/api/?highlight=get_jwt_identity#verify-tokens-in-request

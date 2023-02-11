@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, session,abort
 from ..model_dir.user import User, Subscription
-from ..model_dir.people import People
+from ..model_dir.profile import Profile
 from flask import jsonify, request, abort
 from .. import db, getByIdOrByName, getByIdOrEmail
 app_file_subscription = Blueprint('subscription',__name__)
@@ -12,21 +12,21 @@ def create_subscription():
     if not request.json:
         print("not json")
         abort(400)
-    if not 'people_id' in request.json:
-        print("miss people_id parameter")
+    if not 'profile_id' in request.json:
+        print("miss profile_id parameter")
         abort(400)
     if not 'user_id' in request.json:
         print("miss user_id parameter")
         abort(400)
-    people_id       = request.json.get('people_id')
+    profile_id       = request.json.get('profile_id')
     user_id         = request.json.get('user_id')
     
  
-    people =  getByIdOrByName(obj=People, id=people_id)
+    profile =  getByIdOrByName(obj=Profile, id=profile_id)
     user =    getByIdOrEmail(obj=User,  id=user_id)
 
-    if people is None:
-        print("people is not found")
+    if profile is None:
+        print("profile is not found")
         abort(400)
 
     if user is None:
@@ -34,7 +34,7 @@ def create_subscription():
         abort(400)
 
 
-    subscription = Subscription( people_id = people.id, user_id=user.id )
+    subscription = Subscription( profile_id = profile.id, user_id=user.id )
     try:
         db.session.add(subscription)
         db.session.commit() 

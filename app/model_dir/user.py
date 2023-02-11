@@ -1,6 +1,6 @@
 from .. import db
 from .mymixin import MyMixin
-from .people import People
+from .profile import Profile
 from flask_bcrypt import generate_password_hash, check_password_hash
 
 
@@ -15,7 +15,7 @@ class User(db.Model, MyMixin):
     
     
 
-    people_subscriptions = db.relationship("People", secondary="subscriptions", cascade="all, delete", viewonly=True, lazy="select")
+    profile_subscriptions = db.relationship("Profile", secondary="subscriptions", cascade="all, delete", viewonly=True, lazy="select")
 
     def to_json(self):
         return {
@@ -23,7 +23,7 @@ class User(db.Model, MyMixin):
             '_internal' : self.get_internal(),
             'email': self.email,
             'password': self.password,
-            'subscriptions': [item.to_json() for item    in self.people_subscriptions]
+            'subscriptions': [item.to_json() for item    in self.profile_subscriptions]
         }
 
     def to_json_light(self):
@@ -52,11 +52,11 @@ class Subscription(db.Model, MyMixin):
     __tablename__ = 'subscriptions'
     
     user_id   = db.Column(db.String(36), db.ForeignKey(User.id))
-    people_id = db.Column(db.String(36), db.ForeignKey(People.id))
+    profile_id = db.Column(db.String(36), db.ForeignKey(Profile.id))
 
-    __table_args__ = (db.UniqueConstraint('user_id', 'people_id', name='user_people_uid'),)
+    __table_args__ = (db.UniqueConstraint('user_id', 'profile_id', name='user_profile_uid'),)
     
-    people   = db.relationship("People")
+    profile   = db.relationship("Profile")
     user     = db.relationship("User")                          
 
     
@@ -66,7 +66,7 @@ class Subscription(db.Model, MyMixin):
             'id': self.id,
             '_internal' :   self.get_internal(),
             'user':         self.user.to_json_light(),
-            'people':       self.people.to_json_light(),
+            'profile':       self.profile.to_json_light(),
             #'user':     self.user.to_json()  
 
         }

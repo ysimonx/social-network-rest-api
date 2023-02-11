@@ -1,5 +1,5 @@
 from .. import db
-from .people import People
+from .profile import Profile
 from .mymixin import MyMixin
 
 from sqlalchemy.orm import declarative_base, relationship, backref
@@ -10,12 +10,12 @@ import uuid
 
 class Gallery(db.Model, MyMixin):
     __tablename__ = 'galleries'
-    people_id = db.Column(db.String(36), db.ForeignKey(People.id))
+    profile_id = db.Column(db.String(36), db.ForeignKey(Profile.id))
     
     pictures = relationship("Picture", cascade="all, delete", backref=backref("gallery",lazy="joined"))
     videos = relationship("Video", cascade="all, delete",  backref=backref("gallery",lazy="joined"))
 
-    
+   
     def to_json(self):
         return {
             'id': self.id,
@@ -31,8 +31,8 @@ class Gallery(db.Model, MyMixin):
                 result['pictures'] = [picture.to_json() for picture in self.pictures]
             if ('all' in word) or 'videos' in word :
                 result['videos'] =  [video.to_json() for video in self.videos]
-            if ('all' in word) or 'people' in word:
-                result['people'] =  self.people.to_json() # backref from People
+            if ('all' in word) or 'profile' in word:
+                result['profile'] =  self.profile.to_json() # backref from Profile
         return result
 
 

@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, session,abort
 import uuid
 from ..model_dir.meeting import Country, Region, City, Tour, Meeting
 from ..model_dir.gallery import Gallery, Picture, Video
-from ..model_dir.people import People
+from ..model_dir.profile import Profile
 
 from flask import jsonify, request, abort
 from .. import db, getByIdOrByName
@@ -221,7 +221,7 @@ def delete_tour(id):
 #  --header 'Content-Type: application/json' \
 #  --data '{
 #  "city_id": "Aix-en-provence",
-#  "people_id": "manue",
+#  "profile_id": "manue",
 #  "time_start": "2023-01-01",
 #  "time_end": "2023-02-01"
 #  }'
@@ -236,8 +236,8 @@ def create_tour():
         print("miss city_id parameter")
         abort(400)
     
-    if not 'people_id' in request.json:
-        print("miss people_id parameter")
+    if not 'profile_id' in request.json:
+        print("miss profile_id parameter")
         abort(400)
     
     if not 'time_start' in request.json:
@@ -249,18 +249,18 @@ def create_tour():
         abort(400)
           
     city_id     = request.json.get('city_id')
-    people_id   = request.json.get('people_id')
+    profile_id   = request.json.get('profile_id')
     time_start  = request.json.get('time_start')
     time_end    = request.json.get('time_end')
     
     city        = getByIdOrByName(obj=City, id=city_id)
-    people      = getByIdOrByName(obj=People, id=people_id)
+    profile      = getByIdOrByName(obj=Profile, id=profile_id)
     if city is None:
         abort(404, "city not found")
-    if people is None:
-        abort(404, "people not found")
+    if profile is None:
+        abort(404, "profile not found")
 
-    tour = Tour( city_id = city.id , people_id= people.id, time_start=time_start, time_end = time_end)
+    tour = Tour( city_id = city.id , profile_id= profile.id, time_start=time_start, time_end = time_end)
 
     db.session.add(tour)
     db.session.commit() 

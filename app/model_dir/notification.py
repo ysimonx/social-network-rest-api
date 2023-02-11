@@ -43,7 +43,7 @@ class NotificationUsers(db.Model, MyMixin):
     user_id       = db.Column(db.String(36), db.ForeignKey(User.id))
     notification_id = db.Column(db.String(36), db.ForeignKey(Notification.id))
     
-    notification = relationship('People')
+    notification = relationship('Profile')
     user = relationship('User')
     
     def to_json(self):
