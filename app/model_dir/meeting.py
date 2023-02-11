@@ -26,7 +26,7 @@ class Country(db.Model, MyMixin):
             'id': self.id,
             'name': self.name, 
             '_internal' : self.get_internal(),
-            'regions': [{"region": item.to_json()} for item in self.regions],  
+            'regions': [{"region": item.to_json_with_details()} for item in self.regions],  
         }
     
     def to_json_with_details_ancestors_only(self):
@@ -67,7 +67,7 @@ class Region(db.Model, MyMixin):
           return {
             'id': self.id,
             'name': self.name, 
-            'country': self.country.to_json_with_details(),
+            'country_id' : self.country_id,
             'cities': [{"city": item.to_json()} for item in self.cities]
         }
         

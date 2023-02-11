@@ -6,7 +6,7 @@ from flask import jsonify, request, abort
 from .. import db,  getByIdOrByName
 app_file_gallery = Blueprint('gallery',__name__)
 
-
+# cf fileupload : https://flask.palletsprojects.com/en/2.2.x/patterns/fileuploads/
 
 @app_file_gallery.route("/picture", methods=["GET"])
 def get_pictures():

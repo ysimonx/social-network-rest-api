@@ -31,7 +31,7 @@ def create_country():
         print("miss name parameter")
         abort(400)
         
-    name = request.json.get('name')
+    name = request.json.get('name').lower()
 
     country = Country( name = name )
     db.session.add(country)
@@ -52,7 +52,7 @@ def update_country(id_or_name):
     country = getByIdOrByName(obj=Country, id=id_or_name)
     if country is None:
         abort(404)
-    country.name = request.json.get('name', country.name)
+    country.name = request.json.get('name', country.name).lower()
     db.session.commit()
     return jsonify(country.to_json())
 
@@ -91,7 +91,7 @@ def create_region():
         abort(400)
         
     country_id = request.json.get('country_id')
-    name = request.json.get('name')
+    name = request.json.get('name').lower()
 
  
     country = getByIdOrByName(obj=Country, id=country_id)
@@ -117,7 +117,7 @@ def update_region(id):
     region = getByIdOrByName(Region, id)
     if region is None:
         abort(404)
-    region.name = request.json.get('name', region.name)
+    region.name = request.json.get('name', region.name).lower()
     db.session.commit()
     return jsonify(region.to_json())
 
@@ -153,7 +153,7 @@ def create_city():
         abort(400)
        
     region_id = request.json.get('region_id')
-    name = request.json.get('name')
+    name = request.json.get('name').lower()
     
     region = getByIdOrByName(obj=Region, id=region_id)
     if region is None:
@@ -163,7 +163,7 @@ def create_city():
     city = City( region_id = region.id , name= name)
     db.session.add(city)
     db.session.commit() 
-    return jsonify(region.to_json()), 201
+    return jsonify(city.to_json()), 201
 
 @app_file_meeting.route("/city/<id>", methods=["GET"])
 def get_city(id):
@@ -179,7 +179,7 @@ def update_city(id):
     city = getByIdOrByName(City, id)
     if city is None:
         abort(404)
-    city.name = request.json.get('name', city.name)
+    city.name = request.json.get('name', city.name).lower()
     db.session.commit()
     return jsonify(city.to_json())
 
