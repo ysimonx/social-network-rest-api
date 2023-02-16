@@ -1,18 +1,13 @@
-# drop database flaskapp; create database flaskapp;use flaskapp;
-
-apt install python3.9-venv
+# mysql >  drop database apipeople; create database apipeople;use apipeople;
 
 source env/bin/activate
-export DEV_DATABASE_URL=mysql+pymysql://user:password@hostnamemysql:portmysql/apipeople
+export DEV_DATABASE_URL=mysql+pymysql://root@localhost:3306/apipeople
 export FLASK_APP=api-people.py
-# flask shell
-
-# >> from app import db
-# >> db.create_all()
-# >> exit()
 
 
 flask run
 
+# for a database delete all and create all tables, rue
+# curl http://localhost:5000/api/v1/init 
 
 

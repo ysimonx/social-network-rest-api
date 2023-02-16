@@ -1,36 +1,16 @@
 # SOCIAL NETWORK Api Rest Restfull made with Python
 
-a very little PoC front-end flutter is available on https://github.com/ysimonx/api_people_flutter
 
 
 YAML is here : https://github.com/ysimonx/social-network-rest-api/blob/main/docs/api-people.yaml
 
 
-installer le nécessaire avec install.sh
+customize install.sh and run_orig.sh
 
-creer une database "apipeople" sur mysql
-
-regler run.sh pour se connecter à la bonne base
-
-executer le flash shell pour creer les tables
-
->source env/bin/activate
-
->export DEV_DATABASE_URL=mysql+pymysql://user:password@hostnamemysql:portmysql/apipeople
-
->export FLASK_APP=api-people.py
-
->flask shell
-
-une fois dans le shell
-
-
->from app import db
-
->db.create_all()
-
->exit()
+bash install.sh
+bash run_orig.sh
+curl http://localhost:5000/api/v1/init
 
 
 
-executer le run.sh pour lancer l'api
+a very little PoC front-end flutter is available on https://github.com/ysimonx/api_people_flutter
