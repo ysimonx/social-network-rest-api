@@ -6,11 +6,6 @@ from .. import db,   getByIdOrByName
 app_file_profile = Blueprint('profile',__name__)
 
 
-
-
-
-# curl http://localhost:5000/profile
-
 @app_file_profile.route("/profile", methods=["GET"])
 # @jwt_required()
 def get_profiles():
