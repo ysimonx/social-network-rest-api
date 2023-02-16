@@ -7,9 +7,12 @@ YAML is here : https://github.com/ysimonx/social-network-rest-api/blob/main/docs
 
 customize install.sh and run_orig.sh
 
-bash install.sh
-bash run_orig.sh
-curl http://localhost:5000/api/v1/init
+
+> bash install.sh
+
+> bash run_orig.sh
+
+> curl http://localhost:5000/api/v1/init
 
 
 
