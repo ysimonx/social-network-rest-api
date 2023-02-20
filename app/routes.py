@@ -88,23 +88,4 @@ def init():
     db.create_all()
     return "ok"
 
-# cf : https://flask-jwt-extended.readthedocs.io/en/stable/basic_usage/
-# https://flask-jwt-extended.readthedocs.io/en/stable/api/?highlight=get_jwt_identity#verify-tokens-in-request
-# Create a route to authenticate your users and return JWTs. The
-# create_access_token() function is used to actually generate the JWT.
-@app.route("/login", methods=["POST"])
-def login():
-    email = request.json.get("email", None)
-    password = request.json.get("password", None)
-    user =    getByIdOrEmail(obj=User,  id=email)
-    
-    if user is None:
-        abort(401)
-        
-    result_check = user.check_password(password)
-    if not result_check:
-        abort(401)
-    
-    access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token, result_check=result_check)
 
