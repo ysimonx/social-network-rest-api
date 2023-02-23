@@ -1,0 +1,21 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696c8c75ad32
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696c5d45a009
+modified: 1677181597101
+created: 1677181597101
+url: "{{ base_url }}/profile/{{ profile_id }}"
+name: profile delete
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1677181597101
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

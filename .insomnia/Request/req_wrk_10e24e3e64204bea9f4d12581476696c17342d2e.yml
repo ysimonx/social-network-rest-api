@@ -1,0 +1,21 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696c17342d2e
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696c2c54892c
+modified: 1677176484291
+created: 1677176484291
+url: "{{ base_url }}/city/{{ city_id }}"
+name: /city/{city_id}
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1677176484291
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

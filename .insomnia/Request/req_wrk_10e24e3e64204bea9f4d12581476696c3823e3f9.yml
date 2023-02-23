@@ -1,0 +1,29 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696c3823e3f9
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696cdc917a77
+modified: 1677176484288
+created: 1677176484288
+url: "{{ base_url }}/subscription"
+name: subscription post
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "user_id": "string",
+      "profile_id": "string"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1677176484288
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

@@ -1,0 +1,24 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696c27372f2b
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696c5b47b903
+modified: 1677181597098
+created: 1677181597098
+url: "{{ base_url }}/gallery"
+name: gallery list
+description: ""
+method: GET
+body: {}
+parameters:
+  - name: append_to_response
+    disabled: true
+    value: string
+headers: []
+authentication: {}
+metaSortKey: -1677181597098
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

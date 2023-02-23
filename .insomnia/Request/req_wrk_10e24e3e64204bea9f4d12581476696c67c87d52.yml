@@ -1,0 +1,21 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696c67c87d52
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696c2c8bbd4e
+modified: 1677176484290
+created: 1677176484290
+url: "{{ base_url }}/tour/{{ tour_id }}"
+name: tour get
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1677176484290
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

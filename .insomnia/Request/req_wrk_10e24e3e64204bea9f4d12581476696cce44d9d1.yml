@@ -1,0 +1,24 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696cce44d9d1
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696c5d45a009
+modified: 1677181597101
+created: 1677181597101
+url: "{{ base_url }}/profile"
+name: profile list
+description: ""
+method: GET
+body: {}
+parameters:
+  - name: append_to_response
+    disabled: true
+    value: string
+headers: []
+authentication: {}
+metaSortKey: -1677181597101
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

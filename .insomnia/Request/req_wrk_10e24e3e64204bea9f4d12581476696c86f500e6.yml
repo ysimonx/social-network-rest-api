@@ -1,0 +1,31 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696c86f500e6
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696c2c8bbd4e
+modified: 1677176484291
+created: 1677176484291
+url: "{{ base_url }}/tour"
+name: tour post
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "city_id": "string",
+      "profile_id": "string",
+      "time_start": "string",
+      "time_end": "string"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1677176484291
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

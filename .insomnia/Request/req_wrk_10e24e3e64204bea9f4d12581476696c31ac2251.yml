@@ -1,0 +1,29 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696c31ac2251
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696cc4eb7d7f
+modified: 1677176484301
+created: 1677176484301
+url: "{{ base_url }}/like"
+name: like post
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "profile_id": "string",
+      "liked_profile_id": "string"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1677176484301
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

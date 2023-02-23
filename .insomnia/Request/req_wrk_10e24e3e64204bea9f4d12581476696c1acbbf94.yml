@@ -1,0 +1,21 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696c1acbbf94
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696c0e66b49d
+modified: 1677176484297
+created: 1677176484297
+url: "{{ base_url }}/picture/{{ picture_id }}"
+name: picture delete
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1677176484297
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

@@ -1,0 +1,29 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696c1c5e2a7f
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696c12dea96f
+modified: 1677176484303
+created: 1677176484303
+url: "{{ base_url }}/user"
+name: user post
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "email": "string",
+      "password": "string"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1677176484303
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

@@ -1,0 +1,30 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696cab32c400
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696cf7ac253b
+modified: 1677176484301
+created: 1677176484301
+url: "{{ base_url }}/follow"
+name: follow post
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "id": "string",
+      "profile_id": "string",
+      "followed_profile_id": "string"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1677176484301
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

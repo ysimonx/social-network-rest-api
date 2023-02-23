@@ -1,0 +1,21 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696c46d8edd7
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696c5b47b903
+modified: 1677181597098
+created: 1677181597098
+url: "{{ base_url }}/gallery/{{ gallery_id }}"
+name: gallery delete
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1677181597098
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

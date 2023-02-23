@@ -1,0 +1,29 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696ce13ed635
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696c0e66b49d
+modified: 1677176484299
+created: 1677176484299
+url: "{{ base_url }}/picture"
+name: picture post
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "filename": "string",
+      "gallery_id": "string"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1677176484299
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

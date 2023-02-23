@@ -1,0 +1,28 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696c722af637
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696c5d45a009
+modified: 1677181597102
+created: 1677181597102
+url: "{{ base_url }}/profile"
+name: profile post
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "name": "string"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1677181597102
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
