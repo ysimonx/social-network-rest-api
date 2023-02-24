@@ -1,7 +1,7 @@
 _id: req_wrk_10e24e3e64204bea9f4d12581476696c1c5e2a7f
 type: Request
 parentId: fld_wrk_10e24e3e64204bea9f4d12581476696c12dea96f
-modified: 1677176484303
+modified: 1677256744688
 created: 1677176484303
 url: "{{ base_url }}/user"
 name: user post
@@ -11,14 +11,17 @@ body:
   mimeType: application/json
   text: |-
     {
-      "email": "string",
-      "password": "string"
+      "email": "yannick.simon@gmail.com",
+      "password": "bnku9gai"
     }
 parameters: []
 headers:
   - name: Content-Type
     value: application/json
-authentication: {}
+authentication:
+  type: bearer
+  token: "{% response 'body', 'req_wrk_10e24e3e64204bea9f4d12581476696c98683703',
+    'b64::JC5hY2Nlc3NfdG9rZW4=::46b', 'when-expired', 60 %}"
 metaSortKey: -1677176484303
 isPrivate: false
 settingStoreCookies: true

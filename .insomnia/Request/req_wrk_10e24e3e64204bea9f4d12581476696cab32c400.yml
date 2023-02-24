@@ -1,7 +1,7 @@
 _id: req_wrk_10e24e3e64204bea9f4d12581476696cab32c400
 type: Request
 parentId: fld_wrk_10e24e3e64204bea9f4d12581476696cf7ac253b
-modified: 1677176484301
+modified: 1677256844712
 created: 1677176484301
 url: "{{ base_url }}/follow"
 name: follow post
@@ -19,7 +19,10 @@ parameters: []
 headers:
   - name: Content-Type
     value: application/json
-authentication: {}
+authentication:
+  type: bearer
+  token: "{% response 'body', 'req_wrk_10e24e3e64204bea9f4d12581476696c98683703',
+    'b64::JC5hY2Nlc3NfdG9rZW4=::46b', 'when-expired', 60 %}"
 metaSortKey: -1677176484301
 isPrivate: false
 settingStoreCookies: true

@@ -1,7 +1,7 @@
 _id: req_wrk_10e24e3e64204bea9f4d12581476696c98683703
 type: Request
 parentId: fld_wrk_10e24e3e64204bea9f4d12581476696c2736fab2
-modified: 1677181597103
+modified: 1677244997831
 created: 1677181597103
 url: "{{ base_url }}/login"
 name: login post
@@ -11,8 +11,8 @@ body:
   mimeType: application/json
   text: |-
     {
-      "email": "string",
-      "password": "string"
+      "email": "yannick.simon@gmail.com",
+      "password": "bnku9gai"
     }
 parameters: []
 headers:
