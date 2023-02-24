@@ -48,6 +48,7 @@ def get_country(id_or_name):
     return jsonify(country.to_json())
 
 @app_file_meeting.route('/country/<id_or_name>', methods=['PUT'])
+@jwt_required()
 def update_country(id_or_name):
     if not request.json:
         abort(400)
@@ -179,6 +180,7 @@ def get_city(id):
     return jsonify(city.to_json())
 
 @app_file_meeting.route('/city/<id>', methods=['PUT'])
+@jwt_required()
 def update_city(id):
     if not request.json:
         abort(400)

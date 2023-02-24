@@ -61,6 +61,7 @@ def create_profile():
 
 
 @app_file_profile.route('/profile/<id_or_name>', methods=['PUT'])
+@jwt_required()
 def update_profile(id_or_name):
     if not request.json:
         abort(400)

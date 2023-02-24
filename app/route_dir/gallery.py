@@ -47,6 +47,7 @@ def get_picture(id):
     return jsonify(picture.to_json_to_root())
 
 @app_file_gallery.route('/picture/<id>', methods=['PUT'])
+@jwt_required()
 def update_picture(id):
     if not request.json:
         abort(400)
@@ -103,6 +104,7 @@ def get_video(id):
     return jsonify(video.to_json())
 
 @app_file_gallery.route('/video/<id>', methods=['PUT'])
+@jwt_required()
 def update_video(id):
     if not request.json:
         abort(400)
@@ -184,6 +186,7 @@ def create_gallery():
 
 
 @app_file_gallery.route('/gallery/<id>', methods=['PUT'])
+@jwt_required()
 def update_gallery(id):
     if not request.json:
         abort(400)

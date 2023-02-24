@@ -19,7 +19,7 @@ from .route_dir.profile import app_file_profile
 from .route_dir.meeting import app_file_meeting
 
 from sqlalchemy import exc
-from flask import jsonify, request, abort
+from flask import jsonify, request, abort, render_template
 from flask_mail import Mail
 
 
@@ -90,3 +90,6 @@ def init():
     return "ok"
 
 
+@app.route("/api/v1/swagger-ui", methods=["GET"])
+def swagger():
+    return render_template('swagger.html')
