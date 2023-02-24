@@ -24,7 +24,7 @@ def login():
     if not result_check:
         abort(401)
     
-    access_token = create_access_token(identity=email)
+    access_token = create_access_token(identity=user.id)
     return jsonify(access_token=access_token, result_check=result_check)
 
 

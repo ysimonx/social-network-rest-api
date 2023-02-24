@@ -21,7 +21,6 @@ class Event(db.Model, MyMixin):
             '_internal' : self.get_internal(),       
         }
 
-
 class Notification(db.Model, MyMixin):
     __tablename__ = 'notifications'
     event_id = db.Column(db.String(36), db.ForeignKey(Event.id))
@@ -35,8 +34,6 @@ class Notification(db.Model, MyMixin):
             '_internal' : self.get_internal(),
              
         }
-
-
 
 class NotificationUsers(db.Model, MyMixin):
     __tablename__ = 'notifications_users'
@@ -57,7 +54,19 @@ class NotificationUsers(db.Model, MyMixin):
         }
 
     
-
-
+       
+from sqlalchemy import event
+@event.listens_for(Event, 'before_insert')
+def do_stuff1(mapper, connect, target):
+    MyMixin.map_owner(mapper, connect, target)
+    
+@event.listens_for(Notification, 'before_insert')
+def do_stuff2(mapper, connect, target):
+    MyMixin.map_owner(mapper, connect, target)
+    
+@event.listens_for(NotificationUsers, 'before_insert')
+def do_stuff2(mapper, connect, target):
+    MyMixin.map_owner(mapper, connect, target)
+    
 
 

@@ -37,7 +37,6 @@ class Country(db.Model, MyMixin):
             
         }
 
-
 class Region(db.Model, MyMixin):
     __tablename__ = 'region'
     name   = db.Column(db.String(100), unique=True)
@@ -113,7 +112,6 @@ class City(db.Model, MyMixin):
             'region': self.region.to_json_with_details(),
         }
 
-
 class Address(db.Model, MyMixin):
     __tablename__ = 'addresses'
     name   = db.Column(db.String(100))
@@ -125,7 +123,6 @@ class Address(db.Model, MyMixin):
             'city_id' : self.city_id,
             '_internal' : self.get_internal()
         }
-
 
 class Tour(db.Model, MyMixin):
     __tablename__ = 'tours'
@@ -172,7 +169,6 @@ class Meeting(db.Model, MyMixin):
             '_internal' : self.get_internal()
         }
 
-
 class Review(db.Model, MyMixin):
     __tablename__ = 'reviews'
     meeting_id = db.Column(db.String(36), db.ForeignKey(Meeting.id))
@@ -191,3 +187,34 @@ class Review(db.Model, MyMixin):
              '_internal' : self.get_internal(),
             
         }
+        
+        
+from sqlalchemy import event
+@event.listens_for(Country, 'before_insert')
+def do_stuff1(mapper, connect, target):
+    MyMixin.map_owner(mapper, connect, target)
+    
+@event.listens_for(Region, 'before_insert')
+def do_stuff2(mapper, connect, target):
+    MyMixin.map_owner(mapper, connect, target)
+    
+@event.listens_for(City, 'before_insert')
+def do_stuff3(mapper, connect, target):
+    MyMixin.map_owner(mapper, connect, target)
+
+@event.listens_for(Address, 'before_insert')
+def do_stuff4(mapper, connect, target):
+    MyMixin.map_owner(mapper, connect, target)
+    
+@event.listens_for(Tour, 'before_insert')
+def do_stuff5(mapper, connect, target):
+    MyMixin.map_owner(mapper, connect, target)
+    
+@event.listens_for(Meeting, 'before_insert')
+def do_stuff6(mapper, connect, target):
+    MyMixin.map_owner(mapper, connect, target)
+
+@event.listens_for(Review, 'before_insert')
+def do_stuff6(mapper, connect, target):
+    MyMixin.map_owner(mapper, connect, target)
+

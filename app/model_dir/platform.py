@@ -24,3 +24,9 @@ class Platform(db.Model, MyMixin):
       
         return result
 
+      
+from sqlalchemy import event
+@event.listens_for(Platform, 'before_insert')
+def do_stuff1(mapper, connect, target):
+    MyMixin.map_owner(mapper, connect, target)
+ 

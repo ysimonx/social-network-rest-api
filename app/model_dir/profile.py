@@ -1,4 +1,6 @@
 from .. import db
+from sqlalchemy import event
+from flask_jwt_extended import get_jwt_identity, verify_jwt_in_request
 from .mymixin import MyMixin
 from sqlalchemy.orm import declarative_base, relationship, backref
 
@@ -111,10 +113,6 @@ class Profile(db.Model, MyMixin):
             'name': self.name,
             '_internal' : self.get_internal()
         }
-    
-
-    
-
 
 class Like(db.Model, MyMixin):
     __tablename__ = 'likes'
@@ -131,9 +129,6 @@ class Like(db.Model, MyMixin):
             'profile_id':                self.profile_id,
             'liked_profile_id':          self.liked_profile_id
         }
-
-   
-
 
 class Follow(db.Model, MyMixin):
     __tablename__ = 'followings'
@@ -182,5 +177,19 @@ class Favorite(db.Model, MyMixin):
             'id': self.id,
             '_internal' : self.get_internal()
         }
-
-
+        
+@event.listens_for(Profile, 'before_insert')
+def do_stuff(mapper, connect, target):
+    MyMixin.map_owner(mapper, connect, target)
+    
+@event.listens_for(Like, 'before_insert')
+def do_stuff1(mapper, connect, target):
+    MyMixin.map_owner(mapper, connect, target)
+    
+@event.listens_for(Follow, 'before_insert')
+def do_stuff2(mapper, connect, target):
+    MyMixin.map_owner(mapper, connect, target)
+    
+@event.listens_for(Favorite, 'before_insert')
+def do_stuff3(mapper, connect, target):
+    MyMixin.map_owner(mapper, connect, target)

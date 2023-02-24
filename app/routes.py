@@ -24,7 +24,7 @@ from flask_mail import Mail
 
 
 # todo : implement https://flask-jwt-extended.readthedocs.io/en/stable/basic_usage/
-from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager, verify_jwt_in_request
 
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
@@ -55,6 +55,7 @@ app.register_blueprint(app_file_meeting,        url_prefix=url_prefix)
  
 @app.before_request
 def before_request():
+
     app.logger.info("before_request")
 
 @app.after_request

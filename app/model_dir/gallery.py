@@ -63,3 +63,16 @@ class Video(db.Model, MyMixin):
             'size': self.size
         }
 
+from sqlalchemy import event
+@event.listens_for(Gallery, 'before_insert')
+def do_stuff1(mapper, connect, target):
+    MyMixin.map_owner(mapper, connect, target)
+    
+
+@event.listens_for(Video, 'before_insert')
+def do_stuff2(mapper, connect, target):
+    MyMixin.map_owner(mapper, connect, target)
+    
+@event.listens_for(Picture, 'before_insert')
+def do_stuff3(mapper, connect, target):
+    MyMixin.map_owner(mapper, connect, target)

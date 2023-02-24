@@ -8,13 +8,10 @@ from flask_bcrypt import generate_password_hash, check_password_hash
 # ToDo : essayer ca plutot https://dev.to/paurakhsharma/flask-rest-api-part-3-authentication-and-authorization-5935
 class User(db.Model, MyMixin):
     __tablename__ = 'users'
-
-    
+   
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
     
-    
-
     profile_subscriptions = db.relationship("Profile", secondary="subscriptions", cascade="all, delete", viewonly=True, lazy="select")
 
     def to_json(self):
@@ -45,8 +42,6 @@ class User(db.Model, MyMixin):
             return check_password_hash(self.password, password)
 
 
-
-
 class Subscription(db.Model, MyMixin):
 
     __tablename__ = 'subscriptions'
@@ -71,4 +66,13 @@ class Subscription(db.Model, MyMixin):
 
         }
 
+      
+from sqlalchemy import event
+@event.listens_for(User, 'before_insert')
+def do_stuff1(mapper, connect, target):
+    MyMixin.map_owner(mapper, connect, target)
 
+@event.listens_for(Subscription, 'before_insert')
+def do_stuff1(mapper, connect, target):
+    MyMixin.map_owner(mapper, connect, target)
+  

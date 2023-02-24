@@ -9,7 +9,7 @@ app_file_profile = Blueprint('profile',__name__)
 @app_file_profile.route("/profile", methods=["GET"])
 # @jwt_required()
 def get_profiles():
-    #current_user = get_jwt_identity()
+   
     append_to_response =  request.args.get("append_to_response")
     profiles = Profile.query.all()
     if append_to_response is None:
