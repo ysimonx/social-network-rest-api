@@ -3,6 +3,8 @@ import uuid
 from ..model_dir.profile import Profile
 from flask import jsonify, request, abort
 from .. import db,   getByIdOrByName
+from flask_jwt_extended import jwt_required, get_jwt_identity
+
 app_file_profile = Blueprint('profile',__name__)
 
 

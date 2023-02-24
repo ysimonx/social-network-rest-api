@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template, session,abort
+from flask_jwt_extended import jwt_required, get_jwt_identity
+
 import uuid
 from ..model_dir.profile import Profile, Follow, Like
 from flask import jsonify, request, abort
@@ -8,6 +10,7 @@ app_file_social = Blueprint('social',__name__)
 
 
 @app_file_social.route('/follow', methods=['POST'])
+@jwt_required()
 def create_follow():
     if not request.json:
         print("not json")
@@ -46,6 +49,7 @@ def get_follows():
 
 
 @app_file_social.route('/like', methods=['POST'])
+@jwt_required()
 def create_like():
     if not request.json:
         print("not json")

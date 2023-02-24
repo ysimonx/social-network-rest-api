@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, session,abort
+from flask_jwt_extended import jwt_required, get_jwt_identity
 import uuid
 from ..model_dir.meeting import Country, Region, City, Tour, Meeting
 from ..model_dir.gallery import Gallery, Picture, Video
@@ -23,6 +24,7 @@ def get_countries():
 
 
 @app_file_meeting.route('/country', methods=['POST'])
+@jwt_required()
 def create_country():
     if not request.json:
         print("not json")
@@ -57,6 +59,7 @@ def update_country(id_or_name):
     return jsonify(country.to_json())
 
 @app_file_meeting.route("/country/<id_or_name>", methods=["DELETE"])
+@jwt_required()
 def delete_country(id_or_name):
     country = getByIdOrByName(obj=Country, id=id_or_name)
     if country is None:
@@ -77,6 +80,7 @@ def get_regions():
         return jsonify([item.to_json_with_details() for item in items])
 
 @app_file_meeting.route('/region', methods=['POST'])
+@jwt_required()
 def create_region():
     if not request.json:
         print("not json")
@@ -122,6 +126,7 @@ def update_region(id):
     return jsonify(region.to_json())
 
 @app_file_meeting.route("/region/<id>", methods=["DELETE"])
+@jwt_required()
 def delete_region(id):
     region = getByIdOrByName(Region, id)
     if region is None:
@@ -139,6 +144,7 @@ def get_cities():
 
 
 @app_file_meeting.route('/city', methods=['POST'])
+@jwt_required()
 def create_city():
     if not request.json:
         print("not json")
@@ -184,6 +190,7 @@ def update_city(id):
     return jsonify(city.to_json())
 
 @app_file_meeting.route("/city/<id>", methods=["DELETE"])
+@jwt_required()
 def delete_city(id):
     city = getByIdOrByName(City, id)
     if city is None:
@@ -206,6 +213,7 @@ def get_tours():
 
 
 @app_file_meeting.route("/tour/<id>", methods=["DELETE"])
+@jwt_required()
 def delete_tour(id):
     tour = Tour.query.get(id)
     if tour is None:
@@ -227,6 +235,7 @@ def delete_tour(id):
 #  }'
 # 
 @app_file_meeting.route('/tour', methods=['POST'])
+@jwt_required()
 def create_tour():
     if not request.json:
         print("not json")

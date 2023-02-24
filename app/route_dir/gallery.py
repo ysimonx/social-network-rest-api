@@ -3,6 +3,8 @@ import uuid
 from ..model_dir.profile import Profile
 from ..model_dir.gallery import Gallery, Picture, Video
 from flask import jsonify, request, abort
+from flask_jwt_extended import jwt_required, get_jwt_identity
+
 from .. import db,  getByIdOrByName
 app_file_gallery = Blueprint('gallery',__name__)
 
@@ -17,6 +19,7 @@ def get_pictures():
 # file upload is here : https://www.youtube.com/watch?v=zMhmZ_ePGiM
 # flutter image upload exemple : https://www.youtube.com/watch?v=dsPdIdrgAD4
 @app_file_gallery.route('/picture', methods=['POST'])
+@jwt_required()
 def create_picture():
     if not request.json:
         print("not json")
@@ -55,6 +58,7 @@ def update_picture(id):
     return jsonify(picture.to_json())
 
 @app_file_gallery.route("/picture/<id>", methods=["DELETE"])
+@jwt_required()
 def delete_picture(id):
     picture = Picture.query.get(id)
     if picture is None:
@@ -72,6 +76,7 @@ def get_videos():
 # file upload is here : https://www.youtube.com/watch?v=zMhmZ_ePGiM
 
 @app_file_gallery.route('/video', methods=['POST'])
+@jwt_required()
 def create_video():
     if not request.json:
         print("not json")
@@ -109,6 +114,7 @@ def update_video(id):
     return jsonify(video.to_json())
 
 @app_file_gallery.route("/video/<id>", methods=["DELETE"])
+@jwt_required()
 def delete_video(id):
     video = Video.query.get(id)
     if video is None:
@@ -143,6 +149,7 @@ def get_gallery(id):
 
 
 @app_file_gallery.route("/gallery/<id>", methods=["DELETE"])
+@jwt_required()
 def delete_gallery(id):
     gallery = Gallery.query.get(id)
     if gallery is None:
@@ -154,6 +161,7 @@ def delete_gallery(id):
 
 # curl -H "Content-Type: application/json" -X POST -d '{"profile_id": "072bda67-60da-414e-b7b3-26a4cd458fa5"}' http://localhost:5000/gallery
 @app_file_gallery.route('/gallery', methods=['POST'])
+@jwt_required()
 def create_gallery():
     print("create_gallery")
     if not request.json:

@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, session,abort
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from ..model_dir.user import User, Subscription
 from ..model_dir.profile import Profile
 from flask import jsonify, request, abort
@@ -8,6 +9,7 @@ app_file_subscription = Blueprint('subscription',__name__)
 
 
 @app_file_subscription.route('/subscription', methods=['POST'])
+@jwt_required()
 def create_subscription():
     if not request.json:
         print("not json")
