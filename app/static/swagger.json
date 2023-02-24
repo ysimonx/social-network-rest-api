@@ -135,14 +135,9 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Login"
-                }
-              },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Login"
+                  "$ref": "#/components/schemas/LoginResult"
                 }
               }
             }
@@ -165,11 +160,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/User"
@@ -190,6 +180,7 @@
           {
             "in": "query",
             "name": "append_to_response",
+            "example": "all",
             "schema": {
               "type": "string"
             },
@@ -201,14 +192,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/User"
-                  }
-                }
-              },
               "application/json": {
                 "schema": {
                   "type": "array",
@@ -242,11 +225,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Profile"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Profile"
@@ -267,6 +245,7 @@
           {
             "in": "query",
             "name": "append_to_response",
+            "example": "all",
             "schema": {
               "type": "string"
             },
@@ -278,14 +257,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Profile"
-                  }
-                }
-              },
               "application/json": {
                 "schema": {
                   "type": "array",
@@ -321,14 +292,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Profile"
-                  }
-                }
-              },
               "application/json": {
                 "schema": {
                   "type": "array",
@@ -390,11 +353,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Like"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Like"
@@ -455,11 +413,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Follow"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Follow"
@@ -515,11 +468,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Gallery"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Gallery"
@@ -540,6 +488,7 @@
           {
             "in": "query",
             "name": "append_to_response",
+            "example": "all",
             "schema": {
               "type": "string"
             },
@@ -551,14 +500,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Gallery"
-                  }
-                }
-              },
               "application/json": {
                 "schema": {
                   "type": "array",
@@ -594,20 +535,50 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Gallery"
-                  }
-                }
-              },
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/Gallery"
                   }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "gallery"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "gallery_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "gallery put",
+        "description": "gallery put desccription",
+        "operationId": "galleryPut",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Gallery"
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Gallery"
                 }
               }
             }
@@ -663,11 +634,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Picture"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Picture"
@@ -688,6 +654,7 @@
           {
             "in": "query",
             "name": "append_to_response",
+            "example": "all",
             "schema": {
               "type": "string"
             },
@@ -699,14 +666,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Picture"
-                  }
-                }
-              },
               "application/json": {
                 "schema": {
                   "type": "array",
@@ -742,14 +701,44 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
+              "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/Picture"
                   }
                 }
-              },
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "picture"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "picture put",
+        "description": "picture put desccription",
+        "operationId": "picturePut",
+        "parameters": [
+          {
+            "name": "picture_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
@@ -811,11 +800,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Video"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Video"
@@ -836,6 +820,7 @@
           {
             "in": "query",
             "name": "append_to_response",
+            "example": "all",
             "schema": {
               "type": "string"
             },
@@ -847,14 +832,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Video"
-                  }
-                }
-              },
               "application/json": {
                 "schema": {
                   "type": "array",
@@ -890,14 +867,44 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
+              "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/Video"
                   }
                 }
-              },
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "video"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "video put",
+        "description": "video put desccription",
+        "operationId": "videoPut",
+        "parameters": [
+          {
+            "name": "video_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
@@ -959,11 +966,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Country"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Country"
@@ -984,6 +986,7 @@
           {
             "in": "query",
             "name": "append_to_response",
+            "example": "all",
             "schema": {
               "type": "string"
             },
@@ -995,14 +998,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Country"
-                  }
-                }
-              },
               "application/json": {
                 "schema": {
                   "type": "array",
@@ -1089,11 +1084,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Region"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Region"
@@ -1114,6 +1104,7 @@
           {
             "in": "query",
             "name": "append_to_response",
+            "example": "all",
             "schema": {
               "type": "string"
             },
@@ -1125,14 +1116,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Region"
-                  }
-                }
-              },
               "application/json": {
                 "schema": {
                   "type": "array",
@@ -1217,11 +1200,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/City"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/City"
@@ -1242,6 +1220,7 @@
           {
             "in": "query",
             "name": "append_to_response",
+            "example": "all",
             "schema": {
               "type": "string"
             },
@@ -1253,14 +1232,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/City"
-                  }
-                }
-              },
               "application/json": {
                 "schema": {
                   "type": "array",
@@ -1345,11 +1316,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Tour"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Tour"
@@ -1370,6 +1336,7 @@
           {
             "in": "query",
             "name": "append_to_response",
+            "example": "all",
             "schema": {
               "type": "string"
             },
@@ -1381,14 +1348,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Tour"
-                  }
-                }
-              },
               "application/json": {
                 "schema": {
                   "type": "array",
@@ -1424,11 +1383,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Tour"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Tour"
@@ -1487,11 +1441,6 @@
           "200": {
             "description": "successful operation",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Subscription"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Subscription"
@@ -1530,11 +1479,6 @@
             "schema": {
               "$ref": "#/components/schemas/Login"
             }
-          },
-          "application/xml": {
-            "schema": {
-              "$ref": "#/components/schemas/Login"
-            }
           }
         },
         "description": "Login object that needs to be add",
@@ -1543,11 +1487,6 @@
       "User": {
         "content": {
           "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/User"
-            }
-          },
-          "application/xml": {
             "schema": {
               "$ref": "#/components/schemas/User"
             },
@@ -1566,11 +1505,6 @@
             "schema": {
               "$ref": "#/components/schemas/Profile"
             }
-          },
-          "application/xml": {
-            "schema": {
-              "$ref": "#/components/schemas/Profile"
-            }
           }
         },
         "description": "Profile object that needs to be add",
@@ -1579,11 +1513,6 @@
       "Like": {
         "content": {
           "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Like"
-            }
-          },
-          "application/xml": {
             "schema": {
               "$ref": "#/components/schemas/Like"
             }
@@ -1598,11 +1527,6 @@
             "schema": {
               "$ref": "#/components/schemas/Follow"
             }
-          },
-          "application/xml": {
-            "schema": {
-              "$ref": "#/components/schemas/Follow"
-            }
           }
         },
         "description": "Follow object that needs to be add",
@@ -1611,11 +1535,6 @@
       "Gallery": {
         "content": {
           "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Gallery"
-            }
-          },
-          "application/xml": {
             "schema": {
               "$ref": "#/components/schemas/Gallery"
             }
@@ -1630,11 +1549,6 @@
             "schema": {
               "$ref": "#/components/schemas/Picture"
             }
-          },
-          "application/xml": {
-            "schema": {
-              "$ref": "#/components/schemas/Picture"
-            }
           }
         },
         "description": "Picture object that needs to be add",
@@ -1643,11 +1557,6 @@
       "Video": {
         "content": {
           "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Video"
-            }
-          },
-          "application/xml": {
             "schema": {
               "$ref": "#/components/schemas/Video"
             }
@@ -1662,11 +1571,6 @@
             "schema": {
               "$ref": "#/components/schemas/Country"
             }
-          },
-          "application/xml": {
-            "schema": {
-              "$ref": "#/components/schemas/Country"
-            }
           }
         },
         "description": "Country object that needs to be add",
@@ -1675,11 +1579,6 @@
       "Region": {
         "content": {
           "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Region"
-            }
-          },
-          "application/xml": {
             "schema": {
               "$ref": "#/components/schemas/Region"
             }
@@ -1694,11 +1593,6 @@
             "schema": {
               "$ref": "#/components/schemas/City"
             }
-          },
-          "application/xml": {
-            "schema": {
-              "$ref": "#/components/schemas/City"
-            }
           }
         },
         "description": "City object that needs to be add",
@@ -1710,11 +1604,6 @@
             "schema": {
               "$ref": "#/components/schemas/Tour"
             }
-          },
-          "application/xml": {
-            "schema": {
-              "$ref": "#/components/schemas/Tour"
-            }
           }
         },
         "description": "City object that needs to be add",
@@ -1723,11 +1612,6 @@
       "Subscription": {
         "content": {
           "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Subscription"
-            }
-          },
-          "application/xml": {
             "schema": {
               "$ref": "#/components/schemas/Subscription"
             }
@@ -1750,14 +1634,30 @@
             "readOnly": true
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "example": "yannick.simon@kysoe.com"
           },
           "password": {
-            "type": "string"
+            "type": "string",
+            "example": "1234567890"
           }
-        },
-        "xml": {
-          "name": "Login"
+        }
+      },
+      "LoginResult": {
+        "type": "object",
+        "required": [
+          "access_token",
+          "result_check"
+        ],
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NzI1OTczMSwianRpIjoiOGVmZjVlMTUtZTI5Zi00MmY3LTg4YTQtMTQ2ODQzNTk3MjY0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjYxZDk0YmFjLTA5YjgtNDdhYi05NjhjLTE1ZDMwOTg2Nzk5YyIsIm5iZiI6MTY3NzI1OTczMSwiZXhwIjoxNjc3MjYwNjMxfQ.d5OVo8IqgAnH97rQ_hNjG72fo6WM0S9WVqw_8lTaKHk"
+          },
+          "result_check": {
+            "type": "boolean",
+            "example": true
+          }
         }
       },
       "User": {
@@ -1769,17 +1669,17 @@
         "properties": {
           "id": {
             "type": "string",
+            "example": "61d94bac-09b8-47ab-968c-15d30986799c",
             "readOnly": true
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "example": "yannick.simon@kysoe.com"
           },
           "password": {
-            "type": "string"
+            "type": "string",
+            "example": "1234567890"
           }
-        },
-        "xml": {
-          "name": "User"
         }
       },
       "Profile": {
@@ -1793,11 +1693,9 @@
             "readOnly": true
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "example": "yannickoo"
           }
-        },
-        "xml": {
-          "name": "Profile"
         }
       },
       "Like": {
@@ -1922,9 +1820,6 @@
           "name": {
             "type": "string"
           }
-        },
-        "xml": {
-          "name": "Region"
         }
       },
       "City": {
@@ -1944,9 +1839,6 @@
           "name": {
             "type": "string"
           }
-        },
-        "xml": {
-          "name": "City"
         }
       },
       "Tour": {
@@ -1961,10 +1853,12 @@
             "readOnly": true
           },
           "city_id": {
-            "type": "string"
+            "type": "string",
+            "example": "nice"
           },
           "profile_id": {
-            "type": "string"
+            "type": "string",
+            "example": "yannickoo"
           },
           "time_start": {
             "type": "string"
@@ -1972,9 +1866,6 @@
           "time_end": {
             "type": "string"
           }
-        },
-        "xml": {
-          "name": "Tour"
         }
       },
       "Subscription": {
@@ -1992,11 +1883,9 @@
             "type": "string"
           },
           "profile_id": {
-            "type": "string"
+            "type": "string",
+            "example": "yannickoo"
           }
-        },
-        "xml": {
-          "name": "Tour"
         }
       }
     }
