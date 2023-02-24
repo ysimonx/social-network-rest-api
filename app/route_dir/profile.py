@@ -35,6 +35,7 @@ def get_profile(id_or_name):
 
 # curl http://localhost:5000/profile/bab3097c-1804-4bdb-9675-ed8ab7b96b0c -X DELETE
 @app_file_profile.route("/profile/<id_or_name>", methods=["DELETE"])
+@jwt_required()
 def delete_profile(id_or_name):
     profile = getByIdOrByName(obj=Profile, id=id_or_name)
     if profile is None:
@@ -45,6 +46,7 @@ def delete_profile(id_or_name):
 
 # curl -H "Content-Type: application/json" -X POST -d '{"name": "ysimonx"}' http://localhost:5000/profile
 @app_file_profile.route('/profile', methods=['POST'])
+@jwt_required()
 def create_profile():
     if not request.json:
         print("not json")

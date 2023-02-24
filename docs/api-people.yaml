@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  description: "This is a sample server Profile server.  You can find out more about
+  description: "This is a Social Network - OnlyFans api specifications API REST
    ."
   version: 1.0.2
   title: Swagger Api-profile
@@ -11,6 +11,16 @@ info:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 tags:
+  - name: login
+    description: Everything about your Login
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+  - name: user
+    description: Everything about your User
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
   - name: profile
     description: Everything about your Profile
     externalDocs:
@@ -69,11 +79,85 @@ tags:
       url: http://swagger.io
 
 paths:
-  /profile:
+
+  /login:
   
     post:
       tags:
+        - login
+      summary: login post
+      description: "login post desccription"
+      operationId: loginPost
+      requestBody:
+        $ref: "#/components/requestBodies/Login"
+      responses:
+          "200":
+            description: successful operation
+          
+            content:
+              application/xml:
+                schema:
+                  $ref: "#/components/schemas/Login"
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Login"
+                  
+  /user:
+  
+    post:
+      tags:
+        - user
+      summary: user post
+      description: "user post desccription"
+      operationId: userPost
+      requestBody:
+        $ref: "#/components/requestBodies/User"
+      responses:
+          "200":
+            description: successful operation
+          
+            content:
+              application/xml:
+                schema:
+                  $ref: "#/components/schemas/User"
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/User"
+    get:
+      tags:
+        - user
+      summary: user list
+      description: "user list xdesccription"
+      operationId: userList
+      parameters:
+        - in: query
+          name: append_to_response
+          schema:
+            type: string
+          required: false
+          description: add additional data to response
+      responses:
+          "200":
+            description: successful operation
+            content:
+              application/xml:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/User"
+              application/json:
+                schema:
+                  type: array
+                  items: 
+                    $ref: "#/components/schemas/User"
+                                      
+                  
+  /profile:
+    post:
+      tags:
         - profile
+      security:
+        - bearerAuth: []
       summary: profile post
       description: "profile post desccription"
       operationId: profilePost
@@ -151,6 +235,8 @@ paths:
     delete:
       tags:
         - profile
+      security:  
+        - bearerAuth: []
       summary: profile delete
       description: "profile delete desccription"
       operationId: profileDelete
@@ -170,6 +256,8 @@ paths:
     post:
       tags:
         - like
+      security:  
+        - bearerAuth: []
       summary: like post
       description: "like post desccription"
       operationId: likePost
@@ -192,6 +280,8 @@ paths:
     delete:
       tags:
         - like
+      security:  
+        - bearerAuth: []
       summary: like delete
       description: "like delete desccription"
       operationId: likeeDelete
@@ -213,6 +303,9 @@ paths:
     post:
       tags:
         - follow
+      security:  
+        - bearerAuth: []
+
       summary: follow post
       description: "follow post desccription"
       operationId: followPost
@@ -254,6 +347,9 @@ paths:
     post:
       tags:
         - gallery
+      security:  
+        - bearerAuth: []
+
       summary: gallery post
       description: "gallery post desccription"
       operationId: galleryPost
@@ -331,6 +427,9 @@ paths:
     delete:
       tags:
         - gallery
+      security:  
+        - bearerAuth: []
+
       summary: gallery delete
       description: "gallery delete desccription"
       operationId: galleryDelete
@@ -350,6 +449,9 @@ paths:
     post:
       tags:
         - picture
+      security:  
+        - bearerAuth: []
+
       summary: picture post
       description: "picture post desccription"
       operationId: picturePost
@@ -427,6 +529,9 @@ paths:
     delete:
       tags:
         - picture
+      security:  
+        - bearerAuth: []
+
       summary: picture delete
       description: "picture delete desccription"
       operationId: pictureDelete
@@ -447,6 +552,9 @@ paths:
     post:
       tags:
         - video
+      security:  
+        - bearerAuth: []
+
       summary: video post
       description: "video post desccription"
       operationId: videoPost
@@ -524,6 +632,9 @@ paths:
     delete:
       tags:
         - video
+      security:  
+        - bearerAuth: []
+
       summary: video delete
       description: "video delete desccription"
       operationId: videoDelete
@@ -543,6 +654,9 @@ paths:
     post:
       tags:
         - country
+      security:  
+        - bearerAuth: []
+
       summary: country post
       description: "country post desccription"
       operationId: countryPost
@@ -610,6 +724,9 @@ paths:
     delete:
       tags:
         - country
+      security:  
+        - bearerAuth: []
+
       summary: country delete
       description: "country delete desccription"
       operationId: countryDelete
@@ -632,6 +749,9 @@ paths:
     post:
       tags:
         - region
+      security:  
+        - bearerAuth: []
+
       summary: region post
       description: "region post desccription"
       operationId: regionPost
@@ -696,6 +816,9 @@ paths:
     delete:
       tags:
         - region
+      security:  
+        - bearerAuth: []
+
       description: "region delete description"
       operationId: regionDelete
       parameters:
@@ -716,6 +839,9 @@ paths:
     post:
       tags:
         - city
+      security:  
+        - bearerAuth: []
+
       summary: city post
       description: "city post desccription"
       operationId: cityPost
@@ -780,6 +906,10 @@ paths:
     delete:
       tags:
         - city
+        
+      security:  
+        - bearerAuth: []
+
       description: "city delete description"
       operationId: cityDelete
       parameters:
@@ -799,6 +929,9 @@ paths:
     post:
       tags:
         - tour
+      security:  
+        - bearerAuth: []
+
       summary: tour post
       description: "tour post desccription"
       operationId: tourPost
@@ -872,6 +1005,9 @@ paths:
     delete:
       tags:
         - tour
+      security:  
+        - bearerAuth: []
+
       summary: tour delete
       description: "tour delete desccription"
       operationId: tourDelete
@@ -893,6 +1029,9 @@ paths:
     post:
       tags:
         - subscription
+      security:  
+        - bearerAuth: []
+
       summary: subscription post
       description: "subscription post desccription"
       operationId: subscriptionPost
@@ -918,8 +1057,44 @@ servers:
   - url: http://localhost:5000/api/v1
   
 components:
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT  # optional, for documentation purposes only
+
   
   requestBodies:
+  
+    Login:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Login"
+        application/xml:
+          schema:
+            $ref: "#/components/schemas/Login"
+      description: Login object that needs to be add
+      required: true
+
+  
+  
+    User:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/User"
+        application/xml:
+          schema:
+            $ref: "#/components/schemas/User"
+          example:
+              email: "yannick.simon@gmail.com"
+              password: 2D2D23D4D32DZ
+      description: User object that needs to be add
+      required: true
+      
+
   
     Profile:
       content:
@@ -1049,6 +1224,43 @@ components:
       required: true
       
   schemas:
+ 
+    Login:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        id:
+          type: string
+          readOnly: true
+        email:
+          type: string
+        password:
+          type: string
+         
+      xml:
+        name: Login
+ 
+ 
+    User:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        id:
+          type: string
+          readOnly: true
+        email:
+          type: string
+        password:
+          type: string
+         
+      xml:
+        name: User
+ 
+  
     Profile:
       type: object
       required:
@@ -1056,6 +1268,7 @@ components:
       properties:
         id:
           type: string
+          readOnly: true
         name:
           type: string
          
@@ -1070,6 +1283,7 @@ components:
       properties:
         id:
           type: string
+          readOnly: true
         profile_id:
           type: string
         liked_profile_id:
@@ -1083,6 +1297,7 @@ components:
       properties:
         id:
           type: string
+          readOnly: true
         profile_id:
           type: string
         followed_profile_id:
@@ -1096,6 +1311,7 @@ components:
       properties:
         id:
           type: string
+          readOnly: true
         profile_id:
           type: string
 
@@ -1109,6 +1325,7 @@ components:
       properties:
         id:
           type: string
+          readOnly: true
         filename:
           type: string
         gallery_id:
@@ -1138,6 +1355,7 @@ components:
       properties:
         id:
           type: string
+          readOnly: true
         name:
           type: string
  
@@ -1149,6 +1367,7 @@ components:
       properties:
         id:
           type: string
+          readOnly: true
         country_id:
           type: string
         name:
@@ -1165,6 +1384,7 @@ components:
       properties:
         id:
           type: string
+          readOnly: true
         region_id:
           type: string
         name:
@@ -1182,6 +1402,7 @@ components:
       properties:
         id:
           type: string
+          readOnly: true
         city_id:
           type: string
         profile_id:
@@ -1203,6 +1424,7 @@ components:
       properties:
         id:
           type: string
+          readOnly: true
         user_id:
           type: string
         profile_id:
@@ -1210,3 +1432,6 @@ components:
       xml:
         name: Tour
    
+   
+security:
+  - bearerAuth: []
