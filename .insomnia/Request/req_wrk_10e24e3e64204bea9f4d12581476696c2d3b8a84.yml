@@ -1,0 +1,24 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696c2d3b8a84
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696ca94a5840
+modified: 1677256803645
+created: 1677176484293
+url: "{{ base_url }}/region/{{ region_id }}"
+name: /region/{region_id}
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{% response 'body', 'req_wrk_10e24e3e64204bea9f4d12581476696c98683703',
+    'b64::JC5hY2Nlc3NfdG9rZW4=::46b', 'when-expired', 60 %}"
+metaSortKey: -1677176484293
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

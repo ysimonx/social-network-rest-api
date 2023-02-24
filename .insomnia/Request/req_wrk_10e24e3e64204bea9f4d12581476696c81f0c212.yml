@@ -1,0 +1,32 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696c81f0c212
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696c2c54892c
+modified: 1677256824964
+created: 1677176484293
+url: "{{ base_url }}/city"
+name: city post
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "region_id": "string",
+      "name": "string"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication:
+  type: bearer
+  token: "{% response 'body', 'req_wrk_10e24e3e64204bea9f4d12581476696c98683703',
+    'b64::JC5hY2Nlc3NfdG9rZW4=::46b', 'when-expired', 60 %}"
+metaSortKey: -1677176484293
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

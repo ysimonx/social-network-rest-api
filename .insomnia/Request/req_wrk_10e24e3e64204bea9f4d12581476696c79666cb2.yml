@@ -1,0 +1,21 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696c79666cb2
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696ca94a5840
+modified: 1677176484293
+created: 1677176484293
+url: "{{ base_url }}/region/{{ region_id }}"
+name: /region/{region_id}
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1677176484293
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

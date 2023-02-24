@@ -1,0 +1,31 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696ce1b1b1c7
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696c5b47b903
+modified: 1677256731074
+created: 1677181597099
+url: "{{ base_url }}/gallery"
+name: gallery post
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "profile_id": "manue"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication:
+  type: bearer
+  token: "{% response 'body', 'req_wrk_10e24e3e64204bea9f4d12581476696c98683703',
+    'b64::JC5hY2Nlc3NfdG9rZW4=::46b', 'when-expired', 60 %}"
+metaSortKey: -1677181597099
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
