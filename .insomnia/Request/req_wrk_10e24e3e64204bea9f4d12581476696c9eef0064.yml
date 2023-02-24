@@ -1,0 +1,27 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696c9eef0064
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696c2c54892c
+modified: 1677176484292
+created: 1677176484292
+url: "{{ base_url }}/city"
+name: city list
+description: ""
+method: GET
+body: {}
+parameters:
+  - name: append_to_response
+    disabled: true
+    value: string
+headers: []
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+metaSortKey: -1677176484292
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

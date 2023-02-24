@@ -1,0 +1,24 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696ca3781d8e
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696c0e66b49d
+modified: 1677263879509
+created: 1677263879509
+url: "{{ base_url }}/picture/{{ picture_id }}"
+name: picture put
+description: ""
+method: PUT
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+metaSortKey: -1677263879509
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

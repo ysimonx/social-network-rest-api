@@ -1,0 +1,25 @@
+_id: req_25e478b6a0ed42fe83a1a808260a3673
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696c8e68b3e5
+modified: 1677185100395
+created: 1677185090911
+url: "{{ base_url }}/country"
+name: country list detailled
+description: ""
+method: GET
+body: {}
+parameters:
+  - name: append_to_response
+    disabled: false
+    value: all
+    id: pair_4805d75e267b4d9690043375d9143ece
+headers: []
+authentication: {}
+metaSortKey: -1677176484294.5
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

@@ -1,0 +1,24 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696c02c002b7
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696cffbaf58f
+modified: 1677176484296
+created: 1677176484296
+url: "{{ base_url }}/video/{{ video_id }}"
+name: video get
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+metaSortKey: -1677176484296
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
