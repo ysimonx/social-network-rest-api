@@ -1,7 +1,7 @@
 _id: spc_4b1788b89cc5471388ec3d3f3c3b08c9
 type: ApiSpec
 parentId: wrk_10e24e3e64204bea9f4d12581476696c
-modified: 1677273841738
+modified: 1677314516145
 created: 1675785481947
 fileName: api-people.yaml
 contents: >-
@@ -31,6 +31,11 @@ contents: >-
         url: http://swagger.io
     - name: profile
       description: Everything about your Profile
+      externalDocs:
+        description: Find out more
+        url: http://swagger.io
+    - name: media
+      description: Everything about your Media
       externalDocs:
         description: Find out more
         url: http://swagger.io
@@ -323,6 +328,23 @@ contents: >-
             "200":
               description: successful operation
 
+    /media:
+      post:
+        tags:
+          - media
+        security:  
+          - bearerAuth: []
+
+        summary: media post
+        description: "media post desccription"
+        operationId: mediayPost
+        requestBody:
+          $ref: "#/components/requestBodies/Media"
+        responses:
+            "201":
+              description: successful operation
+            
+             
                   
     /gallery:
       post:
@@ -1130,6 +1152,18 @@ contents: >-
         required: true
 
    
+      Media:
+        content:
+             multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  
+                  file:
+                    type: string
+                    format: binary
+        description: Media object that needs to be add
+        required: true
     
       Gallery:
         content:
@@ -1293,6 +1327,7 @@ contents: >-
             type: string
           followed_profile_id:
             type: string
+
 
     
       Gallery:

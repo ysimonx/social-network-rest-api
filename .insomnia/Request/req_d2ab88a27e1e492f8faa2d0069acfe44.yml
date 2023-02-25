@@ -1,10 +1,10 @@
 _id: req_d2ab88a27e1e492f8faa2d0069acfe44
 type: Request
 parentId: wrk_10e24e3e64204bea9f4d12581476696c
-modified: 1677265929155
+modified: 1677313833765
 created: 1677265870898
 url: "{{ base_url }}/swagger-ui"
-name: New Request
+name: swagger-ui
 description: ""
 method: GET
 body: {}
