@@ -5,8 +5,13 @@ from ..model_dir.gallery import Gallery, Picture, Video
 from flask import jsonify, request, abort
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
+
 from .. import db,  getByIdOrByName
 app_file_gallery = Blueprint('gallery',__name__)
+
+
+
+
 
 # cf fileupload : https://flask.palletsprojects.com/en/2.2.x/patterns/fileuploads/
 
@@ -195,4 +200,6 @@ def update_gallery(id):
         abort(404)
     db.session.commit()
     return jsonify(gallery.to_json())
+
+
 

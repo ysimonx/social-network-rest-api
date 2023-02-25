@@ -19,12 +19,18 @@ from .route_dir.profile import app_file_profile
 from .route_dir.meeting import app_file_meeting
 
 from sqlalchemy import exc
-from flask import jsonify, request, abort, render_template
+from flask import jsonify, request, abort, render_template, send_from_directory
 from flask_mail import Mail
 
 
 # todo : implement https://flask-jwt-extended.readthedocs.io/en/stable/basic_usage/
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager, verify_jwt_in_request
+
+import os
+from werkzeug.utils import secure_filename
+UPLOAD_FOLDER = '/tmp'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+
 
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
@@ -34,6 +40,9 @@ app.config['DEBUG'] = True
 app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
 jwt = JWTManager(app)
 
+
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Mail
 # After 'Create app'
@@ -55,12 +64,10 @@ app.register_blueprint(app_file_meeting,        url_prefix=url_prefix)
  
 @app.before_request
 def before_request():
-
     app.logger.info("before_request")
 
 @app.after_request
 def after_request(response):
-    # 
     app.logger.info("after_request")
     return response
 
@@ -79,7 +86,6 @@ def before_first_request():
     handler = logging.FileHandler(log_file)
     handler.setLevel(log_level)
     app.logger.addHandler(handler)
- 
     app.logger.setLevel(log_level)
 
 
@@ -93,3 +99,33 @@ def init():
 @app.route("/api/v1/swagger-ui", methods=["GET"])
 def swagger():
     return render_template('swagger.html')
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route('/media/', methods=['POST'])
+def upload_file():
+  
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            abort(400)
+        file = request.files['file']
+        # If the user does not select a file, the browser submits an
+        # empty file without a filename.
+        if file.filename == '':
+            abort(400)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return jsonify({"result":"ok"}), 201
+        
+        abort(400)
+        
+
+@app.route('/uploads/<name>')
+def download_file(name):
+    return send_from_directory(app.config["UPLOAD_FOLDER"], name)
+        
