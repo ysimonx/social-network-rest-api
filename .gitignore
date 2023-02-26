@@ -8,3 +8,4 @@ run.sh
 ./logs
 app/logs/app.log
 run.sh
+app/static/media

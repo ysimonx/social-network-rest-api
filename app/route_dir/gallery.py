@@ -1,13 +1,18 @@
-from flask import Blueprint, render_template, session,abort
+from flask import Blueprint, render_template, session,abort, current_app
+
 import uuid
+import os
 from ..model_dir.profile import Profile
 from ..model_dir.gallery import Gallery, Picture, Video
-from flask import jsonify, request, abort
+from flask import jsonify, request, abort, send_from_directory
 from flask_jwt_extended import jwt_required, get_jwt_identity
-
+from werkzeug.utils import secure_filename
 
 from .. import db,  getByIdOrByName
 app_file_gallery = Blueprint('gallery',__name__)
+
+
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 
 
@@ -26,6 +31,8 @@ def get_pictures():
 @app_file_gallery.route('/picture', methods=['POST'])
 @jwt_required()
 def create_picture():
+    
+    
     if not request.json:
         print("not json")
         abort(400)
@@ -203,3 +210,61 @@ def update_gallery(id):
 
 
 
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app_file_gallery.route('/media/', methods=['POST'])
+@jwt_required()
+def upload_file():
+  
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            abort(400)
+        file = request.files['file']
+        # If the user does not select a file, the browser submits an
+        # empty file without a filename.
+        if file.filename == '':
+            abort(400)
+        
+        current_user = get_jwt_identity()
+        
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            path = os.path.abspath(
+                    "app/" + 
+                    os.path.join(
+                        current_app.config['UPLOAD_FOLDER'],
+                        "media"
+                        
+                    )
+            )
+            if (not os.path.exists(path)):
+                mode = 0o755
+                os.mkdir(path, mode)
+                
+                
+            path = os.path.abspath(
+                    "app/" + 
+                    os.path.join(
+                        current_app.config['UPLOAD_FOLDER'],
+                        "media",
+                        current_user
+                    )
+            )
+
+          
+            if (not os.path.exists(path)):
+                # mode
+                mode = 0o755
+                os.mkdir(path, mode)
+                
+            file.save(os.path.join(path, filename))
+        
+            return jsonify({"result":"ok", "filename": "uploads/"+ current_user + "/" + str(filename)}), 201
+        
+        abort(400)
+        
+   

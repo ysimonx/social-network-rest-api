@@ -28,8 +28,6 @@ from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_requir
 
 import os
 from werkzeug.utils import secure_filename
-UPLOAD_FOLDER = '/tmp'
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 
 
@@ -41,6 +39,7 @@ app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
 jwt = JWTManager(app)
 
 
+UPLOAD_FOLDER = 'static'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -101,31 +100,9 @@ def swagger():
     return render_template('swagger.html')
 
 
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-
-@app.route('/media/', methods=['POST'])
-def upload_file():
-  
-        # check if the post request has the file part
-        if 'file' not in request.files:
-            abort(400)
-        file = request.files['file']
-        # If the user does not select a file, the browser submits an
-        # empty file without a filename.
-        if file.filename == '':
-            abort(400)
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return jsonify({"result":"ok"}), 201
-        
-        abort(400)
-        
 
 @app.route('/uploads/<name>')
 def download_file(name):
     return send_from_directory(app.config["UPLOAD_FOLDER"], name)
-        
+     
+     
