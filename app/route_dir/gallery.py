@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, session,abort, current_app
 
 import uuid
+import numpy
 import os
 from ..model_dir.profile import Profile
 from ..model_dir.gallery import Gallery, Picture, Video
@@ -11,6 +12,7 @@ from werkzeug.utils import secure_filename
 from .. import db,  getByIdOrByName
 app_file_gallery = Blueprint('gallery',__name__)
 
+import cv2
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
@@ -215,6 +217,51 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+def remove_extension(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[0].lower()
+
+
+def get_user_path(user):
+    path = os.path.abspath(
+                    "app/" + 
+                    os.path.join(
+                        current_app.config['UPLOAD_FOLDER'],
+                        MEDIA_DIR            
+                    )
+            )
+    if (not os.path.exists(path)):
+                mode = 0o755
+                os.mkdir(path, mode)
+                       
+    path = os.path.abspath(
+                    "app/" + 
+                    os.path.join(
+                        current_app.config['UPLOAD_FOLDER'],
+                        MEDIA_DIR,
+                        user
+                    )
+            )
+   
+    if (not os.path.exists(path)):
+                # mode
+                mode = 0o755
+                os.mkdir(path, mode)
+                
+    return path
+               
+
+MEDIA_DIR = "media"
+
+def crop_square(img, size, interpolation=cv2.INTER_AREA):
+    h, w = img.shape[:2]
+    min_size = numpy.amin([h,w])
+
+    # Centralize and crop
+    crop_img = img[int(h/2-min_size/2):int(h/2+min_size/2), int(w/2-min_size/2):int(w/2+min_size/2)]
+    resized = cv2.resize(crop_img, (size, size), interpolation=interpolation)
+
+    return resized
 
 @app_file_gallery.route('/media/', methods=['POST'])
 @jwt_required()
@@ -231,39 +278,39 @@ def upload_file():
         
         current_user = get_jwt_identity()
         
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            path = os.path.abspath(
-                    "app/" + 
-                    os.path.join(
-                        current_app.config['UPLOAD_FOLDER'],
-                        "media"
-                        
-                    )
-            )
-            if (not os.path.exists(path)):
-                mode = 0o755
-                os.mkdir(path, mode)
-                
-                
-            path = os.path.abspath(
-                    "app/" + 
-                    os.path.join(
-                        current_app.config['UPLOAD_FOLDER'],
-                        "media",
-                        current_user
-                    )
-            )
-
-          
-            if (not os.path.exists(path)):
-                # mode
-                mode = 0o755
-                os.mkdir(path, mode)
-                
-            file.save(os.path.join(path, filename))
+       
         
-            return jsonify({"result":"ok", "filename": "uploads/"+ current_user + "/" + str(filename)}), 201
+        if file and allowed_file(file.filename):
+            path = get_user_path(current_user)
+            filename = secure_filename(file.filename)
+            
+            #read image file string data
+            filestr = file.read()
+            #convert string data to numpy array
+            file_bytes = numpy.fromstring(filestr, numpy.uint8)
+            # convert numpy array to image
+            img = cv2.imdecode(file_bytes,cv2.IMREAD_COLOR) 
+            if img is None:
+               abort(400, "not an image")
+                
+            img_square = crop_square(img, 100)
+            
+            # convert to jpeg file
+            filename = remove_extension(filename)+ ".jpeg"
+            filename_square = remove_extension(filename) + "_square.jpeg"
+        
+            cv2.imwrite(os.path.join(path,filename), img, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+            cv2.imwrite(os.path.join(path,filename_square), img_square, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+               
+            height, width, channels = img.shape
+                 
+            return jsonify({
+                    "result":"ok",
+                    "filetype": "jpg",
+                    "filename":  current_app.config['UPLOAD_FOLDER']+ "/" + MEDIA_DIR + "/"+ current_user + "/" + str(filename),
+                    "width": width,
+                    "height": height,
+                    }), 201
         
         abort(400)
         
