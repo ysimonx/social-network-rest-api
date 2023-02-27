@@ -263,6 +263,13 @@ def crop_square(img, size, interpolation=cv2.INTER_AREA):
 
     return resized
 
+@app_file_gallery.route('/static/media/<user_id>/<name>')
+def download_file(user_id, name):
+    path = current_app.config["UPLOAD_FOLDER"] + "/media/" + user_id 
+    print(path)
+    return send_from_directory(path, name)
+   
+   
 @app_file_gallery.route('/media/', methods=['POST'])
 @jwt_required()
 def upload_file():
