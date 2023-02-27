@@ -1,7 +1,7 @@
 _id: req_wrk_10e24e3e64204bea9f4d12581476696c2be6704a
 type: Request
 parentId: fld_wrk_10e24e3e64204bea9f4d12581476696c8e68b3e5
-modified: 1677176484295
+modified: 1677530186067
 created: 1677176484295
 url: "{{ base_url }}/country"
 name: country list
@@ -17,6 +17,7 @@ authentication:
   type: bearer
   token: "{{bearerToken}}"
   prefix: ""
+  disabled: true
 metaSortKey: -1677176484295
 isPrivate: false
 settingStoreCookies: true

@@ -1082,10 +1082,12 @@ contents: >-
                   schema:
                     $ref: "#/components/schemas/Subscription"
 
+
         
   externalDocs:
     description: Find out more about Swagger
     url: http://swagger.io
+
 
     
   servers:
@@ -1451,6 +1453,7 @@ contents: >-
           profile_id:
             type: string
             example: yannickoo
+
 
 
      
