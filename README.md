@@ -1,4 +1,4 @@
-# SOCIAL NETWORK Api Rest Restfull made with Python
+# SOCIAL NETWORK Api Rest Restfull made with Python Flask / Postgresql
 
 
 
