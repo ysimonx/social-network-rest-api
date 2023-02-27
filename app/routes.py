@@ -1,6 +1,8 @@
 import os
 import logging
 
+from app.model_dir.meeting import City, Country, Region
+
 from . import db, getByIdOrEmail, getByIdOrByName
 from . import create_app
 
@@ -58,6 +60,9 @@ def after_request(response):
 # Setup log folder
 @app.before_first_request
 def before_first_request():
+
+    populate_data()
+
     log_level = logging.INFO
  
     for handler in app.logger.handlers:
@@ -79,9 +84,99 @@ def before_first_request():
 def init():
     db.drop_all()
     db.create_all()
+    populate_data()
+
     return "ok"
 
 @app.route("/api/v1/swagger-ui", methods=["GET"])
 def swagger():
     return render_template('swagger.html')
 
+
+def populate_data():
+    data =  {
+            "france": {
+                "auvergne-rhône-alpes": {
+                    "lyon": {},
+                    "annecy": {}
+                },
+                "bourgogne-franche-comté": {
+                    "besançon": {},
+                    "dijon": {}
+                },
+                "bretagne": {
+                    "rennes": {},
+                    "st-malo": {}
+                },
+                "centre-val de loire": {
+                    "orleans": {},
+                    "tour": {}
+                },
+                "corse": {
+                      "ajaccio": {},
+                      "bastia": {},
+                      "calvi": {},
+                },
+                "grand est": {
+                    "strasbourg": {},
+                    "reims": {},
+                    "metz": {}
+                },
+
+                "île-de-france": {
+                    "paris": {}        
+                },
+                "normandie": {
+                    "caen": {},
+                    "rouen": {}        
+                },
+                "nouvelle-aquitaine": {
+                    "bordeaux": {}        
+                },
+                "occitanie": {
+                    "toulouse": {}        
+                },
+                "pays de la loire": {
+                    "angers": {}      ,
+                    "nantes": {}      
+                },
+                "provence-alpes-côte d'azur": {
+                    "aix-en-provence": {},
+                    "marseille": {},
+
+                },
+                "hauts-de-france": {
+                    "lille": {},
+                    "roubaix": {}
+                }
+            }, 
+    }
+    for country, regions in data.items():
+        print(country)
+        _country = getByIdOrByName(obj=Country, id=country)
+        if _country is None:
+            _country = Country( name = country )
+            db.session.add(_country)
+
+
+            print(_country.to_json())
+
+        
+        for region, cities in regions.items():
+            _region = getByIdOrByName(obj=Region, id=region)
+            if _region is None:
+                _region = Region( country_id = _country.id, name = region )
+                db.session.add(_region)
+
+
+
+            for city, details in cities.items():
+                _city = getByIdOrByName(obj=City, id=city)
+                if _city is None:
+                    _city = City( region_id = _region.id,  name = city )
+                    db.session.add(_city)
+
+
+                print(country, region, city)
+    print("fini")
+    db.session.commit()
