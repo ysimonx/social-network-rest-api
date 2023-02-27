@@ -1,15 +1,8 @@
 import os
-import uuid
-import datetime
 import logging
 
 from . import db, getByIdOrEmail, getByIdOrByName
 from . import create_app
-
-from .model_dir.profile import Profile, Follow, Like
-from .model_dir.gallery import Gallery, Picture, Video
-from .model_dir.meeting import Meeting, Country, Region, City, Address, Tour
-from .model_dir.user import User, Subscription
 
 from .route_dir.user import app_file_user
 from .route_dir.subscription import app_file_subscription
@@ -18,17 +11,9 @@ from .route_dir.gallery import app_file_gallery
 from .route_dir.profile import app_file_profile
 from .route_dir.meeting import app_file_meeting
 
-from sqlalchemy import exc
-from flask import jsonify, request, abort, render_template, send_from_directory
+from flask import jsonify, abort, render_template
 from flask_mail import Mail
-
-
-# todo : implement https://flask-jwt-extended.readthedocs.io/en/stable/basic_usage/
-from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager, verify_jwt_in_request
-
-import os
-from werkzeug.utils import secure_filename
-
+from flask_jwt_extended import JWTManager
 
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
@@ -38,13 +23,12 @@ app.config['DEBUG'] = True
 app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
 jwt = JWTManager(app)
 
-
+# Setup upload folder
 UPLOAD_FOLDER = 'static'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# Mail
-# After 'Create app'
+# Setup Mail
 app.config['MAIL_SERVER'] = 'smtp.example.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_SSL'] = True
@@ -52,6 +36,7 @@ app.config['MAIL_USERNAME'] = 'username'
 app.config['MAIL_PASSWORD'] = 'password'
 mail = Mail(app)
 
+# Setup Routes
 url_prefix = "/api/v1"
 app.register_blueprint(app_file_profile,         url_prefix=url_prefix)
 app.register_blueprint(app_file_user,           url_prefix=url_prefix)
@@ -70,6 +55,7 @@ def after_request(response):
     app.logger.info("after_request")
     return response
 
+# Setup log folder
 @app.before_first_request
 def before_first_request():
     log_level = logging.INFO
@@ -88,21 +74,14 @@ def before_first_request():
     app.logger.setLevel(log_level)
 
 
+
 @app.route("/api/v1/init", methods=["GET"])
 def init():
     db.drop_all()
     db.create_all()
     return "ok"
 
-
 @app.route("/api/v1/swagger-ui", methods=["GET"])
 def swagger():
     return render_template('swagger.html')
 
-
-
-@app.route('/uploads/<name>')
-def download_file(name):
-    return send_from_directory(app.config["UPLOAD_FOLDER"], name)
-     
-     

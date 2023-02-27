@@ -1,6 +1,7 @@
 apt-get update
-apt install python3.9-venv
+apt-get install python3-venv
 apt-get install libgl1
+apt-get install mysql-client
 
 python3 -m venv ./env
 source env/bin/activate

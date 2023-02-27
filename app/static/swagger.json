@@ -39,6 +39,14 @@
       }
     },
     {
+      "name": "media",
+      "description": "Everything about your Media",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
       "name": "gallery",
       "description": "Everything about your Gallery",
       "externalDocs": {
@@ -443,6 +451,29 @@
         ],
         "responses": {
           "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/media": {
+      "post": {
+        "tags": [
+          "media"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "media post",
+        "description": "media post desccription",
+        "operationId": "mediayPost",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Media"
+        },
+        "responses": {
+          "201": {
             "description": "successful operation"
           }
         }
@@ -1458,7 +1489,7 @@
   },
   "servers": [
     {
-      "url": "http://vpn.kysoe.com:5000/api/v1"
+      "url": "https://api-dev.onlyfemme.fr/api/v1"
     },
     {
       "url": "http://localhost:5000/api/v1"
@@ -1530,6 +1561,23 @@
           }
         },
         "description": "Follow object that needs to be add",
+        "required": true
+      },
+      "Media": {
+        "content": {
+          "multipart/form-data": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "file": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        },
+        "description": "Media object that needs to be add",
         "required": true
       },
       "Gallery": {
@@ -1639,7 +1687,7 @@
           },
           "password": {
             "type": "string",
-            "example": "1234567890"
+            "example": "12345678"
           }
         }
       },
@@ -1678,7 +1726,7 @@
           },
           "password": {
             "type": "string",
-            "example": "1234567890"
+            "example": "12345678"
           }
         }
       },
