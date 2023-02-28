@@ -1670,6 +1670,30 @@
       }
     },
     "schemas": {
+      "Internal": {
+        "type": "object",
+        "required": [
+          "owner_user_id",
+          "time_created_utc",
+          "time_updated_utc"
+        ],
+        "properties": {
+          "owner_user_id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "time_created_utc": {
+            "type": "string",
+            "example": "2023-02-24T15:59:19",
+            "readOnly": true
+          },
+          "time_updated_utc": {
+            "type": "string",
+            "example": "2023-02-25T15:59:19",
+            "readOnly": true
+          }
+        }
+      },
       "Login": {
         "type": "object",
         "required": [
@@ -1711,10 +1735,20 @@
       "User": {
         "type": "object",
         "required": [
+          "_internal",
+          "id",
           "email",
           "password"
         ],
         "properties": {
+          "_internal": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Internal"
+              }
+            ]
+          },
           "id": {
             "type": "string",
             "example": "61d94bac-09b8-47ab-968c-15d30986799c",
@@ -1727,15 +1761,31 @@
           "password": {
             "type": "string",
             "example": "1234567890"
+          },
+          "subscriptions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Subscription"
+            }
           }
         }
       },
       "Profile": {
         "type": "object",
         "required": [
+          "_internal",
+          "id",
           "name"
         ],
         "properties": {
+          "_internal": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Internal"
+              }
+            ]
+          },
           "id": {
             "type": "string",
             "readOnly": true
@@ -1749,10 +1799,20 @@
       "Like": {
         "type": "object",
         "required": [
+          "_internal",
+          "id",
           "profile_id",
           "liked_profile_id"
         ],
         "properties": {
+          "_internal": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Internal"
+              }
+            ]
+          },
           "id": {
             "type": "string",
             "readOnly": true
@@ -1768,10 +1828,20 @@
       "Follow": {
         "type": "object",
         "required": [
+          "_internal",
+          "id",
           "profile_id",
           "followed_profile_id"
         ],
         "properties": {
+          "_internal": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Internal"
+              }
+            ]
+          },
           "id": {
             "type": "string",
             "readOnly": true
@@ -1787,9 +1857,19 @@
       "Gallery": {
         "type": "object",
         "required": [
+          "_internal",
+          "id",
           "profile_id"
         ],
         "properties": {
+          "_internal": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Internal"
+              }
+            ]
+          },
           "id": {
             "type": "string",
             "readOnly": true
@@ -1802,10 +1882,20 @@
       "Picture": {
         "type": "object",
         "required": [
+          "_internal",
+          "id",
           "gallery_id",
           "filename"
         ],
         "properties": {
+          "_internal": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Internal"
+              }
+            ]
+          },
           "id": {
             "type": "string",
             "readOnly": true
@@ -1821,10 +1911,20 @@
       "Video": {
         "type": "object",
         "required": [
+          "_internal",
+          "id",
           "gallery_id",
           "filename"
         ],
         "properties": {
+          "_internal": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Internal"
+              }
+            ]
+          },
           "id": {
             "type": "string"
           },
@@ -1839,9 +1939,19 @@
       "Country": {
         "type": "object",
         "required": [
+          "_internal",
+          "id",
           "name"
         ],
         "properties": {
+          "_internal": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Internal"
+              }
+            ]
+          },
           "id": {
             "type": "string",
             "readOnly": true
@@ -1854,10 +1964,20 @@
       "Region": {
         "type": "object",
         "required": [
+          "_internal",
+          "id",
           "name",
           "country_id"
         ],
         "properties": {
+          "_internal": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Internal"
+              }
+            ]
+          },
           "id": {
             "type": "string",
             "readOnly": true
@@ -1873,10 +1993,20 @@
       "City": {
         "type": "object",
         "required": [
+          "_internal",
+          "id",
           "name",
           "region_id"
         ],
         "properties": {
+          "_internal": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Internal"
+              }
+            ]
+          },
           "id": {
             "type": "string",
             "readOnly": true
@@ -1892,10 +2022,20 @@
       "Tour": {
         "type": "object",
         "required": [
+          "_internal",
+          "id",
           "city_id",
           "profile_id"
         ],
         "properties": {
+          "_internal": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Internal"
+              }
+            ]
+          },
           "id": {
             "type": "string",
             "readOnly": true
@@ -1919,10 +2059,19 @@
       "Subscription": {
         "type": "object",
         "required": [
+          "_internal",
           "user_id",
           "profile_id"
         ],
         "properties": {
+          "_internal": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Internal"
+              }
+            ]
+          },
           "id": {
             "type": "string",
             "readOnly": true
