@@ -1,0 +1,24 @@
+_id: env_58220cebd02946d2b39d17a782465d49
+type: Environment
+parentId: env_d25291cd54edb19d791977f8dee050cc5a96747c
+modified: 1677566989726
+created: 1677566953403
+name: api-dev.onlyfemme.fr
+data:
+  scheme: https
+  base_path: /api/v1
+  host: api-dev.onlyfemme.fr
+  profile_id: manue
+  region_id: lombardie
+  country_id: italie
+dataPropertyOrder:
+  "&":
+    - scheme
+    - base_path
+    - host
+    - profile_id
+    - region_id
+    - country_id
+color: null
+isPrivate: false
+metaSortKey: 1677566953403

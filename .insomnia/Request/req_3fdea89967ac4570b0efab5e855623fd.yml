@@ -1,0 +1,34 @@
+_id: req_3fdea89967ac4570b0efab5e855623fd
+type: Request
+parentId: wrk_10e24e3e64204bea9f4d12581476696c
+modified: 1677444381930
+created: 1677313838741
+url: "{{ base_url }}/media"
+name: upload media
+description: ""
+method: POST
+body:
+  mimeType: multipart/form-data
+  params:
+    - id: pair_9ce36b0a6dd34082978044cfc976311a
+      name: file
+      value: ""
+      description: ""
+      type: file
+      fileName: /Users/ysimonx/Desktop/1676798691351.jpg
+parameters: []
+headers:
+  - name: Content-Type
+    value: multipart/form-data
+authentication:
+  type: bearer
+  token: "{% response 'body', 'req_wrk_10e24e3e64204bea9f4d12581476696c98683703',
+    'b64::JC5hY2Nlc3NfdG9rZW4=::46b', 'when-expired', 60 %}"
+metaSortKey: -1677313838741
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
