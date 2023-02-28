@@ -15,7 +15,9 @@ curl http://localhost:5000/api/v1/init
 ```
 
 
-DEMO : Swagger UI in action : https://api-dev.onlyfemme.fr/api/v1/swagger-ui
+YAML : is here : https://github.com/ysimonx/social-network-rest-api/blob/main/docs/api-people.yaml
+
+A DEMO : A Swagger UI in action : https://api-dev.onlyfemme.fr/api/v1/swagger-ui
 
 
 and ...
