@@ -1520,10 +1520,6 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/User"
-            },
-            "example": {
-              "email": "yannick.simon@kysoe.com",
-              "password": "12345678"
             }
           }
         },

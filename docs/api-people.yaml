@@ -1076,10 +1076,12 @@ paths:
                   $ref: "#/components/schemas/Subscription"
 
 
+
       
 externalDocs:
   description: Find out more about Swagger
   url: http://swagger.io
+
 
 
   
@@ -1114,9 +1116,6 @@ components:
         application/json:
           schema:
             $ref: "#/components/schemas/User"
-          example:
-              email: "yannick.simon@kysoe.com"
-              password: "12345678"
       description: User object that needs to be add
       required: true
       
@@ -1369,7 +1368,7 @@ components:
           allOf:
             - $ref: "#/components/schemas/Internal"
 
- 
+  
         id:
           type: string
           readOnly: true
@@ -1555,6 +1554,7 @@ components:
         profile_id:
           type: string
           example: yannickoo
+
 
 
 
