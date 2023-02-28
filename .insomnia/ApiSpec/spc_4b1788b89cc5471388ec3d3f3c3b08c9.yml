@@ -1,7 +1,7 @@
 _id: spc_4b1788b89cc5471388ec3d3f3c3b08c9
 type: ApiSpec
 parentId: wrk_10e24e3e64204bea9f4d12581476696c
-modified: 1677593493483
+modified: 1677615294514
 created: 1675785481947
 fileName: api-people.yaml
 contents: >-
@@ -1085,10 +1085,12 @@ contents: >-
 
 
 
+
         
   externalDocs:
     description: Find out more about Swagger
     url: http://swagger.io
+
 
 
 
@@ -1124,9 +1126,6 @@ contents: >-
           application/json:
             schema:
               $ref: "#/components/schemas/User"
-            example:
-                email: "yannick.simon@kysoe.com"
-                password: "12345678"
         description: User object that needs to be add
         required: true
         
@@ -1565,6 +1564,7 @@ contents: >-
           profile_id:
             type: string
             example: yannickoo
+
 
 
 
