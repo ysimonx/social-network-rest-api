@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "description": "This is a Social Network - OnlyFans api specifications API REST .",
-    "version": "1.0.2",
-    "title": "Swagger Api-profile",
+    "description": "This is a Social Network - OnlyFans OpenApi specifications API REST .",
+    "version": "1.0.3",
+    "title": "Swagger Social-Network-Rest-Api",
     "termsOfService": "http://swagger.io/terms/",
     "contact": {
       "email": "yannick.simon@kysoe.com"
@@ -16,7 +16,7 @@
   "tags": [
     {
       "name": "login",
-      "description": "Everything about your Login",
+      "description": "Login process in order to have an access token for protected endpoints",
       "externalDocs": {
         "description": "Find out more",
         "url": "http://swagger.io"
@@ -24,7 +24,7 @@
     },
     {
       "name": "user",
-      "description": "Everything about your User",
+      "description": "A User is an entity that must be used in order to sign-in into the platforme",
       "externalDocs": {
         "description": "Find out more",
         "url": "http://swagger.io"
@@ -32,7 +32,7 @@
     },
     {
       "name": "profile",
-      "description": "Everything about your Profile",
+      "description": "A Profile is used to display pictures, video, personal information, with a Pseudo",
       "externalDocs": {
         "description": "Find out more",
         "url": "http://swagger.io"
@@ -40,7 +40,7 @@
     },
     {
       "name": "media",
-      "description": "Everything about your Media",
+      "description": "A Media is a uploaded file that can be used for pictures, videos or more. It is attached to a User",
       "externalDocs": {
         "description": "Find out more",
         "url": "http://swagger.io"
@@ -48,7 +48,7 @@
     },
     {
       "name": "gallery",
-      "description": "Everything about your Gallery",
+      "description": "A Gallery is a set of pictures or videos attached to a profile",
       "externalDocs": {
         "description": "Find out more",
         "url": "http://swagger.io"
@@ -56,7 +56,7 @@
     },
     {
       "name": "picture",
-      "description": "Everything about your Picture",
+      "description": "A picture is attached to a Gallery and then, to a Profile",
       "externalDocs": {
         "description": "Find out more",
         "url": "http://swagger.io"
@@ -64,7 +64,7 @@
     },
     {
       "name": "video",
-      "description": "Everything about your Video",
+      "description": "A Video is attached to a Gallery and then, to a Profile",
       "externalDocs": {
         "description": "Find out more",
         "url": "http://swagger.io"
@@ -72,7 +72,7 @@
     },
     {
       "name": "country",
-      "description": "Everything about your Country",
+      "description": "Country",
       "externalDocs": {
         "description": "Find out more",
         "url": "http://swagger.io"
@@ -80,7 +80,7 @@
     },
     {
       "name": "region",
-      "description": "Everything about your Region",
+      "description": "A Region is a part of a Country and contains Cities",
       "externalDocs": {
         "description": "Find out more",
         "url": "http://swagger.io"
@@ -88,7 +88,7 @@
     },
     {
       "name": "city",
-      "description": "Everything about your City",
+      "description": "A City is attached to a Region",
       "externalDocs": {
         "description": "Find out more",
         "url": "http://swagger.io"
@@ -96,7 +96,7 @@
     },
     {
       "name": "tour",
-      "description": "Everything about your Tour",
+      "description": "A Tour is a combinaison of City and Start and End Date",
       "externalDocs": {
         "description": "Find out more",
         "url": "http://swagger.io"
@@ -104,7 +104,7 @@
     },
     {
       "name": "like",
-      "description": "Everything about your Like",
+      "description": "A like is a link between two Profiles where a liker is liking a liked",
       "externalDocs": {
         "description": "Find out more",
         "url": "http://swagger.io"
@@ -112,7 +112,7 @@
     },
     {
       "name": "follow",
-      "description": "Everything about your Follow",
+      "description": "A Follow is a link between two Profiles where a follower is following a followed",
       "externalDocs": {
         "description": "Find out more",
         "url": "http://swagger.io"
@@ -120,7 +120,7 @@
     },
     {
       "name": "subscription",
-      "description": "Everything about your subscription",
+      "description": "A Subscription is a contract between a User and a Profile. A User can access personal pictures or video of a Profile",
       "externalDocs": {
         "description": "Find out more",
         "url": "http://swagger.io"
@@ -134,7 +134,7 @@
           "login"
         ],
         "summary": "login post",
-        "description": "login post desccription",
+        "description": "the login process is used in order to have an access token used as a Bearer",
         "operationId": "loginPost",
         "requestBody": {
           "$ref": "#/components/requestBodies/Login"
@@ -159,7 +159,7 @@
           "user"
         ],
         "summary": "user post",
-        "description": "user post desccription",
+        "description": "Creates a new user : e-mail and password",
         "operationId": "userPost",
         "requestBody": {
           "$ref": "#/components/requestBodies/User"
@@ -182,7 +182,7 @@
           "user"
         ],
         "summary": "user list",
-        "description": "user list xdesccription",
+        "description": "Lists users with encrypted password",
         "operationId": "userList",
         "parameters": [
           {
@@ -224,7 +224,7 @@
           }
         ],
         "summary": "profile post",
-        "description": "profile post desccription",
+        "description": "Creates a new Profile attached to a User account ",
         "operationId": "profilePost",
         "requestBody": {
           "$ref": "#/components/requestBodies/Profile"
@@ -247,7 +247,7 @@
           "profile"
         ],
         "summary": "profile list",
-        "description": "profile desccription",
+        "description": "Lists of the Profiles. You can have all linked subdatas with the 'append_to_response=all' parameter in url",
         "operationId": "profileList",
         "parameters": [
           {
@@ -284,7 +284,7 @@
           "profile"
         ],
         "summary": "profile get",
-        "description": "profile get desccription",
+        "description": "Read a Profile. It is possible to use both 'id' (primary key) or 'name' as the identifier ",
         "operationId": "profileGet",
         "parameters": [
           {
@@ -322,7 +322,7 @@
           }
         ],
         "summary": "profile delete",
-        "description": "profile delete desccription",
+        "description": "Delete a Profile. Need to be logged in.",
         "operationId": "profileDelete",
         "parameters": [
           {
@@ -352,7 +352,7 @@
           }
         ],
         "summary": "like post",
-        "description": "like post desccription",
+        "description": "Creates a like between 2 Profiles",
         "operationId": "likePost",
         "requestBody": {
           "$ref": "#/components/requestBodies/Like"
@@ -382,7 +382,7 @@
           }
         ],
         "summary": "like delete",
-        "description": "like delete desccription",
+        "description": "Deletes a like between 2 Profilesn",
         "operationId": "likeeDelete",
         "parameters": [
           {
@@ -412,7 +412,7 @@
           }
         ],
         "summary": "follow post",
-        "description": "follow post desccription",
+        "description": "Creates a following between 2 Profiles",
         "operationId": "followPost",
         "requestBody": {
           "$ref": "#/components/requestBodies/Follow"
@@ -437,7 +437,7 @@
           "follow"
         ],
         "summary": "follow delete",
-        "description": "follow delete desccription",
+        "description": "Deletes a following between 2 profiles",
         "operationId": "followDelete",
         "parameters": [
           {
@@ -467,7 +467,7 @@
           }
         ],
         "summary": "media post",
-        "description": "media post desccription",
+        "description": "Upload Media on server. After uploaded, you can attach this new media with Picture or Video endpoints",
         "operationId": "mediayPost",
         "requestBody": {
           "$ref": "#/components/requestBodies/Media"
@@ -490,7 +490,7 @@
           }
         ],
         "summary": "gallery post",
-        "description": "gallery post desccription",
+        "description": "Creates a new Gallery for a Profile",
         "operationId": "galleryPost",
         "requestBody": {
           "$ref": "#/components/requestBodies/Gallery"
@@ -513,7 +513,7 @@
           "gallery"
         ],
         "summary": "gallery list",
-        "description": "gallery desccription",
+        "description": "Lists the Gallery",
         "operationId": "galleryList",
         "parameters": [
           {
@@ -550,7 +550,7 @@
           "gallery"
         ],
         "summary": "gallery get",
-        "description": "gallery get desccription",
+        "description": "Read a specific Gallery",
         "operationId": "galleryGet",
         "parameters": [
           {
@@ -598,7 +598,7 @@
           }
         ],
         "summary": "gallery put",
-        "description": "gallery put desccription",
+        "description": "Updates a specific Gallery",
         "operationId": "galleryPut",
         "requestBody": {
           "$ref": "#/components/requestBodies/Gallery"
@@ -626,7 +626,7 @@
           }
         ],
         "summary": "gallery delete",
-        "description": "gallery delete desccription",
+        "description": "Deletes a specific Gallery",
         "operationId": "galleryDelete",
         "parameters": [
           {
@@ -656,7 +656,7 @@
           }
         ],
         "summary": "picture post",
-        "description": "picture post desccription",
+        "description": "Creates a new Picture",
         "operationId": "picturePost",
         "requestBody": {
           "$ref": "#/components/requestBodies/Picture"
@@ -679,7 +679,7 @@
           "picture"
         ],
         "summary": "picture list",
-        "description": "picture desccription",
+        "description": "Lists Pictures",
         "operationId": "pictureList",
         "parameters": [
           {
@@ -716,7 +716,7 @@
           "picture"
         ],
         "summary": "picture get",
-        "description": "picture get desccription",
+        "description": "Read a specific Picture",
         "operationId": "pictureGet",
         "parameters": [
           {
@@ -754,7 +754,7 @@
           }
         ],
         "summary": "picture put",
-        "description": "picture put desccription",
+        "description": "Updates a specific Picture",
         "operationId": "picturePut",
         "parameters": [
           {
@@ -792,7 +792,7 @@
           }
         ],
         "summary": "picture delete",
-        "description": "picture delete desccription",
+        "description": "Deletes a specific Picture",
         "operationId": "pictureDelete",
         "parameters": [
           {
@@ -822,7 +822,7 @@
           }
         ],
         "summary": "video post",
-        "description": "video post desccription",
+        "description": "Creates a Video for a Profile",
         "operationId": "videoPost",
         "requestBody": {
           "$ref": "#/components/requestBodies/Video"
@@ -845,7 +845,7 @@
           "video"
         ],
         "summary": "video list",
-        "description": "video desccription",
+        "description": "Lists the Video",
         "operationId": "videoList",
         "parameters": [
           {
@@ -882,7 +882,7 @@
           "video"
         ],
         "summary": "video get",
-        "description": "video get desccription",
+        "description": "Reads a specific Video",
         "operationId": "videoGet",
         "parameters": [
           {
@@ -920,7 +920,7 @@
           }
         ],
         "summary": "video put",
-        "description": "video put desccription",
+        "description": "Updates a specific Video",
         "operationId": "videoPut",
         "parameters": [
           {
@@ -958,7 +958,7 @@
           }
         ],
         "summary": "video delete",
-        "description": "video delete desccription",
+        "description": "Deletes a specific Video",
         "operationId": "videoDelete",
         "parameters": [
           {
@@ -988,7 +988,7 @@
           }
         ],
         "summary": "country post",
-        "description": "country post desccription",
+        "description": "Creates a new Country",
         "operationId": "countryPost",
         "requestBody": {
           "$ref": "#/components/requestBodies/Country"
@@ -1011,7 +1011,7 @@
           "country"
         ],
         "summary": "country list",
-        "description": "country list desccription",
+        "description": "Lists of all Country. Please use the 'append_to_response=all' in order to get Regions and Cities subsets",
         "operationId": "countryList",
         "parameters": [
           {
@@ -1048,7 +1048,7 @@
           "country"
         ],
         "summary": "country get",
-        "description": "country delete desccription",
+        "description": "Deletes a specific Country. It is possible to use both 'id' (primary key) or 'name' as the identifier ",
         "operationId": "countryGet",
         "parameters": [
           {
@@ -1076,7 +1076,7 @@
           }
         ],
         "summary": "country delete",
-        "description": "country delete desccription",
+        "description": "Deletes a specific Country. It is possible to use both 'id' (primary key) or 'name' as the identifier",
         "operationId": "countryDelete",
         "parameters": [
           {
@@ -1106,7 +1106,7 @@
           }
         ],
         "summary": "region post",
-        "description": "region post desccription",
+        "description": "Creates a new Region for a Country",
         "operationId": "regionPost",
         "requestBody": {
           "$ref": "#/components/requestBodies/Region"
@@ -1129,7 +1129,7 @@
           "region"
         ],
         "summary": "region list",
-        "description": "region desccription",
+        "description": "Lists all Regions.",
         "operationId": "regionList",
         "parameters": [
           {
@@ -1165,7 +1165,7 @@
         "tags": [
           "region"
         ],
-        "description": "region get description",
+        "description": "Reads a specific Region.  It is possible to use both 'id' (primary key) or 'name' as the identifier",
         "operationId": "regionGet",
         "parameters": [
           {
@@ -1192,7 +1192,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "region delete description",
+        "description": "Deletes a specific Region.  It is possible to use both 'id' (primary key) or 'name' as the identifier",
         "operationId": "regionDelete",
         "parameters": [
           {
@@ -1222,7 +1222,7 @@
           }
         ],
         "summary": "city post",
-        "description": "city post desccription",
+        "description": "Creates a new City for a specific Region",
         "operationId": "cityPost",
         "requestBody": {
           "$ref": "#/components/requestBodies/City"
@@ -1245,7 +1245,7 @@
           "city"
         ],
         "summary": "city list",
-        "description": "city list desccription",
+        "description": "List of all City Cities",
         "operationId": "cityList",
         "parameters": [
           {
@@ -1281,7 +1281,7 @@
         "tags": [
           "city"
         ],
-        "description": "city get description",
+        "description": "Reads a specific City. It is possible to use both 'id' (primary key) or 'name' ('marseille') as the identifier",
         "operationId": "cityGet",
         "parameters": [
           {
@@ -1308,7 +1308,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "city delete description",
+        "description": "Deletes a specific City. It is possible to use both 'id' (primary key) or 'name' ('marseille') as the identifier",
         "operationId": "cityDelete",
         "parameters": [
           {
@@ -1463,7 +1463,7 @@
           }
         ],
         "summary": "subscription post",
-        "description": "subscription post desccription",
+        "description": "subscription post description",
         "operationId": "subscriptionPost",
         "requestBody": {
           "$ref": "#/components/requestBodies/Subscription"
@@ -1489,7 +1489,7 @@
   },
   "servers": [
     {
-      "url": "https://api-dev.onlyfemme.fr/api/v1"
+      "url": "http://vpn.kysoe.com:5000/api/v1"
     },
     {
       "url": "http://localhost:5000/api/v1"
@@ -1512,7 +1512,7 @@
             }
           }
         },
-        "description": "Login object that needs to be add",
+        "description": "Please provide an e-mail and a password for Login",
         "required": true
       },
       "User": {
@@ -1522,8 +1522,8 @@
               "$ref": "#/components/schemas/User"
             },
             "example": {
-              "email": "yannick.simon@gmail.com",
-              "password": "2D2D23D4D32DZ"
+              "email": "yannick.simon@kysoe.com",
+              "password": "12345678"
             }
           }
         },
@@ -1687,7 +1687,7 @@
           },
           "password": {
             "type": "string",
-            "example": "12345678"
+            "example": "1234567890"
           }
         }
       },
@@ -1726,7 +1726,7 @@
           },
           "password": {
             "type": "string",
-            "example": "12345678"
+            "example": "1234567890"
           }
         }
       },
