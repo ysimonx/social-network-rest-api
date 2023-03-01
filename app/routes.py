@@ -1,7 +1,8 @@
 import os
 import logging
-
+import datetime
 from app.model_dir.meeting import City, Country, Region
+from app.model_dir.user import User
 
 from . import db, getByIdOrEmail, getByIdOrByName
 from . import create_app
@@ -23,6 +24,7 @@ app.config['DEBUG'] = True
 
 # Setup the Flask-JWT-Extended extension
 app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] =  datetime.timedelta(seconds=3600) # 1 heure
 jwt = JWTManager(app)
 
 # Setup upload folder
@@ -61,7 +63,8 @@ def after_request(response):
 @app.before_first_request
 def before_first_request():
 
-    populate_data()
+    populate_user_data()
+    populate_country_data()
 
     log_level = logging.INFO
  
@@ -84,8 +87,8 @@ def before_first_request():
 def init():
     db.drop_all()
     db.create_all()
-    populate_data()
-
+    populate_country_data()
+    populate_user_data()
     return "ok"
 
 @app.route("/api/v1/swagger-ui", methods=["GET"])
@@ -93,7 +96,7 @@ def swagger():
     return render_template('swagger.html')
 
 
-def populate_data():
+def populate_country_data():
     data =  {
             "france": {
                 "auvergne-rhône-alpes": {
@@ -152,14 +155,11 @@ def populate_data():
             }, 
     }
     for country, regions in data.items():
-        print(country)
         _country = getByIdOrByName(obj=Country, id=country)
         if _country is None:
             _country = Country( name = country )
             db.session.add(_country)
 
-
-            print(_country.to_json())
 
         
         for region, cities in regions.items():
@@ -177,6 +177,29 @@ def populate_data():
                     db.session.add(_city)
 
 
-                print(country, region, city)
-    print("fini")
+                # print("%s > %s > %s" %(country, region, city))
+    print("populate cities done")
     db.session.commit()
+
+def populate_user_data():
+
+    data =  { 
+            "yannick.simon@gmail.com":  "12345678",
+            "toto@toto.com":            "12345678",
+            "yannick.simon@kysoe.com":  "12345678"
+            }
+    
+
+    for email, password in data.items():
+        _user = getByIdOrEmail(obj=User, id=email)
+        if _user is None:   
+            _user = User( email=email,  password = password ) 
+            _user.hash_password()
+            db.session.add(_user)    
+        else:
+            _user.password = password
+            _user.hash_password()
+            
+    db.session.commit()  
+    print("populate users done")
+    

@@ -23,6 +23,10 @@
       }
     },
     {
+      "name": "init",
+      "description": "Database initialisation"
+    },
+    {
       "name": "user",
       "description": "A User is an entity that must be used in order to sign-in into the platforme",
       "externalDocs": {
@@ -149,6 +153,21 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/init": {
+      "get": {
+        "tags": [
+          "init"
+        ],
+        "summary": "init",
+        "description": "database populates with cities, regions, countries, and some users",
+        "operationId": "initGet",
+        "responses": {
+          "200": {
+            "description": "successful operation"
           }
         }
       }

@@ -1,8 +1,8 @@
-openapi: 3.0.0
+openapi: 3.0.3
 info:
   description: "This is a Social Network - OnlyFans OpenApi specifications API REST
    ."
-  version: 1.0.3
+  version: 1.0.4
   title: Swagger Social-Network-Rest-Api
 
   termsOfService: http://swagger.io/terms/
@@ -17,6 +17,8 @@ tags:
     externalDocs:
       description: Find out more
       url: http://swagger.io
+  - name: init
+    description: Database initialisation
   - name: user
     description: A User is an entity that must be used in order to sign-in into the platforme
     externalDocs:
@@ -92,7 +94,7 @@ paths:
       tags:
         - login
       summary: login post
-      description: "the login process is used in order to have an access token used as a Bearer"
+      description: "the login process is used in order to have an Bearer value see: 'access token' in response"
       operationId: loginPost
       requestBody:
         $ref: "#/components/requestBodies/Login"
@@ -104,7 +106,19 @@ paths:
               application/json:
                 schema:
                   $ref: "#/components/schemas/LoginResult"
-                  
+  /init:
+    get:
+      tags:
+        - init
+      summary: init
+      description: "database populates with cities, regions, countries, and some users"
+      operationId: initGet
+      responses:
+          "200":
+            description: successful operation
+
+           
+           
   /user:
   
     post:
@@ -1095,7 +1109,7 @@ components:
   securitySchemes:
     bearerAuth:
       type: http
-      scheme: bearer
+      scheme: bearer 
       bearerFormat: JWT  # optional, for documentation purposes only
 
   
@@ -1106,7 +1120,7 @@ components:
         application/json:
           schema:
             $ref: "#/components/schemas/Login"
-      description: Please provide an e-mail and a password for Login
+      description: Please provide an e-mail and a password for Login, generates an acces_token as a Bearer JWT
       required: true
 
   
@@ -1263,7 +1277,7 @@ components:
           example: yannick.simon@kysoe.com
         password:
           type: string
-          example : "1234567890"
+          example : "12345678"
           
     LoginResult:
       type: object
@@ -1304,7 +1318,7 @@ components:
           example: yannick.simon@kysoe.com
         password:
           type: string
-          example : "1234567890"
+          example : "12345678"
         subscriptions:
           type: array
           items: 
