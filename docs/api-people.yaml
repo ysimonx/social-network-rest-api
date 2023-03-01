@@ -1078,7 +1078,8 @@ paths:
       description: "subscription post description"
       operationId: subscriptionPost
       requestBody:
-        $ref: "#/components/requestBodies/Subscription"
+          $ref: "#/components/requestBodies/Subscription"
+          
       responses:
           "200":
             description: successful operation
@@ -1238,7 +1239,8 @@ components:
         application/json:
           schema:
             $ref: "#/components/schemas/Subscription"
-      description: Subscription object that needs to be add
+
+      description: Subscription json request - you can use user.id (61d94bac-09b8-47ab-968c-15d30986799c) or user.email (yannick.simon@kysoe.com) as user_id variable
       required: true
       
   schemas:
@@ -1565,9 +1567,10 @@ components:
           readOnly: true
         user_id:
           type: string
+          example: "61d94bac-09b8-47ab-968c-15d30986799c"
         profile_id:
           type: string
-          example: yannickoo
+          example: "yannickoo"
 
 
 
