@@ -16,7 +16,7 @@
   "tags": [
     {
       "name": "login",
-      "description": "Login process in order to have an access token for protected endpoints",
+      "description": "Login process in order to have a Bearer value in an access token for protected endpoints",
       "externalDocs": {
         "description": "Find out more",
         "url": "http://swagger.io"
