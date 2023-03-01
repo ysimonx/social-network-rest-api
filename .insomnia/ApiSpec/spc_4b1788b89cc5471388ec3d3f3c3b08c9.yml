@@ -1,11 +1,11 @@
 _id: spc_4b1788b89cc5471388ec3d3f3c3b08c9
 type: ApiSpec
 parentId: wrk_10e24e3e64204bea9f4d12581476696c
-modified: 1677615294514
+modified: 1677700563820
 created: 1675785481947
 fileName: api-people.yaml
 contents: >-
-  openapi: 3.0.0
+  openapi: 3.0.3
 
   info:
     description: "This is a Social Network - OnlyFans OpenApi specifications API REST
@@ -1273,7 +1273,7 @@ contents: >-
             example: yannick.simon@kysoe.com
           password:
             type: string
-            example : "1234567890"
+            example : "12345678"
             
       LoginResult:
         type: object
@@ -1314,7 +1314,7 @@ contents: >-
             example: yannick.simon@kysoe.com
           password:
             type: string
-            example : "1234567890"
+            example : "12345678"
           subscriptions:
             type: array
             items: 
