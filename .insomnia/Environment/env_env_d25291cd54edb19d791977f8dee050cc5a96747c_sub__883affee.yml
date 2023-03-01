@@ -1,0 +1,15 @@
+_id: env_env_d25291cd54edb19d791977f8dee050cc5a96747c_sub__883affee
+type: Environment
+parentId: env_d25291cd54edb19d791977f8dee050cc5a96747c
+modified: 1677703527088
+created: 1677703527088
+name: OpenAPI env api-dev.onlyfemme.fr
+data:
+  scheme: https
+  base_path: /api/v1
+  host: api-dev.onlyfemme.fr
+  bearerToken: bearerToken
+dataPropertyOrder: null
+color: null
+isPrivate: false
+metaSortKey: 1677703527088

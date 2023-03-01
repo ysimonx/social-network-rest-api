@@ -1,0 +1,11 @@
+_id: fld_wrk_10e24e3e64204bea9f4d12581476696cbb362a46
+type: RequestGroup
+parentId: wrk_10e24e3e64204bea9f4d12581476696c
+modified: 1677703577883
+created: 1677703527085
+name: media
+description: A Media is a uploaded file that can be used for pictures, videos or
+  more. It is attached to a User
+environment: {}
+environmentPropertyOrder: null
+metaSortKey: 525
