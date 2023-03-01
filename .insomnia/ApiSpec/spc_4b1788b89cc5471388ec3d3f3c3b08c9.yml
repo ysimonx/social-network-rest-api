@@ -1,7 +1,7 @@
 _id: spc_4b1788b89cc5471388ec3d3f3c3b08c9
 type: ApiSpec
 parentId: wrk_10e24e3e64204bea9f4d12581476696c
-modified: 1677703907582
+modified: 1677706212390
 created: 1675785481947
 fileName: api-people.yaml
 contents: >-
@@ -1086,7 +1086,8 @@ contents: >-
         description: "subscription post description"
         operationId: subscriptionPost
         requestBody:
-          $ref: "#/components/requestBodies/Subscription"
+            $ref: "#/components/requestBodies/Subscription"
+            
         responses:
             "200":
               description: successful operation
@@ -1248,7 +1249,8 @@ contents: >-
           application/json:
             schema:
               $ref: "#/components/schemas/Subscription"
-        description: Subscription object that needs to be add
+
+        description: Subscription json request - you can use user.id (61d94bac-09b8-47ab-968c-15d30986799c) or user.email (yannick.simon@kysoe.com) as user_id variable
         required: true
         
     schemas:
@@ -1575,9 +1577,10 @@ contents: >-
             readOnly: true
           user_id:
             type: string
+            example: "61d94bac-09b8-47ab-968c-15d30986799c"
           profile_id:
             type: string
-            example: yannickoo
+            example: "yannickoo"
 
 
 
