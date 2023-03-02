@@ -2,7 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "description": "This is a Social Network - OnlyFans OpenApi specifications API REST .",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "title": "Swagger Social-Network-Rest-Api",
     "termsOfService": "http://swagger.io/terms/",
     "contact": {
@@ -1680,7 +1680,7 @@
             }
           }
         },
-        "description": "Subscription object that needs to be add",
+        "description": "Subscription json request - you can use user.id (61d94bac-09b8-47ab-968c-15d30986799c) or user.email (yannick.simon@kysoe.com) as user_id variable",
         "required": true
       }
     },
@@ -1900,6 +1900,7 @@
           "_internal",
           "id",
           "gallery_id",
+          "media_id",
           "filename"
         ],
         "properties": {
@@ -1920,6 +1921,9 @@
           },
           "gallery_id": {
             "type": "string"
+          },
+          "media_id": {
+            "type": "string"
           }
         }
       },
@@ -1929,6 +1933,7 @@
           "_internal",
           "id",
           "gallery_id",
+          "media_id",
           "filename"
         ],
         "properties": {
@@ -1941,12 +1946,16 @@
             ]
           },
           "id": {
+            "readOnly": true,
             "type": "string"
           },
           "filename": {
             "type": "string"
           },
           "gallery_id": {
+            "type": "string"
+          },
+          "media_id": {
             "type": "string"
           }
         }
@@ -2092,7 +2101,8 @@
             "readOnly": true
           },
           "user_id": {
-            "type": "string"
+            "type": "string",
+            "example": "61d94bac-09b8-47ab-968c-15d30986799c"
           },
           "profile_id": {
             "type": "string",

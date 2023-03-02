@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   description: "This is a Social Network - OnlyFans OpenApi specifications API REST
    ."
-  version: 1.0.4
+  version: 1.0.5
   title: Swagger Social-Network-Rest-Api
 
   termsOfService: http://swagger.io/terms/
@@ -1092,10 +1092,12 @@ paths:
 
 
 
+
       
 externalDocs:
   description: Find out more about Swagger
   url: http://swagger.io
+
 
 
 
@@ -1421,6 +1423,7 @@ components:
         - _internal
         - id
         - gallery_id
+        - media_id
         - filename
       properties:
         _internal:
@@ -1436,6 +1439,8 @@ components:
           type: string
         gallery_id:
           type: string
+        media_id:
+           type: string
 
     Video:
       type: object
@@ -1443,6 +1448,7 @@ components:
         - _internal
         - id
         - gallery_id
+        - media_id
         - filename
       properties:
         _internal:
@@ -1451,10 +1457,13 @@ components:
             - $ref: "#/components/schemas/Internal"
 
         id:
+          readOnly: true
           type: string
         filename:
           type: string
         gallery_id:
+          type: string
+        media_id: 
           type: string
 
 
@@ -1571,6 +1580,7 @@ components:
         profile_id:
           type: string
           example: "yannickoo"
+
 
 
 
