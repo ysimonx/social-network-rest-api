@@ -9,7 +9,7 @@ from flask import jsonify, request, abort, send_from_directory
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from werkzeug.utils import secure_filename
 
-from .. import db,  getByIdOrByName
+from .. import db,  getByIdOrByName, getByIdOrFilename
 app_file_gallery = Blueprint('gallery',__name__)
 
 import cv2
@@ -313,9 +313,15 @@ def upload_file():
                 
             final_filename = current_app.config['UPLOAD_FOLDER']+ "/" + MEDIA_DIR + "/"+ current_user + "/" + str(filename)
             
-            media = Media( filename = final_filename, filetype = "jpg", width=width, height=height )
+            media = getByIdOrFilename(Media, final_filename)
+            if media is None:
+                media = Media( filename = final_filename, filetype = "jpg", width=width, height=height )
+                db.session.add(media)
+            else:
+                media.width = width
+                media.height = height
+                media.filetype = "jpg"
 
-            db.session.add(media)
             db.session.commit() 
             
             return jsonify(media.to_json()), 201

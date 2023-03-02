@@ -38,3 +38,13 @@ def getByIdOrEmail(obj, id):
     except ValueError:
         result = obj.query.filter(obj.email==id).first()
     return result
+
+def getByIdOrFilename(obj, id):
+    result = None
+    try:
+        uuid.UUID(str(id))
+        result = obj.query.get(id)
+    except ValueError:
+        result = obj.query.filter(obj.filename==id).first()
+    return result
+    
