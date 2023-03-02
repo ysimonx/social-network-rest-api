@@ -4,7 +4,7 @@ import uuid
 import numpy
 import os
 from ..model_dir.profile import Profile
-from ..model_dir.gallery import Gallery, Picture, Video
+from ..model_dir.gallery import Gallery, Picture, Video, Media
 from flask import jsonify, request, abort, send_from_directory
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from werkzeug.utils import secure_filename
@@ -310,14 +310,15 @@ def upload_file():
             cv2.imwrite(os.path.join(path,filename_square), img_square, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
                
             height, width, channels = img.shape
-                 
-            return jsonify({
-                    "result":"ok",
-                    "filetype": "jpg",
-                    "filename":  current_app.config['UPLOAD_FOLDER']+ "/" + MEDIA_DIR + "/"+ current_user + "/" + str(filename),
-                    "width": width,
-                    "height": height,
-                    }), 201
+                
+            final_filename = current_app.config['UPLOAD_FOLDER']+ "/" + MEDIA_DIR + "/"+ current_user + "/" + str(filename)
+            
+            media = Media( filename = final_filename, filetype = "jpg", width=width, height=height )
+
+            db.session.add(media)
+            db.session.commit() 
+            
+            return jsonify(media.to_json()), 201
         
         abort(400)
         

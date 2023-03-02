@@ -8,6 +8,26 @@ import uuid
 
 # file upload is here : https://www.youtube.com/watch?v=zMhmZ_ePGiM
 
+class Media(db.Model, MyMixin):
+    __tablename__ = 'medias'
+    
+    filename= db.Column(db.String(255), unique=True)
+    width=db.Column(db.BigInteger)
+    height=db.Column(db.BigInteger)
+    filetype=db.Column(db.String(255))
+    
+    def to_json(self):
+        return {
+            'id': self.id,
+            '_internal' : self.get_internal(),
+            'filename': self.filename,
+            'width': self.width,
+            'height': self.height,
+            'filetype': self.filetype
+            
+        }
+
+
 class Gallery(db.Model, MyMixin):
     __tablename__ = 'galleries'
     profile_id = db.Column(db.String(36), db.ForeignKey(Profile.id))
