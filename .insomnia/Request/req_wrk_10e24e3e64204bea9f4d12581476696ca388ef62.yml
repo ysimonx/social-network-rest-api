@@ -1,8 +1,8 @@
 _id: req_wrk_10e24e3e64204bea9f4d12581476696ca388ef62
 type: Request
 parentId: fld_wrk_10e24e3e64204bea9f4d12581476696cffbaf58f
-modified: 1677256750178
-created: 1677176484297
+modified: 1677775358934
+created: 1677775358934
 url: "{{ base_url }}/video"
 name: video post
 description: ""
@@ -11,9 +11,9 @@ body:
   mimeType: application/json
   text: |-
     {
-
       "filename": "string",
-      "gallery_id": "a798014e-091c-489a-8673-c20619fa6167"
+      "gallery_id": "string",
+      "media_id": "string"
     }
 parameters: []
 headers:
@@ -21,10 +21,9 @@ headers:
     value: application/json
 authentication:
   type: bearer
-  token: "{% response 'body', 'req_wrk_10e24e3e64204bea9f4d12581476696c98683703',
-    'b64::JC5hY2Nlc3NfdG9rZW4=::46b', 'when-expired', 60 %}"
+  token: "{{bearerToken}}"
   prefix: ""
-metaSortKey: -1677176484297
+metaSortKey: -1677775358934
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true
