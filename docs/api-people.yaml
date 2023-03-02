@@ -334,6 +334,11 @@ paths:
       responses:
         '201':
           description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Media'
+                
   /gallery:
     post:
       tags:
@@ -1235,6 +1240,34 @@ components:
           readOnly: true
         profile_id:
           type: string
+          
+          
+    Media:
+      type: object
+      required:
+        - _internal
+        - id
+        - filename
+        - filetype
+        - width
+        - height
+      properties:
+        _internal:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/Internal'
+        id:
+          type: string
+          readOnly: true
+        filename:
+          type: string
+        filetype:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+     
     Picture:
       type: object
       required:
