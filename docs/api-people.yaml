@@ -1,36 +1,44 @@
 openapi: 3.0.3
 info:
-  description: "This is a Social Network - OnlyFans OpenApi specifications API REST
-   ."
-  version: 1.0.5
   title: Swagger Social-Network-Rest-Api
-
-  termsOfService: http://swagger.io/terms/
+  version: 1.0.5
+  description: 'This is a Social Network - OnlyFans OpenApi specifications  API REST. <br />
+     https://github.com/ysimonx/social-network-rest-api '
   contact:
-    email: yannick.simon@kysoe.com
+    email: yannick.simon@gmail.com
+    name: Yannick Simon
+    url: https://github.com/ysimonx/social-network-rest-api
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 tags:
   - name: login
-    description: Login process in order to have a Bearer value in an access token for protected endpoints
+    description: >-
+      Login process in order to have a Bearer value in an access token for
+      protected endpoints
     externalDocs:
       description: Find out more
       url: http://swagger.io
   - name: init
     description: Database initialisation
   - name: user
-    description: A User is an entity that must be used in order to sign-in into the platforme
+    description: >-
+      A User is an entity that must be used in order to sign-in into the
+      platforme
     externalDocs:
       description: Find out more
       url: http://swagger.io
   - name: profile
-    description: A Profile is used to display pictures, video, personal information, with a Pseudo
+    description: >-
+      A Profile is used to display pictures, video, personal information, with a
+      Pseudo
     externalDocs:
       description: Find out more
       url: http://swagger.io
   - name: media
-    description: A Media is a uploaded file that can be used for pictures, videos or more. It is attached to a User 
+    description: >-
+      A Media is a uploaded file that can be used for pictures, videos or more.
+      It is attached to a User
     externalDocs:
       description: Find out more
       url: http://swagger.io
@@ -75,73 +83,69 @@ tags:
       description: Find out more
       url: http://swagger.io
   - name: follow
-    description:  A Follow is a link between two Profiles where a follower is following a followed
+    description: >-
+      A Follow is a link between two Profiles where a follower is following a
+      followed
     externalDocs:
       description: Find out more
       url: http://swagger.io
-      
   - name: subscription
-    description: A Subscription is a contract between a User and a Profile. A User can access personal pictures or video of a Profile
+    description: >-
+      A Subscription is a contract between a User and a Profile. A User can
+      access personal pictures or video of a Profile
     externalDocs:
       description: Find out more
       url: http://swagger.io
-
 paths:
-
   /login:
-  
     post:
       tags:
         - login
       summary: login post
-      description: "the login process is used in order to have an Bearer value see: 'access token' in response"
+      description: >-
+        the login process is used in order to have an Bearer value see: 'access
+        token' in response
       operationId: loginPost
       requestBody:
-        $ref: "#/components/requestBodies/Login"
+        $ref: '#/components/requestBodies/Login'
       responses:
-          "200":
-            description: successful operation
-          
-            content:
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/LoginResult"
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResult'
   /init:
     get:
       tags:
         - init
       summary: init
-      description: "database populates with cities, regions, countries, and some users"
+      description: database populates with cities, regions, countries, and some users
       operationId: initGet
       responses:
-          "200":
-            description: successful operation
-
-           
-           
+        '200':
+          description: successful operation
   /user:
-  
     post:
       tags:
         - user
       summary: user post
-      description: "Creates a new user : e-mail and password"
+      description: 'Creates a new user : e-mail and password'
       operationId: userPost
       requestBody:
-        $ref: "#/components/requestBodies/User"
+        $ref: '#/components/requestBodies/User'
       responses:
-          "200":
-            description: successful operation
-          
-            content:
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/User"
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
     get:
       tags:
         - user
       summary: user list
-      description: "Lists users with encrypted password" 
+      description: Lists users with encrypted password
       operationId: userList
       parameters:
         - in: query
@@ -152,16 +156,14 @@ paths:
           required: false
           description: add additional data to response
       responses:
-          "200":
-            description: successful operation
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items: 
-                    $ref: "#/components/schemas/User"
-                                      
-                  
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
   /profile:
     post:
       tags:
@@ -169,23 +171,24 @@ paths:
       security:
         - bearerAuth: []
       summary: profile post
-      description: "Creates a new Profile attached to a User account "
+      description: 'Creates a new Profile attached to a User account '
       operationId: profilePost
       requestBody:
-        $ref: "#/components/requestBodies/Profile"
+        $ref: '#/components/requestBodies/Profile'
       responses:
-          "200":
-            description: successful operation
-          
-            content:
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/Profile"
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
     get:
       tags:
         - profile
       summary: profile list
-      description: "Lists of the Profiles. You can have all linked subdatas with the 'append_to_response=all' parameter in url"
+      description: >-
+        Lists of the Profiles. You can have all linked subdatas with the
+        'append_to_response=all' parameter in url
       operationId: profileList
       parameters:
         - in: query
@@ -196,22 +199,22 @@ paths:
           required: false
           description: add additional data to response
       responses:
-          "200":
-            description: successful operation
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                  
-                    $ref: "#/components/schemas/Profile"
-                    
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Profile'
   /profile/{profile_id}:
     get:
       tags:
         - profile
       summary: profile get
-      description: "Read a Profile. It is possible to use both 'id' (primary key) or 'name' as the identifier "
+      description: >-
+        Read a Profile. It is possible to use both 'id' (primary key) or 'name'
+        as the identifier 
       operationId: profileGet
       parameters:
         - name: profile_id
@@ -219,24 +222,22 @@ paths:
           required: true
           schema:
             type: string
-                  
       responses:
-          "200":
-           description: successful operation
-           content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                  
-                    $ref: "#/components/schemas/Profile"
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Profile'
     delete:
       tags:
         - profile
-      security:  
+      security:
         - bearerAuth: []
       summary: profile delete
-      description: "Delete a Profile. Need to be logged in."
+      description: Delete a Profile. Need to be logged in.
       operationId: profileDelete
       parameters:
         - name: profile_id
@@ -244,41 +245,35 @@ paths:
           required: true
           schema:
             type: string
-    
       responses:
-          "200":
-            description: successful operation
-
+        '200':
+          description: successful operation
   /like:
-  
     post:
       tags:
         - like
-      security:  
+      security:
         - bearerAuth: []
       summary: like post
-      description: "Creates a like between 2 Profiles"
+      description: Creates a like between 2 Profiles
       operationId: likePost
       requestBody:
-        $ref: "#/components/requestBodies/Like"
+        $ref: '#/components/requestBodies/Like'
       responses:
-          "200":
-            description: successful operation
-          
-            content:
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/Like"
-      
-      
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Like'
   /like/{like_id}:
     delete:
       tags:
         - like
-      security:  
+      security:
         - bearerAuth: []
       summary: like delete
-      description: "Deletes a like between 2 Profilesn"
+      description: Deletes a like between 2 Profilesn
       operationId: likeeDelete
       parameters:
         - name: like_id
@@ -286,43 +281,33 @@ paths:
           required: true
           schema:
             type: string
-    
       responses:
-          "200":
-            description: successful operation
-
-  
-  
+        '200':
+          description: successful operation
   /follow:
-  
     post:
       tags:
         - follow
-      security:  
+      security:
         - bearerAuth: []
-
       summary: follow post
-      description: "Creates a following between 2 Profiles"
+      description: Creates a following between 2 Profiles
       operationId: followPost
       requestBody:
-        $ref: "#/components/requestBodies/Follow"
+        $ref: '#/components/requestBodies/Follow'
       responses:
-          "200":
-            description: successful operation
-          
-            content:
-
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/Follow"
-  
-      
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Follow'
   /follow/{follow_id}:
     delete:
       tags:
         - follow
       summary: follow delete
-      description: "Deletes a following between 2 profiles"
+      description: Deletes a following between 2 profiles
       operationId: followDelete
       parameters:
         - name: follow_id
@@ -330,55 +315,48 @@ paths:
           required: true
           schema:
             type: string
-    
       responses:
-          "200":
-            description: successful operation
-
+        '200':
+          description: successful operation
   /media:
     post:
       tags:
         - media
-      security:  
+      security:
         - bearerAuth: []
-
       summary: media post
-      description: "Upload Media on server. After uploaded, you can attach this new media with Picture or Video endpoints"
+      description: >-
+        Upload Media on server. After uploaded, you can attach this new media
+        with Picture or Video endpoints
       operationId: mediayPost
       requestBody:
-        $ref: "#/components/requestBodies/Media"
+        $ref: '#/components/requestBodies/Media'
       responses:
-          "201":
-            description: successful operation
-          
-           
-                
+        '201':
+          description: successful operation
   /gallery:
     post:
       tags:
         - gallery
-      security:  
+      security:
         - bearerAuth: []
-
       summary: gallery post
-      description: "Creates a new Gallery for a Profile"
+      description: Creates a new Gallery for a Profile
       operationId: galleryPost
       requestBody:
-        $ref: "#/components/requestBodies/Gallery"
+        $ref: '#/components/requestBodies/Gallery'
       responses:
-          "200":
-            description: successful operation
-          
-            content:
-
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/Gallery"
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gallery'
     get:
       tags:
         - gallery
       summary: gallery list
-      description: "Lists the Gallery"
+      description: Lists the Gallery
       operationId: galleryList
       parameters:
         - in: query
@@ -389,23 +367,20 @@ paths:
           required: false
           description: add additional data to response
       responses:
-          "200":
-            description: successful operation
-            content:
-
-              application/json:
-                schema:
-                  type: array
-                  items:
-                  
-                    $ref: "#/components/schemas/Gallery"
- 
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Gallery'
   /gallery/{gallery_id}:
     get:
       tags:
         - gallery
       summary: gallery get
-      description: "Read a specific Gallery"
+      description: Read a specific Gallery
       operationId: galleryGet
       parameters:
         - name: gallery_id
@@ -413,22 +388,19 @@ paths:
           required: true
           schema:
             type: string
-                  
       responses:
-          "200":
-           description: successful operation
-           content:
-
-              application/json:
-                schema:
-                  type: array
-                  items:
-                  
-                    $ref: "#/components/schemas/Gallery"
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Gallery'
     put:
       tags:
         - gallery
-      security:  
+      security:
         - bearerAuth: []
       parameters:
         - name: gallery_id
@@ -436,29 +408,25 @@ paths:
           required: true
           schema:
             type: string
-                  
       summary: gallery put
-      description: "Updates a specific Gallery"
+      description: Updates a specific Gallery
       operationId: galleryPut
       requestBody:
-        $ref: "#/components/requestBodies/Gallery"
+        $ref: '#/components/requestBodies/Gallery'
       responses:
-          "200":
-            description: successful operation
-          
-            content:
-  
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/Gallery"
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gallery'
     delete:
       tags:
         - gallery
-      security:  
+      security:
         - bearerAuth: []
-
       summary: gallery delete
-      description: "Deletes a specific Gallery"
+      description: Deletes a specific Gallery
       operationId: galleryDelete
       parameters:
         - name: gallery_id
@@ -466,38 +434,32 @@ paths:
           required: true
           schema:
             type: string
-    
       responses:
-          "200":
-            description: successful operation
-    
-    
+        '200':
+          description: successful operation
   /picture:
     post:
       tags:
         - picture
-      security:  
+      security:
         - bearerAuth: []
-
       summary: picture post
-      description: "Creates a new Picture"
+      description: Creates a new Picture
       operationId: picturePost
       requestBody:
-        $ref: "#/components/requestBodies/Picture"
+        $ref: '#/components/requestBodies/Picture'
       responses:
-          "200":
-            description: successful operation
-          
-            content:
-
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/Picture"
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Picture'
     get:
       tags:
         - picture
       summary: picture list
-      description: "Lists Pictures"
+      description: Lists Pictures
       operationId: pictureList
       parameters:
         - in: query
@@ -508,23 +470,20 @@ paths:
           required: false
           description: add additional data to response
       responses:
-          "200":
-            description: successful operation
-            content:
-
-              application/json:
-                schema:
-                  type: array
-                  items:
-                  
-                    $ref: "#/components/schemas/Picture"
- 
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Picture'
   /picture/{picture_id}:
     get:
       tags:
         - picture
       summary: picture get
-      description: "Read a specific Picture"
+      description: Read a specific Picture
       operationId: pictureGet
       parameters:
         - name: picture_id
@@ -532,26 +491,22 @@ paths:
           required: true
           schema:
             type: string
-                  
       responses:
-          "200":
-           description: successful operation
-           content:
-
-              application/json:
-                schema:
-                  type: array
-                  items:
-                  
-                    $ref: "#/components/schemas/Picture"
-                    
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Picture'
     put:
       tags:
         - picture
-      security:  
+      security:
         - bearerAuth: []
       summary: picture put
-      description: "Updates a specific Picture"
+      description: Updates a specific Picture
       operationId: picturePut
       parameters:
         - name: picture_id
@@ -559,26 +514,22 @@ paths:
           required: true
           schema:
             type: string
-                  
       responses:
-          "200":
-           description: successful operation
-           content:
-
-              application/json:
-                schema:
-                  type: array
-                  items:
-                  
-                    $ref: "#/components/schemas/Picture"
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Picture'
     delete:
       tags:
         - picture
-      security:  
+      security:
         - bearerAuth: []
-
       summary: picture delete
-      description: "Deletes a specific Picture"
+      description: Deletes a specific Picture
       operationId: pictureDelete
       parameters:
         - name: picture_id
@@ -586,39 +537,32 @@ paths:
           required: true
           schema:
             type: string
-    
       responses:
-          "200":
-            description: successful operation
-   
-   
-     
+        '200':
+          description: successful operation
   /video:
     post:
       tags:
         - video
-      security:  
+      security:
         - bearerAuth: []
-
       summary: video post
-      description: "Creates a Video for a Profile"
+      description: Creates a Video for a Profile
       operationId: videoPost
       requestBody:
-        $ref: "#/components/requestBodies/Video"
+        $ref: '#/components/requestBodies/Video'
       responses:
-          "200":
-            description: successful operation
-          
-            content:
-
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/Video"
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Video'
     get:
       tags:
         - video
       summary: video list
-      description: "Lists the Video"
+      description: Lists the Video
       operationId: videoList
       parameters:
         - in: query
@@ -629,23 +573,20 @@ paths:
           required: false
           description: add additional data to response
       responses:
-          "200":
-            description: successful operation
-            content:
-
-              application/json:
-                schema:
-                  type: array
-                  items:
-                  
-                    $ref: "#/components/schemas/Video"
- 
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Video'
   /video/{video_id}:
     get:
       tags:
         - video
       summary: video get
-      description: "Reads a specific Video"
+      description: Reads a specific Video
       operationId: videoGet
       parameters:
         - name: video_id
@@ -653,26 +594,22 @@ paths:
           required: true
           schema:
             type: string
-                  
       responses:
-          "200":
-           description: successful operation
-           content:
-
-              application/json:
-                schema:
-                  type: array
-                  items:
-                  
-                    $ref: "#/components/schemas/Video"
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Video'
     put:
       tags:
         - video
-      security:  
+      security:
         - bearerAuth: []
-
       summary: video put
-      description: "Updates a specific Video"
+      description: Updates a specific Video
       operationId: videoPut
       parameters:
         - name: video_id
@@ -680,27 +617,22 @@ paths:
           required: true
           schema:
             type: string
-                  
       responses:
-          "200":
-           description: successful operation
-           content:
-
-              application/json:
-                schema:
-                  type: array
-                  items:
-                  
-                    $ref: "#/components/schemas/Video"
-
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Video'
     delete:
       tags:
         - video
-      security:  
+      security:
         - bearerAuth: []
-
       summary: video delete
-      description: "Deletes a specific Video"
+      description: Deletes a specific Video
       operationId: videoDelete
       parameters:
         - name: video_id
@@ -708,39 +640,34 @@ paths:
           required: true
           schema:
             type: string
-    
       responses:
-          "200":
-            description: successful operation
-  
-            
+        '200':
+          description: successful operation
   /country:
     post:
       tags:
         - country
-      security:  
+      security:
         - bearerAuth: []
-
       summary: country post
-      description: "Creates a new Country"
+      description: Creates a new Country
       operationId: countryPost
       requestBody:
-        $ref: "#/components/requestBodies/Country"
+        $ref: '#/components/requestBodies/Country'
       responses:
-          "200":
-            description: successful operation
-          
-            content:
-
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/Country"
-  
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Country'
     get:
       tags:
         - country
       summary: country list
-      description: "Lists of all Country. Please use the 'append_to_response=all' in order to get Regions and Cities subsets"
+      description: >-
+        Lists of all Country. Please use the 'append_to_response=all' in order
+        to get Regions and Cities subsets
       operationId: countryList
       parameters:
         - in: query
@@ -751,23 +678,22 @@ paths:
           required: false
           description: add additional data to response
       responses:
-          "200":
-            description: successful operation
-            content:
-
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    $ref: "#/components/schemas/Country"
-  
-
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Country'
   /country/{country_id}:
     get:
       tags:
         - country
       summary: country get
-      description: "Deletes a specific Country. It is possible to use both 'id' (primary key) or 'name' as the identifier "
+      description: >-
+        Deletes a specific Country. It is possible to use both 'id' (primary
+        key) or 'name' as the identifier 
       operationId: countryGet
       parameters:
         - name: country_id
@@ -775,19 +701,18 @@ paths:
           required: true
           schema:
             type: string
-                  
       responses:
-          "200":
-           description: successful operation
-           
+        '200':
+          description: successful operation
     delete:
       tags:
         - country
-      security:  
+      security:
         - bearerAuth: []
-
       summary: country delete
-      description: "Deletes a specific Country. It is possible to use both 'id' (primary key) or 'name' as the identifier"
+      description: >-
+        Deletes a specific Country. It is possible to use both 'id' (primary
+        key) or 'name' as the identifier
       operationId: countryDelete
       parameters:
         - name: country_id
@@ -795,42 +720,32 @@ paths:
           required: true
           schema:
             type: string
-            
-            
       responses:
-          "200":
-            description: successful operation
-
-      
-      
+        '200':
+          description: successful operation
   /region:
-
     post:
       tags:
         - region
-      security:  
+      security:
         - bearerAuth: []
-
       summary: region post
-      description: "Creates a new Region for a Country"
+      description: Creates a new Region for a Country
       operationId: regionPost
       requestBody:
-        $ref: "#/components/requestBodies/Region"
+        $ref: '#/components/requestBodies/Region'
       responses:
-          "200":
-            description: successful operation
-          
-            content:
-
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/Region"
-            
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Region'
     get:
       tags:
         - region
       summary: region list
-      description: "Lists all Regions."
+      description: Lists all Regions.
       operationId: regionList
       parameters:
         - in: query
@@ -841,22 +756,21 @@ paths:
           required: false
           description: add additional data to response
       responses:
-          "200":
-            description: successful operation
-            content:
-
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    $ref: "#/components/schemas/Region"
-
-
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Region'
   /region/{region_id}:
     get:
       tags:
         - region
-      description: "Reads a specific Region.  It is possible to use both 'id' (primary key) or 'name' as the identifier"
+      description: >-
+        Reads a specific Region.  It is possible to use both 'id' (primary key)
+        or 'name' as the identifier
       operationId: regionGet
       parameters:
         - name: region_id
@@ -865,15 +779,16 @@ paths:
           schema:
             type: string
       responses:
-          "200":
-            description: successful operation
+        '200':
+          description: successful operation
     delete:
       tags:
         - region
-      security:  
+      security:
         - bearerAuth: []
-
-      description: "Deletes a specific Region.  It is possible to use both 'id' (primary key) or 'name' as the identifier"
+      description: >-
+        Deletes a specific Region.  It is possible to use both 'id' (primary
+        key) or 'name' as the identifier
       operationId: regionDelete
       parameters:
         - name: region_id
@@ -882,40 +797,31 @@ paths:
           schema:
             type: string
       responses:
-          "200":
-            description: successful operation
-            
-            
-            
+        '200':
+          description: successful operation
   /city:
-  
-
     post:
       tags:
         - city
-      security:  
+      security:
         - bearerAuth: []
-
       summary: city post
-      description: "Creates a new City for a specific Region"
+      description: Creates a new City for a specific Region
       operationId: cityPost
       requestBody:
-        $ref: "#/components/requestBodies/City"
+        $ref: '#/components/requestBodies/City'
       responses:
-          "200":
-            description: successful operation
-          
-            content:
-
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/City"
-           
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/City'
     get:
       tags:
         - city
       summary: city list
-      description: "List of all City Cities"
+      description: List of all City Cities
       operationId: cityList
       parameters:
         - in: query
@@ -926,22 +832,21 @@ paths:
           required: false
           description: add additional data to response
       responses:
-          "200":
-            description: successful operation
-            content:
-
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    $ref: "#/components/schemas/City"
-
- 
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/City'
   /city/{city_id}:
     get:
       tags:
         - city
-      description: "Reads a specific City. It is possible to use both 'id' (primary key) or 'name' ('marseille') as the identifier"
+      description: >-
+        Reads a specific City. It is possible to use both 'id' (primary key) or
+        'name' ('marseille') as the identifier
       operationId: cityGet
       parameters:
         - name: city_id
@@ -950,16 +855,16 @@ paths:
           schema:
             type: string
       responses:
-          "200":
-            description: successful operation
+        '200':
+          description: successful operation
     delete:
       tags:
         - city
-        
-      security:  
+      security:
         - bearerAuth: []
-
-      description: "Deletes a specific City. It is possible to use both 'id' (primary key) or 'name' ('marseille') as the identifier"
+      description: >-
+        Deletes a specific City. It is possible to use both 'id' (primary key)
+        or 'name' ('marseille') as the identifier
       operationId: cityDelete
       parameters:
         - name: city_id
@@ -968,39 +873,31 @@ paths:
           schema:
             type: string
       responses:
-          "200":
-            description: successful operation
-
-
+        '200':
+          description: successful operation
   /tour:
-  
- 
     post:
       tags:
         - tour
-      security:  
+      security:
         - bearerAuth: []
-
       summary: tour post
-      description: "tour post desccription"
+      description: tour post desccription
       operationId: tourPost
       requestBody:
-        $ref: "#/components/requestBodies/Tour"
+        $ref: '#/components/requestBodies/Tour'
       responses:
-          "200":
-            description: successful operation
-          
-            content:
-
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/Tour"
-          
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tour'
     get:
       tags:
         - tour
       summary: tour list
-      description: "tour list desccription"
+      description: tour list desccription
       operationId: tourList
       parameters:
         - in: query
@@ -1011,23 +908,20 @@ paths:
           required: false
           description: add additional data to response
       responses:
-          "200":
-            description: successful operation
-            content:
-
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    $ref: "#/components/schemas/Tour"
-        
-                  
-  "/tour/{tour_id}":
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tour'
+  /tour/{tour_id}:
     get:
       tags:
         - tour
       summary: tour get
-      description: "tour get desccription"
+      description: tour get desccription
       operationId: tourGet
       parameters:
         - name: tour_id
@@ -1036,22 +930,19 @@ paths:
           schema:
             type: string
       responses:
-          "200":
-            description: successful operation
-            content:
-
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/Tour"
-      
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tour'
     delete:
       tags:
         - tour
-      security:  
+      security:
         - bearerAuth: []
-
       summary: tour delete
-      description: "tour delete desccription"
+      description: tour delete desccription
       operationId: tourDelete
       parameters:
         - name: tour_id
@@ -1059,194 +950,148 @@ paths:
           required: true
           schema:
             type: string
-            
-            
       responses:
-          "200":
-            description: successful operation
-
-     
+        '200':
+          description: successful operation
   /subscription:
-  
     post:
       tags:
         - subscription
-      security:  
+      security:
         - bearerAuth: []
-
       summary: subscription post
-      description: "subscription post description"
+      description: subscription post description
       operationId: subscriptionPost
       requestBody:
-          $ref: "#/components/requestBodies/Subscription"
-          
+        $ref: '#/components/requestBodies/Subscription'
       responses:
-          "200":
-            description: successful operation
-          
-            content:
-
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/Subscription"
-
-
-
-
-      
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
 externalDocs:
   description: Find out more about Swagger
   url: http://swagger.io
-
-
-
-
-  
 servers:
   - url: https://api-dev.onlyfemme.fr/api/v1
-  
   - url: http://localhost:5000/api/v1
-
 components:
-
   securitySchemes:
     bearerAuth:
       type: http
-      scheme: bearer 
-      bearerFormat: JWT  # optional, for documentation purposes only
-
-  
+      scheme: bearer
+      bearerFormat: JWT
   requestBodies:
-  
     Login:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Login"
-      description: Please provide an e-mail and a password for Login, generates an acces_token as a Bearer JWT
+            $ref: '#/components/schemas/Login'
+      description: >-
+        Please provide an e-mail and a password for Login, generates an
+        acces_token as a Bearer JWT
       required: true
-
-  
-  
     User:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/User"
+            $ref: '#/components/schemas/User'
       description: User object that needs to be add
       required: true
-      
-
-  
     Profile:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Profile"
+            $ref: '#/components/schemas/Profile'
       description: Profile object that needs to be add
       required: true
-
     Like:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Like"
+            $ref: '#/components/schemas/Like'
       description: Like object that needs to be add
       required: true
-
     Follow:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Follow"
+            $ref: '#/components/schemas/Follow'
       description: Follow object that needs to be add
       required: true
-
- 
     Media:
       content:
-           multipart/form-data:
-            schema:
-              type: object
-              properties:
-                
-                file:
-                  type: string
-                  format: binary
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              file:
+                type: string
+                format: binary
       description: Media object that needs to be add
       required: true
-  
     Gallery:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Gallery"
+            $ref: '#/components/schemas/Gallery'
       description: Gallery object that needs to be add
       required: true
-
-  
     Picture:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Picture"
+            $ref: '#/components/schemas/Picture'
       description: Picture object that needs to be add
       required: true
-
     Video:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Video"
+            $ref: '#/components/schemas/Video'
       description: Video object that needs to be add
       required: true
-
-
-
     Country:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Country"
+            $ref: '#/components/schemas/Country'
       description: Country object that needs to be add
       required: true
-
     Region:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Region"
+            $ref: '#/components/schemas/Region'
       description: Country object that needs to be add
       required: true
-
     City:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/City"
+            $ref: '#/components/schemas/City'
       description: City object that needs to be add
       required: true
-
     Tour:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Tour"
+            $ref: '#/components/schemas/Tour'
       description: City object that needs to be add
       required: true
-      
-      
     Subscription:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Subscription"
-
-      description: Subscription json request - you can use user.id (61d94bac-09b8-47ab-968c-15d30986799c) or user.email (yannick.simon@kysoe.com) as user_id variable
+            $ref: '#/components/schemas/Subscription'
+      description: >-
+        Subscription json request - you can use user.id
+        (61d94bac-09b8-47ab-968c-15d30986799c) or user.email
+        (yannick.simon@kysoe.com) as user_id variable
       required: true
-      
   schemas:
-
     Internal:
       type: object
       required:
@@ -1254,19 +1099,17 @@ components:
         - time_created_utc
         - time_updated_utc
       properties:
-     
         owner_user_id:
           type: string
           readOnly: true
         time_created_utc:
           type: string
-          example: "2023-02-24T15:59:19"
+          example: '2023-02-24T15:59:19'
           readOnly: true
         time_updated_utc:
           type: string
-          example : "2023-02-25T15:59:19"
+          example: '2023-02-25T15:59:19'
           readOnly: true
-
     Login:
       type: object
       required:
@@ -1281,8 +1124,7 @@ components:
           example: yannick.simon@kysoe.com
         password:
           type: string
-          example : "12345678"
-          
+          example: '12345678'
     LoginResult:
       type: object
       required:
@@ -1291,15 +1133,11 @@ components:
       properties:
         access_token:
           type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NzI1OTczMSwianRpIjoiOGVmZjVlMTUtZTI5Zi00MmY3LTg4YTQtMTQ2ODQzNTk3MjY0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjYxZDk0YmFjLTA5YjgtNDdhYi05NjhjLTE1ZDMwOTg2Nzk5YyIsIm5iZiI6MTY3NzI1OTczMSwiZXhwIjoxNjc3MjYwNjMxfQ.d5OVo8IqgAnH97rQ_hNjG72fo6WM0S9WVqw_8lTaKHk"
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NzI1OTczMSwianRpIjoiOGVmZjVlMTUtZTI5Zi00MmY3LTg4YTQtMTQ2ODQzNTk3MjY0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjYxZDk0YmFjLTA5YjgtNDdhYi05NjhjLTE1ZDMwOTg2Nzk5YyIsIm5iZiI6MTY3NzI1OTczMSwiZXhwIjoxNjc3MjYwNjMxfQ.d5OVo8IqgAnH97rQ_hNjG72fo6WM0S9WVqw_8lTaKHk
         result_check:
           type: boolean
           example: true
-
-         
-
- 
- 
     User:
       type: object
       required:
@@ -1311,26 +1149,21 @@ components:
         _internal:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/Internal"
-          
+            - $ref: '#/components/schemas/Internal'
         id:
           type: string
-          example: "61d94bac-09b8-47ab-968c-15d30986799c"
+          example: 61d94bac-09b8-47ab-968c-15d30986799c
           readOnly: true
-        email: 
+        email:
           type: string
           example: yannick.simon@kysoe.com
         password:
           type: string
-          example : "12345678"
+          example: '12345678'
         subscriptions:
           type: array
-          items: 
-                $ref: "#/components/schemas/Subscription"
-          
-
- 
-  
+          items:
+            $ref: '#/components/schemas/Subscription'
     Profile:
       type: object
       required:
@@ -1341,16 +1174,13 @@ components:
         _internal:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/Internal"
-
- 
+            - $ref: '#/components/schemas/Internal'
         id:
           type: string
           readOnly: true
         name:
           type: string
           example: yannickoo
-         
     Like:
       type: object
       required:
@@ -1362,9 +1192,7 @@ components:
         _internal:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/Internal"
-
- 
+            - $ref: '#/components/schemas/Internal'
         id:
           type: string
           readOnly: true
@@ -1372,7 +1200,6 @@ components:
           type: string
         liked_profile_id:
           type: string
-
     Follow:
       type: object
       required:
@@ -1384,9 +1211,7 @@ components:
         _internal:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/Internal"
-
-  
+            - $ref: '#/components/schemas/Internal'
         id:
           type: string
           readOnly: true
@@ -1394,9 +1219,6 @@ components:
           type: string
         followed_profile_id:
           type: string
-
-
-  
     Gallery:
       type: object
       required:
@@ -1407,16 +1229,12 @@ components:
         _internal:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/Internal"
-
- 
+            - $ref: '#/components/schemas/Internal'
         id:
           type: string
           readOnly: true
         profile_id:
           type: string
-
- 
     Picture:
       type: object
       required:
@@ -1429,9 +1247,7 @@ components:
         _internal:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/Internal"
-
- 
+            - $ref: '#/components/schemas/Internal'
         id:
           type: string
           readOnly: true
@@ -1440,8 +1256,7 @@ components:
         gallery_id:
           type: string
         media_id:
-           type: string
-
+          type: string
     Video:
       type: object
       required:
@@ -1454,8 +1269,7 @@ components:
         _internal:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/Internal"
-
+            - $ref: '#/components/schemas/Internal'
         id:
           readOnly: true
           type: string
@@ -1463,16 +1277,11 @@ components:
           type: string
         gallery_id:
           type: string
-        media_id: 
+        media_id:
           type: string
-
-
-
-
     Country:
       type: object
       required:
-      
         - _internal
         - id
         - name
@@ -1480,13 +1289,12 @@ components:
         _internal:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/Internal"
+            - $ref: '#/components/schemas/Internal'
         id:
           type: string
           readOnly: true
         name:
           type: string
- 
     Region:
       type: object
       required:
@@ -1494,12 +1302,11 @@ components:
         - id
         - name
         - country_id
-        
       properties:
         _internal:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/Internal"
+            - $ref: '#/components/schemas/Internal'
         id:
           type: string
           readOnly: true
@@ -1507,8 +1314,6 @@ components:
           type: string
         name:
           type: string
-
-        
     City:
       type: object
       required:
@@ -1520,8 +1325,7 @@ components:
         _internal:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/Internal"
-
+            - $ref: '#/components/schemas/Internal'
         id:
           type: string
           readOnly: true
@@ -1529,9 +1333,6 @@ components:
           type: string
         name:
           type: string
-
-  
-  
     Tour:
       type: object
       required:
@@ -1543,8 +1344,7 @@ components:
         _internal:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/Internal"
-
+            - $ref: '#/components/schemas/Internal'
         id:
           type: string
           readOnly: true
@@ -1555,11 +1355,9 @@ components:
           type: string
           example: yannickoo
         time_start:
-           type: string
+          type: string
         time_end:
-           type: string
-
-   
+          type: string
     Subscription:
       type: object
       required:
@@ -1570,21 +1368,15 @@ components:
         _internal:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/Internal"
+            - $ref: '#/components/schemas/Internal'
         id:
           type: string
           readOnly: true
         user_id:
           type: string
-          example: "61d94bac-09b8-47ab-968c-15d30986799c"
+          example: 61d94bac-09b8-47ab-968c-15d30986799c
         profile_id:
           type: string
-          example: "yannickoo"
-
-
-
-
-
-   
+          example: yannickoo
 security:
   - bearerAuth: []

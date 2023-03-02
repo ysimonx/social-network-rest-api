@@ -1,12 +1,13 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "description": "This is a Social Network - OnlyFans OpenApi specifications API REST .",
-    "version": "1.0.5",
     "title": "Swagger Social-Network-Rest-Api",
-    "termsOfService": "http://swagger.io/terms/",
+    "version": "1.0.5",
+    "description": "This is a Social Network - OnlyFans OpenApi specifications  API REST. <br /> https://github.com/ysimonx/social-network-rest-api ",
     "contact": {
-      "email": "yannick.simon@kysoe.com"
+      "email": "yannick.simon@gmail.com",
+      "name": "Yannick Simon",
+      "url": "https://github.com/ysimonx/social-network-rest-api"
     },
     "license": {
       "name": "Apache 2.0",
