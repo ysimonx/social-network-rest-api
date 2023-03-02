@@ -1,7 +1,7 @@
 _id: spc_4b1788b89cc5471388ec3d3f3c3b08c9
 type: ApiSpec
 parentId: wrk_10e24e3e64204bea9f4d12581476696c
-modified: 1677789611505
+modified: 1677795775973
 created: 1675785481947
 fileName: api-people.yaml
 contents: >
@@ -342,6 +342,11 @@ contents: >
         responses:
           '201':
             description: successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Media'
+                  
     /gallery:
       post:
         tags:
@@ -1243,6 +1248,34 @@ contents: >
             readOnly: true
           profile_id:
             type: string
+            
+            
+      Media:
+        type: object
+        required:
+          - _internal
+          - id
+          - filename
+          - filetype
+          - width
+          - height
+        properties:
+          _internal:
+            readOnly: true
+            allOf:
+              - $ref: '#/components/schemas/Internal'
+          id:
+            type: string
+            readOnly: true
+          filename:
+            type: string
+          filetype:
+            type: string
+          width:
+            type: integer
+          height:
+            type: integer
+       
       Picture:
         type: object
         required:
