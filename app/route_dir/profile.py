@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, session,abort
 import uuid
 from ..model_dir.profile import Profile
+from ..model_dir.gallery import Media
 from flask import jsonify, request, abort
 from .. import db,   getByIdOrByName
 from flask_jwt_extended import jwt_required, get_jwt_identity
@@ -46,24 +47,31 @@ def delete_profile(id_or_name):
 
 # curl -H "Content-Type: application/json" -X POST -d '{"name": "ysimonx"}' http://localhost:5000/profile
 @app_file_profile.route('/profile', methods=['POST'])
-#@jwt_required()
+@jwt_required()
 def create_profile():
     if not request.json:
         print("not json")
         abort(400)
-        
+       
     if not 'name' in request.json:
-        print("miss name parameter")
-        abort(400)
+        abort(400,"miss name parameter")
         
     if not 'media_id' in request.json:
-        print("miss media_id parameter")
-        abort(400)
+        abort(400 , "miss media_id parameter")
+
+    media = Media.query.get(id)
+    if media is None:
+        abort(404, "this media does not exists in database")
+        
+    current_user = get_jwt_identity()
+    if media._internal.owner_user_id != current_user:
+        abort(401, "this media does not belong to you")
 
     profile = Profile(
         name=request.json.get('name'),
         media_id = request.json.get('media_id')
     )
+    
     db.session.add(profile)
     db.session.commit()
     return jsonify(profile.to_json()), 201
