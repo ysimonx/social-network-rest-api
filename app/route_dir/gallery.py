@@ -284,7 +284,8 @@ def upload_file():
             abort(400)
         
         current_user = get_jwt_identity()
-        
+        if current_user is None:
+            abort(401)
        
         
         if file and allowed_file(file.filename):
@@ -328,4 +329,8 @@ def upload_file():
         
         abort(400)
         
-   
+@app_file_gallery.route("/media", methods=["GET"])
+def get_medias():
+    medias = Media.query.all()
+    return jsonify([media.to_json() for media in medias])
+    

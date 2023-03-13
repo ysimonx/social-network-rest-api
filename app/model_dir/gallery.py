@@ -96,3 +96,8 @@ def do_stuff2(mapper, connect, target):
 @event.listens_for(Picture, 'before_insert')
 def do_stuff3(mapper, connect, target):
     MyMixin.map_owner(mapper, connect, target)
+    
+@event.listens_for(Media, 'before_insert')
+def do_stuff1(mapper, connect, target):
+    MyMixin.map_owner(mapper, connect, target)
+    
