@@ -63,8 +63,8 @@ def after_request(response):
 @app.before_first_request
 def before_first_request():
 
-    populate_user_data()
-    populate_country_data()
+    # populate_user_data()
+    # populate_country_data()
 
     log_level = logging.INFO
  
@@ -87,6 +87,7 @@ def before_first_request():
 def init():
     db.drop_all()
     db.create_all()
+    
     populate_country_data()
     populate_user_data()
     return "ok"

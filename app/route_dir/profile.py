@@ -51,9 +51,18 @@ def create_profile():
     if not request.json:
         print("not json")
         abort(400)
+        
+    if not 'name' in request.json:
+        print("miss name parameter")
+        abort(400)
+        
+    if not 'media_id' in request.json:
+        print("miss media_id parameter")
+        abort(400)
 
     profile = Profile(
         name=request.json.get('name'),
+        media_id = request.json.get('media_id')
     )
     db.session.add(profile)
     db.session.commit()

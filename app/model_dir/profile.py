@@ -12,6 +12,8 @@ class Profile(db.Model, MyMixin):
     __tablename__ = 'profiles'
     name = db.Column(db.String(255), unique=True, nullable=False)
     
+    media_id = db.Column(db.String(36), db.ForeignKey("medias.id"))
+    
     galleries   = relationship("Gallery",   
                                     cascade="all, delete", 
                                     backref=backref("profile",lazy="joined")
@@ -62,13 +64,15 @@ class Profile(db.Model, MyMixin):
         return {
             'id': self.id,
             'name': self.name,
+            'media_id': self.media_id,
             '_internal' : self.get_internal()
         }
     
     def to_json_light(self):
         return {
             'id': self.id,
-            'name': self.name
+            'name': self.name,
+            'media_id': self.media_id,
         }
 
     def to_json_social_network(self):
@@ -107,12 +111,6 @@ class Profile(db.Model, MyMixin):
 
         return result;
 
-    def to_json(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            '_internal' : self.get_internal()
-        }
 
 class Like(db.Model, MyMixin):
     __tablename__ = 'likes'
