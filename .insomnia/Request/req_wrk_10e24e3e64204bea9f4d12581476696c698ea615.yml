@@ -1,7 +1,7 @@
 _id: req_wrk_10e24e3e64204bea9f4d12581476696c698ea615
 type: Request
 parentId: fld_wrk_10e24e3e64204bea9f4d12581476696cfd62812f
-modified: 1677703527080
+modified: 1678732714738
 created: 1677703527080
 url: "{{ base_url }}/init"
 name: init
@@ -14,6 +14,7 @@ authentication:
   type: bearer
   token: "{{bearerToken}}"
   prefix: ""
+  disabled: true
 metaSortKey: -1677703527080
 isPrivate: false
 settingStoreCookies: true

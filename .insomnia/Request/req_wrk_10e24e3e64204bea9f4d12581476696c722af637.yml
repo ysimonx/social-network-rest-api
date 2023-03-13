@@ -1,7 +1,7 @@
 _id: req_wrk_10e24e3e64204bea9f4d12581476696c722af637
 type: Request
 parentId: fld_wrk_10e24e3e64204bea9f4d12581476696c5d45a009
-modified: 1677259729007
+modified: 1678733699559
 created: 1677181597102
 url: "{{ base_url }}/profile"
 name: profile post
@@ -11,7 +11,8 @@ body:
   mimeType: application/json
   text: |-
     {
-      "name": "alexiane124"
+      "name": "alexiane1234",
+    	"media_id": "0188bc6a-4170-4715-aeff-b4d26820111e"
     }
 parameters: []
 headers:
