@@ -1,0 +1,25 @@
+_id: req_wrk_10e24e3e64204bea9f4d12581476696caa240317
+type: Request
+parentId: fld_wrk_10e24e3e64204bea9f4d12581476696cbb362a46
+modified: 1678734770672
+created: 1678734737204
+url: "{{ base_url }}/media"
+name: media list
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{bearerToken}}"
+  prefix: ""
+  disabled: true
+metaSortKey: -1678734737204
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
