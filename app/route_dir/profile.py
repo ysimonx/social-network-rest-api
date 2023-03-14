@@ -59,12 +59,12 @@ def create_profile():
     if not 'media_id' in request.json:
         abort(400 , "miss media_id parameter")
 
-    media = Media.query.get(id)
+    media = Media.query.get(request.json.get('media_id'))
     if media is None:
         abort(404, "this media does not exists in database")
         
     current_user = get_jwt_identity()
-    if media._internal.owner_user_id != current_user:
+    if media.owner_user_id != current_user:
         abort(401, "this media does not belong to you")
 
     profile = Profile(

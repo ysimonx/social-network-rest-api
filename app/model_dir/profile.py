@@ -14,13 +14,17 @@ class Profile(db.Model, MyMixin):
     
     media_id = db.Column(db.String(36), db.ForeignKey("medias.id"))
     
-    galleries   = relationship("Gallery",   
+    profile_media   = relationship("Media"
+                                 
+                                )
+    
+    galleries       = relationship("Gallery",   
                                     cascade="all, delete", 
                                     backref=backref("profile",lazy="joined")
                                     )
     
 
-    is_liking   = relationship("Profile",
+    is_liking       = relationship("Profile",
                                     cascade="all, delete",
                                     secondary = "likes", 
                                     primaryjoin="Profile.id == Like.profile_id",
@@ -30,7 +34,7 @@ class Profile(db.Model, MyMixin):
                                     )
     
     
-    followers   = relationship("Profile",
+    followers       = relationship("Profile",
                                     cascade="all, delete",
                                     secondary = "followings", 
                                     primaryjoin="Profile.id == Follow.followed_profile_id",
@@ -39,7 +43,7 @@ class Profile(db.Model, MyMixin):
                                     viewonly=True
                                     )
     
-    favorites   = relationship("Profile",
+    favorites       = relationship("Profile",
                                     cascade="all, delete",
                                     secondary = "favorites", 
                                     primaryjoin="Profile.id == Favorite.favorited_profile_id",
@@ -65,7 +69,8 @@ class Profile(db.Model, MyMixin):
             'id': self.id,
             'name': self.name,
             'media_id': self.media_id,
-            '_internal' : self.get_internal()
+            '_internal' : self.get_internal(),
+            'profile_media':   self.profile_media.to_json_light()
         }
     
     def to_json_light(self):

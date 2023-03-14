@@ -26,6 +26,16 @@ class Media(db.Model, MyMixin):
             'filetype': self.filetype
             
         }
+        
+    def to_json_light(self):
+        return {
+            'id': self.id,
+            'filename': self.filename,
+            'width': self.width,
+            'height': self.height,
+            'filetype': self.filetype
+            
+        }
 
 
 class Gallery(db.Model, MyMixin):
