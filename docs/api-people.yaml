@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Swagger Social-Network-Rest-Api
-  version: 1.0.5
+  version: 1.0.6
   description: 'This is a Social Network - OnlyFans OpenApi specifications  API REST. <br />
      https://github.com/ysimonx/social-network-rest-api '
   contact:
@@ -338,7 +338,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Media'
-                
+ 
+    get:
+      tags:
+        - media
+      summary: media list
+      description: Lists the Media
+      operationId: mediaList
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Media'
   /gallery:
     post:
       tags:
@@ -1175,6 +1190,7 @@ components:
         - _internal
         - id
         - name
+        - media_id
       properties:
         _internal:
           readOnly: true
@@ -1186,6 +1202,9 @@ components:
         name:
           type: string
           example: yannickoo
+        media_id:
+          type: string
+          example: "0188bc6a-4170-4715-aeff-b4d26820111e"
     Like:
       type: object
       required:
