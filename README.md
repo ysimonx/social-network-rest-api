@@ -24,3 +24,6 @@ and ...
 
 
 a very little PoC front-end flutter is available on https://github.com/ysimonx/api_people_flutter
+
+
+by [Yannick Simon](https://yannicksimon.fr)
