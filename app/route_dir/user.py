@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, session,abort
 from ..model_dir.user import User, Subscription
 from flask import jsonify, request, abort
 from .. import db, getByIdOrEmail, getByIdOrByName
-from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
+from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity, jwt_required, JWTManager
 
 app_file_user = Blueprint('user',__name__)
 
@@ -25,7 +25,8 @@ def login():
         abort(401)
     
     access_token = create_access_token(identity=user.id)
-    return jsonify(access_token=access_token, result_check=result_check)
+    refresh_token = create_refresh_token(identity=user.id)
+    return jsonify(access_token=access_token, refresh_token=refresh_token, result_check=result_check)
 
 
 @app_file_user.route("/user", methods=["GET"])
